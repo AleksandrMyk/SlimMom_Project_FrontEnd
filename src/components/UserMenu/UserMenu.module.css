@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: no-wrap;
+  font-size: 14px;
+  font-family: serif, Gotham Pro;
+  font-weight: 700;
+  letter-spacing: 4%;
+}
+
+.name {
+  padding: 0 15px;
+  border-right: 2px solid #e0e0e0;
+  height: 32px;
+  line-height: 32px;
+  /* font-weight: 700; */
+  /* margin-right: 30px; */
+  text-transform: none;
+}
+
+.exit {
+  padding: 0 15px;
+  height: 32px;
+  background-color: transparent;
+  border: 0;
+}
