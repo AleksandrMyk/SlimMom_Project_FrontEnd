@@ -9,11 +9,12 @@ import s from "./AppBar.module.css";
 
 const AppBar = ({ isAuthenticated }) => (
   <header className={s.header}>
-    <Logo></Logo>
-    <UserNav />
-    <AuthNav />
+    <div className={s.logoContainer}>
+      <Logo />
+      {isAuthenticated ? <UserNav /> : <AuthNav />}
+    </div>
+
     <UserInfo />
-    {/* {isAuthenticated ? <UserInfo /> : <AuthNav />} */}
   </header>
 );
 

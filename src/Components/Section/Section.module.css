@@ -3,5 +3,11 @@
   padding: 20px;
   max-width: 1280px;
   margin: 0 auto;
+  font-family: inherit;
+
   /* box-shadow: var(--main-shadow); */
 }
+
+/* font-famaly: "GothamProBold";
+font-famaly: "GothamProBlack";
+font-famaly: "GothamProLight"; */

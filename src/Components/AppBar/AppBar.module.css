@@ -1,8 +1,29 @@
 .header {
   display: flex;
+  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #2a363b;
-  width: 100%;
+  border-bottom: 2px solid #e0e0e0;
+  max-width: 100%;
   margin-bottom: 10px;
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+@media (min-width: 767px) {
+  .header {
+    max-width: 900px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header {
+    border: 0;
+    max-width: 1280px;
+  }
 }
