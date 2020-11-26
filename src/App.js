@@ -1,14 +1,39 @@
 import React from "react";
-// import { Switch, Route } from "react-router-dom";
-// import Spiner from "./Components/Spiner/Spiner";
-import Logo from "./Components/Logo";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+import routes from "./routes";
+import Section from "./components/Section";
+import AppBar from "./components/AppBar/AppBar";
+
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import CalculatorPage from "./pages/CalculatorPage";
+import DairyPage from "./pages/DairyPage";
+
+import Spiner from "./components/Spiner";
 //тут будут роуты и компоненты
 
 const App = () => {
   return (
-    <>
-      <Logo></Logo>
-    </>
+    <BrowserRouter>
+      <Section>
+        <AppBar />
+      </Section>
+
+      <Switch>
+        <Section>
+          <Spiner />
+          <Section>
+            <Route path={routes.home} component={HomePage} />
+            <Route path={routes.login} component={LoginPage} />
+            <Route path={routes.register} component={RegisterPage} />
+            <Route path={routes.calculator} component={CalculatorPage} />
+            <Route path={routes.dairy} component={DairyPage} />
+          </Section>
+        </Section>
+      </Switch>
+    </BrowserRouter>
   );
 };
 
