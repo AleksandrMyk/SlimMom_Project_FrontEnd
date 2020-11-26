@@ -1,12 +1,18 @@
 .container {
   display: flex;
+  margin: 0;
+  padding: 0;
   align-items: center;
   justify-content: center;
   flex-wrap: no-wrap;
   font-size: 14px;
-  font-family: serif, Gotham Pro;
+  /* DRAFT FONT STYLES */
+  font-family: Montserrat;
   font-weight: 700;
   letter-spacing: 4%;
+  width: 200px;
+  height: 100px;
+  background-color: transparent;
 }
 
 .name {
@@ -14,12 +20,13 @@
   border-right: 2px solid #e0e0e0;
   height: 32px;
   line-height: 32px;
-  /* font-weight: 700; */
-  /* margin-right: 30px; */
   text-transform: none;
 }
 
 .exit {
+  font-family: inherit;
+  font-weight: inherit;
+  color: #e0e0e0;
   padding: 0 15px;
   height: 32px;
   background-color: transparent;
