@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
 import NavigationBar from "./Components/NavigationBar";
 import Spiner from "./Components/Spiner";
+import DailyCaloriesForm from "./Components/DailyCaloriesForm";
 import Register from "./Views/Register";
 import Login from "./Views/Login";
 import "./app.css";
@@ -14,11 +15,10 @@ const App = () => {
       <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        {/* <Route exact path="/" component={Home} /> */}
+        {/* <Route exact path="/" component={DailyCaloriesForm} /> */}
       </Switch>
     </>
-
- );
+  );
 };
 
 export default App;
