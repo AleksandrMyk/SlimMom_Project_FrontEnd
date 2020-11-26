@@ -1,28 +1,28 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import s from "./AuthNav.module.css";
+import s from "./UserNav.module.css";
 
-const AuthNav = () => (
+const UserNav = () => (
   <nav className={s.container}>
     <NavLink
-      to="/register"
+      to="/dairy"
       exact
       className={s.link}
       activeClassName={s.activeLink}
     >
-      Регистрация
+      Дневник
     </NavLink>
 
     <NavLink
-      to="/login"
+      to="/calculator"
       exact
       className={s.link}
       activeClassName={s.activeLink}
     >
-      Вход
+      Калькулятор
     </NavLink>
   </nav>
 );
 
-export default AuthNav;
+export default UserNav;

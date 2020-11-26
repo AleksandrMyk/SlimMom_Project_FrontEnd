@@ -4,7 +4,8 @@ export default {
   home: "/",
   login: "/login",
   register: "/register",
-  user: "/user",
+  calculator: "/calculator",
+  dairy: "/dairy",
 };
 
 // import { lazy } from "react";
