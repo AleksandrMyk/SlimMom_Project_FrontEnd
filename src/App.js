@@ -1,40 +1,24 @@
-import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-
-import routes from "./routes";
-import Section from "./components/Section";
-import AppBar from "./components/AppBar/AppBar";
-
-import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import CalculatorPage from "./pages/CalculatorPage";
-import DairyPage from "./pages/DairyPage";
-
-import Spiner from "./components/Spiner";
-//тут будут роуты и компоненты
+import React, { Suspense } from "react";
+import { Route, Switch } from "react-router-dom";
+import NavigationBar from "./Components/NavigationBar";
+import Spiner from "./Components/Spiner";
+import Register from "./Views/Register";
+import Login from "./Views/Login";
+import "./app.css";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Section>
-        <AppBar />
-      </Section>
-
+    <>
+      <NavigationBar></NavigationBar>
+      <Suspense fallback={<Spiner />}></Suspense>
       <Switch>
-        <Section>
-          <Spiner />
-          <Section>
-            <Route path={routes.home} component={HomePage} />
-            <Route path={routes.login} component={LoginPage} />
-            <Route path={routes.register} component={RegisterPage} />
-            <Route path={routes.calculator} component={CalculatorPage} />
-            <Route path={routes.dairy} component={DairyPage} />
-          </Section>
-        </Section>
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+        {/* <Route exact path="/" component={Home} /> */}
       </Switch>
-    </BrowserRouter>
-  );
+    </>
+
+ );
 };
 
 export default App;

@@ -1,0 +1,32 @@
+/* основные стили  */
+@font-face {
+  font-family: "GothamProBold";
+  src: url("./GothamProBold/GothamProBold.eot");
+  src: url("./GothamProBold/GothamProBold.woff") format("woff"),
+    url("./GothamProBold/GothamProBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "GothamProBlack";
+  src: url("./GothamProBlack/GothamProBlack.eot");
+  src: url("./GothamProBlack/GothamProBlack.eot?#iefix")
+      format("embedded-opentype"),
+    url("./GothamProBlack/GothamProBlack.woff") format("woff"),
+    url("./GothamProBlack/GothamProBlack.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "GothamProLight";
+  src: url("./GothamProLight/GothamProLight.eot");
+
+  src: url("./GothamProLight/GothamProLight.eot?#iefix")
+      format("embaded-opentype"),
+    url("./GothamProLight/GothamProLight.woff") format("woff"),
+    url("./GothamProLight/GothamProLight.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
