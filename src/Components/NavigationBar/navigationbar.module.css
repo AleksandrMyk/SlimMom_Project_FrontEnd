@@ -25,7 +25,7 @@ nav {
   align-items: center;
 }
 
-.navContainer a {
+.navContainer > a {
   font-family: GothamProBold;
   font-style: normal;
   font-weight: bold;
@@ -39,14 +39,17 @@ nav {
 .login {
   margin-right: 15px;
 }
+.navContainer > a:active {
+  color: #212121;
+}
 
 .navContainer a :hover {
   color: #212121;
 }
 
-.active {
+/* .active {
   color: #212121;
-}
+} */
 
 @media (min-width: 767px) {
   .container {
@@ -56,12 +59,26 @@ nav {
 
 @media (min-width: 1024px) {
   nav {
-    padding-top: 20px;
+    padding-top: 30px;
     height: 140px;
     border-bottom: none;
   }
 
+  .container {
+    height: 82px;
+    justify-content: flex-start;
+  }
+
   .navContainer {
-    display: none;
+    height: 106px;
+  }
+
+  .login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    border-left: 2px solid #9b9faa;
+    padding-left: 24px;
   }
 }

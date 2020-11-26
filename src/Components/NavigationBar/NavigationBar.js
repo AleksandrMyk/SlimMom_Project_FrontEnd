@@ -11,16 +11,12 @@ const NavigationBar = () => {
           <NavLink className={style.logoContainer} exact to="/">
             <Logo></Logo>
           </NavLink>
+
           <div className={style.navContainer}>
-            <NavLink
-              activeClassName={style.active}
-              exact
-              to="/login"
-              className={style.login}
-            >
+            <NavLink exact to="/login" className={style.login}>
               <span>Вход</span>
             </NavLink>
-            <NavLink activeClassName={style.active} exact to="/register">
+            <NavLink exact to="/register">
               <span>Регистрация</span>
             </NavLink>
           </div>

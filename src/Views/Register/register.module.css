@@ -87,7 +87,6 @@
 }
 
 .noActiveButton {
-  margin-right: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -130,6 +129,9 @@
     height: 100vh;
   }
 
+  .noActiveButton {
+    margin-right: 30px;
+  }
   .registerTitle {
     text-align: left;
   }
