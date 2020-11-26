@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./logo.module.css";
-import imageLogo from "./images/logo.jpg";
+import imageLogo from "./images/logo-narrow.jpg";
 
 function Logo() {
   return (
