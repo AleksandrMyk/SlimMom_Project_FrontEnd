@@ -13,9 +13,9 @@ const App = () => {
       <NavigationBar></NavigationBar>
       <Suspense fallback={<Spiner />}></Suspense>
       <Switch>
+        <Route exact path="/" component={DailyCaloriesForm} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        {/* <Route exact path="/" component={DailyCaloriesForm} /> */}
       </Switch>
     </>
   );
