@@ -1,10 +1,8 @@
-import { combineReducers } from 'redux';
-import spinerReducer from './spinnerReducers';
-
-
+import { combineReducers } from "redux";
+import loadingReducer from "./spinerReducers";
 
 const root = combineReducers({
-    loading: spinerReducer.loadingReducer,
-})
+  loading: loadingReducer,
+});
 
 export default root;

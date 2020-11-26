@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  margin: 0;
+  padding-bottom: 12px;
+  align-items: flex-end;
+  justify-content: center;
+  flex-wrap: no-wrap;
+  font-size: 14px;
+  /* DRAFT FONT STYLES */
+  font-family: Montserrat;
+  font-weight: 700;
+  letter-spacing: 4%;
+  width: 200px;
+  height: 100px;
+  background-color: transparent;
+}
+
+.name {
+  padding: 0 15px;
+  border-right: 2px solid #e0e0e0;
+  height: 32px;
+  line-height: 32px;
+  text-transform: none;
+}
+
+.exit {
+  font-family: inherit;
+  font-weight: inherit;
+  color: #e0e0e0;
+  padding: 0 15px;
+  height: 32px;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}

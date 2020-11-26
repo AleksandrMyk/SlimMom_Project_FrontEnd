@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./logo.module.css";
-import imageLogo from "./images/logo-mobile.png";
 
 function Logo() {
   return (
