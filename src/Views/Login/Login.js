@@ -1,10 +1,10 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import style from "./register.module.css";
+import style from "./login.module.css";
 import useForm from "./useForm";
 import validate from "./validationRules";
+import { NavLink } from "react-router-dom";
 
-const Register = () => {
+const Login = () => {
   const { values, errors, handleChange, handleSubmit } = useForm(
     login,
     validate
@@ -18,21 +18,9 @@ const Register = () => {
     <>
       <div className={style.pageWrapper}>
         <div className={style.loginWrapper}>
-          <div className={style.registerTitle}>регистрация</div>
+          <div className={style.registerTitle}>вход</div>
           <form onSubmit={handleSubmit} noValidate>
             <div className={style.inputModule}>
-              <input
-                type="text"
-                name="name"
-                placeholder="Имя *"
-                className={style.input}
-                onChange={handleChange}
-                value={values.name || ""}
-                required
-              />
-
-              {errors.name && <p className={style.error}>{errors.name}</p>}
-
               <input
                 type="text"
                 name="login"
@@ -62,13 +50,12 @@ const Register = () => {
             </div>
 
             <div className={style.butModule}>
-              <NavLink className={style.noActiveButton} exact to="/login">
-                <span>Вход</span>
-              </NavLink>
-
               <button type="submit" className={style.activeButton}>
-                Регистрация
+                Вход
               </button>
+              <NavLink className={style.noActiveButton} exact to="/register">
+                <span>Регистрация</span>
+              </NavLink>
             </div>
           </form>
         </div>
@@ -77,4 +64,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

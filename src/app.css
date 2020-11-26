@@ -1,2 +1,16 @@
 @import "./Utils/Normalize/normalize.css";
 @import "./Utils/Fonts/fonts.css";
+
+html {
+  box-sizing: border-box;
+}
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

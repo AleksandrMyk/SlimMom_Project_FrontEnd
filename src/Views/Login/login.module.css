@@ -87,7 +87,6 @@
 }
 
 .noActiveButton {
-  margin-right: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -137,6 +136,10 @@
   .inputModule {
     text-align: start;
     align-items: flex-start;
+  }
+
+  .butModule > button {
+    margin-right: 30px;
   }
 
   .input {

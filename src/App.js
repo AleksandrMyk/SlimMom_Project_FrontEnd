@@ -1,15 +1,21 @@
-import React from "react";
-// import { Switch, Route } from "react-router-dom";
-// import Spiner from "./Components/Spiner/Spiner";
-// import Logo from "./Components/Logo";
+import React, { Suspense } from "react";
+import { Route, Switch } from "react-router-dom";
+import NavigationBar from "./Components/NavigationBar";
+import Spiner from "./Components/Spiner";
 import Register from "./Views/Register";
+import Login from "./Views/Login";
 import "./app.css";
-//тут будут роуты и компоненты
 
 const App = () => {
   return (
     <>
-      <Register></Register>
+      <NavigationBar></NavigationBar>
+      <Suspense fallback={<Spiner />}></Suspense>
+      <Switch>
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+        {/* <Route exact path="/" component={Home} /> */}
+      </Switch>
     </>
   );
 };
