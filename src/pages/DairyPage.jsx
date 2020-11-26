@@ -4,6 +4,7 @@ const DairyPage = ({ date }) => {
   return (
     <>
       <h1>{date}</h1>
+      <>Календарь</>
     </>
   );
 };
