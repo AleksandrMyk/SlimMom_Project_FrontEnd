@@ -1,9 +1,9 @@
 .container {
   display: flex;
   margin: 0;
-  padding: 0;
+  margin-bottom: 34px;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: no-wrap;
   font-size: 14px;
   /* DRAFT FONT STYLES */
@@ -25,4 +25,14 @@
 
 .activeLink {
   color: #2a363b;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    justify-content: flex-start;
+  }
+
+  .link:first-child {
+    border-left: 2px solid #e0e0e0;
+  }
 }

@@ -2,7 +2,8 @@ import React from "react";
 // import { Route, Switch } from "react-router-dom";
 // import NavigationBar from "./Components/NavigationBar";
 // import Spiner from "./Components/Spiner";
-import Aaa from "./Components/AddProductForm";
+import AppBar from "./Components/AppBar";
+// import Aaa from "./Components/AddProductForm";
 // import DailyCaloriesForm from "./Components/DailyCaloriesForm";
 // import Register from "./Views/Register";
 // import Login from "./Views/Login";
@@ -13,7 +14,8 @@ const App = () => {
     <>
       {/* <NavigationBar></NavigationBar>
       <Suspense fallback={<Spiner />}></Suspense> */}
-      <Aaa></Aaa>
+      <AppBar />
+      {/* <Aaa></Aaa> */}
       {/* <Switch>
         <Route exact path="/" component={DailyCaloriesForm} />
         <Route exact path="/login" component={Login} />
