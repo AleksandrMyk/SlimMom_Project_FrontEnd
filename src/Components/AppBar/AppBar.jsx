@@ -14,7 +14,8 @@ const AppBar = ({ isAuthenticated }) => {
           <Logo />
           {isAuthenticated ? <UserNav /> : <AuthNav />}
         </div>
-        {isAuthenticated && <UserInfo />}
+        <UserInfo />
+        {/* {isAuthenticated && <UserInfo />} */}
       </header>
     </div>
   );
