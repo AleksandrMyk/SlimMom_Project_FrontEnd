@@ -1,7 +1,7 @@
 import axios from "axios";
 import authActions from "./authActions";
 
-axios.defaults.baseURL = "https://slimmom.herokuapp.com";
+// axios.defaults.baseURL = "https://slimmom.herokuapp.com";
 
 // const token = {
 //   set(token) {
