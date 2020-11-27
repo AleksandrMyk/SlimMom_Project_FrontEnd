@@ -1,0 +1,24 @@
+.productList {
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  margin-bottom: 14px;
+  color: #9b9faa;
+}
+.list {
+  width: 222px;
+  margin-bottom: 40px;
+}
+@media (min-width: 767px) {
+  .list {
+    margin-left: 112px;
+  }
+}
+@media (min-width: 1024px) {
+  .list {
+    margin-left: 160px;
+  }
+}
