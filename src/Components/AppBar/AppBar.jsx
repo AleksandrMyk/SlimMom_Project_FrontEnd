@@ -8,13 +8,15 @@ import s from "./AppBar.module.css";
 
 const AppBar = ({ isAuthenticated }) => {
   return (
-    <header className={s.header}>
-      <div className={s.logoContainer}>
-        <Logo />
-        {isAuthenticated ? <UserNav /> : <AuthNav />}
-      </div>
-      {isAuthenticated && <UserInfo />}
-    </header>
+    <div className={s.headerContainer}>
+      <header className={s.header}>
+        <div className={s.logoContainer}>
+          <Logo />
+          {isAuthenticated ? <UserNav /> : <AuthNav />}
+        </div>
+        {isAuthenticated && <UserInfo />}
+      </header>
+    </div>
   );
 };
 

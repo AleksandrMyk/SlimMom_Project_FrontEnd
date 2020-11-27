@@ -1,10 +1,15 @@
+.headerContainer {
+  border-bottom: 2px solid #e0e0e0;
+  width: 100%;
+  text-transform: uppercase;
+}
+
 .header {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid #e0e0e0;
-  width: 100%;
+
   margin: 0 auto 10px;
 }
 
@@ -23,8 +28,10 @@
 }
 
 @media (min-width: 1024px) {
-  .header {
+  .headerContainer {
     border: 0;
+  }
+  .header {
     max-width: 1280px;
   }
 
