@@ -1,9 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .ProductEditor {
   display: flex;
   flex-direction: column;
 
   margin: 0 auto;
-  padding: 15px;
+  margin-bottom: 10px;
+  padding-top: 10px;
   width: 290px;
   height: 82px;
 }
@@ -124,5 +130,11 @@
 
     color: #ffffff;
     font-size: 16px;
+  }
+
+  .ProductEditorErrorMsg {
+    display: block;
+    font-size: 8px;
+    color: #bd0404;
   }
 }
