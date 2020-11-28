@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
-import NavigationBar from "./Components/NavigationBar";
+// import NavigationBar from "./Components/NavigationBar";
+import AppBar from "./Components/AppBar";
 import Spiner from "./Components/Spiner";
 import DailyCaloriesForm from "./Views/DailyCaloriesForm";
 import Register from "./Views/Register";
@@ -10,7 +11,8 @@ import "./app.css";
 const App = () => {
   return (
     <>
-      <NavigationBar></NavigationBar>
+      {/* <NavigationBar></NavigationBar> */}
+      <AppBar />
       <Suspense fallback={<Spiner />}></Suspense>
       <Switch>
         <Route exact path="/" component={DailyCaloriesForm} />
