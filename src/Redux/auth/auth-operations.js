@@ -16,9 +16,20 @@ const registerUser = (credentials) => async (dispatch) => {
   dispatch(authActions.registerRequest());
 
   try {
-    const response = await axios.post("users/register/", credentials);
+    // const response = await axios.post("users/register/", credentials);
+
+    const response = axios.post(
+      "https://slimmom.herokuapp.com/users/register/",
+      credentials,
+      {
+        headers: {
+          "content-type": "application/json",
+        },
+      }
+    );
+
     console.log(response);
-    // token.set(response.user.token);
+    token.set(response.user.token);
     dispatch(authActions.registerSuccess(response.user));
   } catch (error) {
     dispatch(authActions.registerError(error.message));

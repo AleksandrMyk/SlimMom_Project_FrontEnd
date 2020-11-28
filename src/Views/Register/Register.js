@@ -16,10 +16,15 @@ const Register = (props) => {
   );
 
   function login() {
-    const convertedData = JSON.stringify({ ...values });
-    console.log(convertedData);
-    props.onRegister(convertedData);
-    console.log("Success");
+    const credentials = JSON.stringify({
+      name: values.name,
+      login: values.login,
+      password: values.password,
+    });
+
+    console.log(credentials);
+    props.onRegister(credentials);
+    // console.log("Success");
   }
 
   return (
@@ -103,8 +108,7 @@ const Register = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onRegister: (credentials) =>
-    dispatch(authOperations.registerUser(credentials)),
+  onRegister: (values) => dispatch(authOperations.registerUser(values)),
 });
 
 export default connect(null, mapDispatchToProps)(Register);
