@@ -1,57 +1,35 @@
-
-// import { Switch, Route } from "react-router-dom";
-// import Spiner from "./Components/Spiner/Spiner";
-import React, {Suspense}from "react";
-import { Switch } from "react-router-dom";
-import MainNavigation from "./Components/MainNavigation/MainNavigation"
-import routes from "./routes"
-import PublicRoute from "./Components/MainNavigation/CustomRoutes/PublicRoute"
-import PrivateRoute from "./Components/MainNavigation/CustomRoutes/PrivateRote"
-import Logo from "./Components/Logo";
-//тут будут роуты и компоненты
+import React, { Suspense } from "react";
+import { Route, Switch } from "react-router-dom";
+import NavigationBar from "./Components/NavigationBar";
+import Spiner from "./Components/Spiner";
+import DailyCaloriesForm from "./Views/DailyCaloriesForm";
+import Register from "./Views/Register";
+import Login from "./Views/Login";
+import "./app.css";
+import product from "./Components/DiaryProductLIstItem/products.json"
+import DairyProductsListItem from "./Components/DiaryProductLIstItem/DiaryProductLIstItem";
 
 const App = () => {
   return (
     <>
-      <Logo></Logo>
-      <div>
-          <MainNavigation />
-          {/* {this.props.isAuthenticated && <UserMenu />} */}
-        </div>
-        <Suspense fallback="Spiner must be">
-          <Switch>
-            <PublicRoute
-              path={routes.home}
-              restricted={false}
-              exact
-              component="Home" // Need add component for redirect
-            />
-            <PublicRoute
-              path={routes.login}
-              restricted={true}
-              redirectTo={routes.register}
-              component="Login" // Need add component for redirect
-            />
-            <PublicRoute
-              path={routes.register}
-              restricted={true}
-              redirectTo={routes.login}
-              component="RegisterForm" // Need add component for redirect
-            />
-             <PrivateRoute
-              path={routes.diary}
-              restricted={true}
-              redirectTo={routes.login}
-              component="Diary" // Need add component for redirect
-            />
-             <PrivateRoute
-              path={routes.calculator}
-              restricted={true}
-              redirectTo={routes.login}
-              component="Calculator" // Need add component for redirect
-            />
-          </Switch>
-        </Suspense>
+      <NavigationBar></NavigationBar>
+      <Suspense fallback={<Spiner />}></Suspense>
+      <Switch>
+        <Route exact path="/" component={DailyCaloriesForm} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+      </Switch>
+    { product.map((product) => (
+ 
+ <DairyProductsListItem
+ key={product._id.$oid}
+ title={product.title.ua}
+ weight={product.weight}
+ calories={product.calories}
+ />
+     
+))}
+
     </>
   );
 };
