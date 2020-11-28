@@ -13,13 +13,13 @@ export default function validate(values) {
     errors.password = "*Пароль от 6 символов ";
   }
 
-  if (!values.name) {
-    errors.name = "*Введите имя!!!";
-  } else if (values.name.length < 3) {
-    errors.name = "*Имя должно быть от 3 символов ";
-  } else if (!regName.test(values.name)) {
-    errors.name = "*Имя только на кириллице!!!";
-  }
+  // if (!values.name) {
+  //   errors.name = "*Введите имя!!!";
+  // } else if (values.name.length < 3) {
+  //   errors.name = "*Имя должно быть от 3 символов ";
+  // } else if (!regName.test(values.name)) {
+  //   errors.name = "*Имя только на кириллице!!!";
+  // }
 
   if (!values.login) {
     errors.login = "*Введите имя!!!";

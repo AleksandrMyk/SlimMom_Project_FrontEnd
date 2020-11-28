@@ -3,19 +3,44 @@ import { NavLink } from "react-router-dom";
 import style from "./register.module.css";
 import useForm from "./useForm";
 import validate from "./validationRules";
+import Logo from "../../Components/Logo";
+// import { compose } from "redux";
+import { connect } from "react-redux";
+// import withAuthRedirect from "../../CustomRoutes/hoc/withAuthRedirect";
+import { authOperations } from "../../Redux/auth";
 
-const Register = () => {
+const Register = (props) => {
   const { values, errors, handleChange, handleSubmit } = useForm(
     login,
     validate
   );
 
   function login() {
-    console.log("You are logged in");
+    const convertedData = JSON.stringify({ ...values });
+    console.log(convertedData);
+    props.onRegister(convertedData);
+    console.log("Success");
   }
 
   return (
     <>
+      <nav>
+        <div className={style.container}>
+          <NavLink className={style.logoContainer} exact to="/">
+            <Logo />
+          </NavLink>
+
+          <div className={style.navContainer}>
+            <NavLink exact to="/login" className={style.login}>
+              <span>Вход</span>
+            </NavLink>
+            <NavLink exact to="/register">
+              <span>Регистрация</span>
+            </NavLink>
+          </div>
+        </div>
+      </nav>
+
       <div className={style.pageWrapper}>
         <div className={style.loginWrapper}>
           <div className={style.registerTitle}>регистрация</div>
@@ -77,4 +102,14 @@ const Register = () => {
   );
 };
 
-export default Register;
+const mapDispatchToProps = (dispatch) => ({
+  onRegister: (credentials) =>
+    dispatch(authOperations.registerUser(credentials)),
+});
+
+export default connect(null, mapDispatchToProps)(Register);
+
+// export default compose(
+//   withAuthRedirect,
+//   connect(null, mapDispatchToProps)
+// )(RegisterPage);

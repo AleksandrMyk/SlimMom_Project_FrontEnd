@@ -3,6 +3,7 @@ import style from "./login.module.css";
 import useForm from "./useForm";
 import validate from "./validationRules";
 import { NavLink } from "react-router-dom";
+import Logo from "../../Components/Logo";
 
 const Login = () => {
   const { values, errors, handleChange, handleSubmit } = useForm(
@@ -16,6 +17,23 @@ const Login = () => {
 
   return (
     <>
+      <nav>
+        <div className={style.container}>
+          <NavLink className={style.logoContainer} exact to="/">
+            <Logo />
+          </NavLink>
+
+          <div className={style.navContainer}>
+            <NavLink exact to="/login" className={style.login}>
+              <span>Вход</span>
+            </NavLink>
+            <NavLink exact to="/register">
+              <span>Регистрация</span>
+            </NavLink>
+          </div>
+        </div>
+      </nav>
+
       <div className={style.pageWrapper}>
         <div className={style.loginWrapper}>
           <div className={style.registerTitle}>вход</div>

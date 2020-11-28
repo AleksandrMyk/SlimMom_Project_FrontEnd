@@ -1,21 +1,28 @@
 import React from "react";
+import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 import AuthNav from "../AuthNav/AuthNav";
 import UserNav from "../UserNav/UserNav";
-import UserInfo from "../UserInfo/UserInfo";
+// import UserInfo from "../UserInfo/UserInfo";
 import Logo from "../Logo/Logo";
-// import { authSelectors } from "../../redux/auth";
-
-import s from "./AppBar.module.css";
+import { authSelectors } from "../../Redux/auth";
+import style from "./AppBar.module.css";
 
 const AppBar = ({ isAuthenticated }) => (
-  <header className={s.header}>
-    <div className={s.logoContainer}>
-      <Logo />
+  <nav>
+    <div className={style.container}>
+      <NavLink className={style.logoContainer} exact to="/">
+        <Logo />
+      </NavLink>
+
+      {/* <Navigation /> */}
       {isAuthenticated ? <UserNav /> : <AuthNav />}
     </div>
-
-    <UserInfo />
-  </header>
+  </nav>
 );
 
-export default AppBar;
+const mapStateToProps = (state) => ({
+  isAuthenticated: authSelectors.isAuthenticated(state),
+});
+
+export default connect(mapStateToProps)(AppBar);

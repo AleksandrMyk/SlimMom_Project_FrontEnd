@@ -1,7 +1,7 @@
 import axios from "axios";
 import authActions from "./auth-actions";
 
-axios.defaults.baseURL = "https://goit-phonebook-api.herokuapp.com/";
+axios.defaults.baseURL = "https://slimmom.herokuapp.com/";
 
 const token = {
   set(token) {
@@ -12,34 +12,18 @@ const token = {
   },
 };
 
-// const registerUser = (credentials) => async (dispatch) => {
-//   dispatch(authActions.registerRequest());
-
-//   try {
-//     const response = await axios.post("/users/signup", credentials);
-
-//     token.set(response.data.token);
-//     dispatch(authActions.registerSuccess(response.data));
-//   } catch (error) {
-//     dispatch(authActions.registerError(error.message));
-//   }
-// };
-
 const registerUser = (credentials) => async (dispatch) => {
   dispatch(authActions.registerRequest());
 
   try {
-    const response = await axios.post('/users/signup', credentials);
-
-    token.set(response.data.token);
-    dispatch(authActions.registerSuccess(response.data));
+    const response = await axios.post("users/register/", credentials);
+    console.log(response);
+    // token.set(response.user.token);
+    dispatch(authActions.registerSuccess(response.user));
   } catch (error) {
     dispatch(authActions.registerError(error.message));
   }
 };
-
-
-
 
 const logIn = (credentials) => async (dispatch) => {
   dispatch(authActions.loginRequest());

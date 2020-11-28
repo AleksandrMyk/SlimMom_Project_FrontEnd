@@ -1,4 +1,4 @@
-import spinerTypes from "../constants/spinerTypes";
+import spinerTypes from "./spinerTypes";
 
 const loadingReducer = (state = false, { type }) => {
   switch (type) {

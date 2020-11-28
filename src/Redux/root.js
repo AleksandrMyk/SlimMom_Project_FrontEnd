@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import loadingReducer from "./spinerReducers";
+import loadingReducer from "./Spiner/spinerReducers";
 
 const root = combineReducers({
   loading: loadingReducer,

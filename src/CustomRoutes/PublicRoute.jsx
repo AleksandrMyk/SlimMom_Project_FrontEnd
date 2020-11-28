@@ -1,21 +1,18 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { authSelectors } from "../redux/auth";
-
-import PropTypes from "prop-types";
+import { authSelectors } from "../Redux/auth";
 
 const PublicRoute = ({
   component: Component,
-  restricted,
   isAuthenticated,
   ...routeProps
 }) => (
   <Route
     {...routeProps}
     render={(props) =>
-      isAuthenticated && restricted ? (
-        <Redirect to="/contacts" />
+      isAuthenticated && routeProps.restricted ? (
+        <Redirect to="/" />
       ) : (
         <Component {...props} />
       )
@@ -28,7 +25,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(PublicRoute);
-
-PublicRoute.propTypes = {
-  isAuthenticated: PropTypes.any,
-};

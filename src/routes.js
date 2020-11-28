@@ -10,14 +10,6 @@ export default [
     restricted: false,
   },
   {
-    path: "/",
-    label: "HomePrivate",
-    exact: true,
-    component: lazy(() => import("./Views/DailyCaloriesForm")),
-    private: true,
-    restricted: false,
-  },
-  {
     path: "/register",
     label: "Register",
     exact: true,
@@ -33,12 +25,12 @@ export default [
     private: false,
     restricted: true,
   },
-  {
-    path: "/contacts",
-    label: "TContacts",
-    exact: true,
-    component: lazy(() => import("./Pages/ContactPage/ContactPage")),
-    private: true,
-    restricted: false,
-  },
+  // {
+  //   path: "/contacts",
+  //   label: "TContacts",
+  //   exact: true,
+  //   component: lazy(() => import("./Pages/ContactPage/ContactPage")),
+  //   private: true,
+  //   restricted: false,
+  // },
 ];
