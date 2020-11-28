@@ -8,6 +8,7 @@ const styles = {
     height: "30px",
     right: "50px",
     top: "36px",
+    marginLeft: "50px",
   },
   bmBurgerBars: {
     background: "#373a47",

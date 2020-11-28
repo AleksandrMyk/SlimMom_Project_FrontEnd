@@ -1,7 +1,7 @@
 .container {
   display: flex;
-  margin: 0;
-  align-items: center;
+  padding: 0;
+  align-items: flex-end;
   justify-content: center;
   flex-wrap: no-wrap;
   font-size: 14px;
@@ -10,16 +10,20 @@
   font-weight: 700;
   letter-spacing: 4%;
   width: 200px;
-  height: 100px;
+  height: 40px;
   background-color: transparent;
+  text-transform: uppercase;
+  margin-right: 50px;
 }
 
 .name {
+  display: inline-block;
   padding: 12px 15px;
   border-right: 2px solid #e0e0e0;
 }
 
 .exit {
+  display: inline-block;
   font-family: inherit;
   font-weight: inherit;
   color: #e0e0e0;
@@ -40,6 +44,7 @@
 @media (min-width: 1024px) {
   .container {
     justify-content: flex-start;
+    min-height: 100px;
     margin-bottom: 34px;
     align-items: flex-end;
   }
