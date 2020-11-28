@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import loadingReducer from "./spinerReducers";
+<<<<<<< HEAD
 
 const root = combineReducers({
   loading: loadingReducer,
@@ -20,3 +21,11 @@ const item = createReducer([], {
 
 const onRemoveProduct = (state, action) =>
   state.filter((product) => product.id !== action.payload);
+=======
+
+const root = combineReducers({
+  loading: loadingReducer,
+});
+
+export default root;
+>>>>>>> 30ab79f4dc2725d9d1d7243915c3647c4d068d6d
