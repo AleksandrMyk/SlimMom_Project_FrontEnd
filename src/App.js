@@ -6,6 +6,7 @@ import Aaa from "./Components/AddProductForm";
 // import DailyCaloriesForm from "./Components/DailyCaloriesForm";
 // import Register from "./Views/Register";
 // import Login from "./Views/Login";
+import Modal from "./Components/Modal";
 import "./app.css";
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
       {/* <NavigationBar></NavigationBar>
       <Suspense fallback={<Spiner />}></Suspense> */}
       <Aaa></Aaa>
+      <Modal></Modal>
       {/* <Switch>
         <Route exact path="/" component={DailyCaloriesForm} />
         <Route exact path="/login" component={Login} />
