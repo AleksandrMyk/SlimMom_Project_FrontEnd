@@ -1,16 +1,16 @@
 import axios from "axios";
 import authActions from "./authActions";
 
-// axios.defaults.baseURL = "https://slimmom.herokuapp.com";
+axios.defaults.baseURL = "https://slimmom.herokuapp.com/users";
 
-// const token = {
-//   set(token) {
-//     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-//   },
-//   unset() {
-//     axios.defaults.headers.common.Authorization = "";
-//   },
-// };
+const token = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    axios.defaults.headers.common.Authorization = "";
+  },
+};
 
 const register = (credentials) => (dispatch) => {
   dispatch(authActions.registerRequest());
@@ -18,7 +18,7 @@ const register = (credentials) => (dispatch) => {
   axios
     .post("/register", credentials)
     .then((response) => {
-      // token.set(response.data.token);
+      token.set(response.data.token);
       dispatch(authActions.registerSuccess(response.data));
     })
     .catch((error) => dispatch(authActions.registerError(error.message)));
@@ -30,7 +30,7 @@ const logIn = (credentials) => (dispatch, getState) => {
   axios
     .post("/login", credentials)
     .then((response) => {
-      // token.set(response.data.token);
+      token.set(response.data.token);
       dispatch(authActions.loginSuccess(response.data));
       console.log("login success", getState().contacts);
     })
@@ -43,7 +43,7 @@ const logOut = () => (dispatch, getState) => {
   axios
     .post("/logout")
     .then(() => {
-      // token.unset();
+      token.unset();
       dispatch(authActions.logoutSuccess());
       console.log("logout success");
     })

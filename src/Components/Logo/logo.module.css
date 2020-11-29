@@ -16,6 +16,7 @@
   font-family: GothamProLight, sans-serif;
   font-weight: 300;
   color: #212121;
+  padding: 0;
 }
 
 .mom {
@@ -24,10 +25,14 @@
   font-family: GothamProLight, sans-serif;
   font-weight: 300;
   color: #fc842d;
+  padding: 0;
 }
 @media (min-width: 767px) {
+  .slim {
+    margin-left: 12px;
+  }
   .imgContainer {
-    /* margin-right: 12px; */
+    margin-right: 12px;
   }
 
   .logoName {

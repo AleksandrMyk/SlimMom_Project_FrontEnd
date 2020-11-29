@@ -1,3 +1,4 @@
+// import React from "react";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
@@ -9,7 +10,7 @@ import Logo from "../Logo";
 import AuthNav from "../AuthNav";
 import UserNav from "../UserNav";
 import UserInfo from "../UserInfo";
-import BurgerMenu from "../BurgerMenu/";
+// import BurgerMenu from "../BurgerMenu";
 
 import PropTypes from "prop-types";
 
@@ -33,17 +34,10 @@ const NavigationBar = ({ isAuthenticated }) => {
             <Logo></Logo>
           </NavLink>
           {isAuthenticated ? <UserNav /> : <AuthNav />}
+          {/* {isAuthenticated && <UserNav />}
+          {!isLoginPageLoaded && <AuthNav />} */}
           {isAuthenticated && !matches.mobile && <UserInfo />}
-
-          {/* ==================== TO REMOVE ======================= */}
-          {/* <div className={style.navContainer}>
-            <NavLink exact to="/login" className={style.login}>
-              <span>Вход</span>
-            </NavLink>
-            <NavLink exact to="/register">
-              <span>Регистрация</span>
-            </NavLink>
-          </div> */}
+          {/* {isAuthenticated && !matches.desktop && <BurgerMenu />} */}
         </div>
         {isAuthenticated && (
           <div className={style.LowerUserInfoContainer}>
