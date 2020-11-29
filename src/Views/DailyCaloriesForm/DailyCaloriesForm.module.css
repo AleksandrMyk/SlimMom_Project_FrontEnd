@@ -1,3 +1,7 @@
+.Wrapper {
+  display: flex;
+}
+
 .container {
   width: 290px;
   margin-left: 15px;
@@ -157,6 +161,15 @@
 }
 
 @media (min-width: 767px) {
+  .Wrapper {
+    width: 100%;
+    text-align: start;
+    background-image: url(./img/tablet-bg-register.jpg);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    height: 100vh;
+  }
+
   .container {
     width: 605px;
     margin-left: 87px;
@@ -191,6 +204,12 @@
 }
 
 @media (min-width: 1024px) {
+  .Wrapper {
+    width: 100%;
+    background-image: url(./img/desktop-bg-REGISTER.jpg);
+    background-size: cover;
+  }
+
   .container {
     width: 605px;
     margin-left: 115px;

@@ -3,12 +3,18 @@ import { createReducer } from "@reduxjs/toolkit";
 import productActions from "./productActions";
 
 const handleAddProduct = (state, action) => [...state, action.payload];
+
 const onRemoveProduct = (state, action) =>
   state.filter((product) => product.id !== action.payload);
 
 const itemsReducer = createReducer([], {
   [productActions.addProductSuccess]: handleAddProduct,
   [productActions.removeProductSuccess]: onRemoveProduct,
+
+});
+const itemsReducer = createReducer([], {
+  [productActions.addProductSuccess]: handleAddProduct,
+
 });
 
 const errorReducer = createReducer("", {

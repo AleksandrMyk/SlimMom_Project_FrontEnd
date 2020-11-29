@@ -1,14 +1,19 @@
 .container {
   display: flex;
+<<<<<<< HEAD
   padding: 0;
   align-items: flex-end;
   justify-content: center;
   flex-wrap: no-wrap;
+=======
+  justify-content: space-between;
+  align-items: center;
+>>>>>>> 8aaf7efbfc3b5b57d22171e7d971f07d009fbc3a
   font-size: 14px;
-  /* DRAFT FONT STYLES */
   font-family: Montserrat;
   font-weight: 700;
   letter-spacing: 4%;
+<<<<<<< HEAD
   width: 200px;
   height: 40px;
   background-color: transparent;
@@ -20,6 +25,18 @@
   display: inline-block;
   padding: 12px 15px;
   border-right: 2px solid #e0e0e0;
+=======
+  background-color: transparent;
+  text-transform: uppercase;
+  margin-right: 50px;
+  margin-left: auto;
+}
+
+.name {
+  padding: 12px 15px;
+  border-right: 2px solid #e0e0e0;
+  text-transform: none;
+>>>>>>> 8aaf7efbfc3b5b57d22171e7d971f07d009fbc3a
 }
 
 .exit {
@@ -31,9 +48,20 @@
   background-color: transparent;
   border: 0;
   text-transform: inherit;
+<<<<<<< HEAD
   cursor: pointer;
 }
 
+=======
+  outline: none;
+  cursor: pointer;
+}
+
+.exit:hover {
+  color: #212121;
+}
+
+>>>>>>> 8aaf7efbfc3b5b57d22171e7d971f07d009fbc3a
 @media (min-width: 767px) {
   /* .container {
     align-items: center;
@@ -44,9 +72,13 @@
 @media (min-width: 1024px) {
   .container {
     justify-content: flex-start;
+<<<<<<< HEAD
     min-height: 100px;
     margin-bottom: 34px;
     align-items: flex-end;
+=======
+    min-height: 106px;
+>>>>>>> 8aaf7efbfc3b5b57d22171e7d971f07d009fbc3a
   }
 
   .link:first-child {

@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { slide as Menu } from "react-burger-menu";
 import React from "react";
+=======
+import React from "react";
+import { slide as Menu } from "react-burger-menu";
+>>>>>>> 8aaf7efbfc3b5b57d22171e7d971f07d009fbc3a
 
 const styles = {
   bmBurgerButton: {
@@ -73,7 +78,11 @@ class BurgerMenu extends React.Component {
         <a id="calculator" className="menu-item" href="/calculator">
           Калькулятор
         </a>
+<<<<<<< HEAD
         <a id="dairy" className="menu-item" href="/dairy">
+=======
+        <a id="diary" className="menu-item" href="/diary">
+>>>>>>> 8aaf7efbfc3b5b57d22171e7d971f07d009fbc3a
           Дневник
         </a>
       </Menu>

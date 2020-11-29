@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from "react-redux";
 import DiaryProductsListItem from '../DiaryProductLIstItem/index'
 import styles from './DiaryProductsList.module.css'
-import products from "../DiaryProductLIstItem/products.json"
 import productOperations from "../../Redux/product/productOperations"
 const DiaryProductsList = () => {
 
