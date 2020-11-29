@@ -16,7 +16,7 @@ const Login = () => {
 
   return (
     <>
-      <div className={style.pageWrapper}>
+      <div id="logoPadeId" className={style.pageWrapper}>
         <div className={style.loginWrapper}>
           <div className={style.registerTitle}>вход</div>
           <form onSubmit={handleSubmit} noValidate>
