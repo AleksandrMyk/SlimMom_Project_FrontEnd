@@ -6,7 +6,7 @@ import s from "./UserNav.module.css";
 const UserNav = () => (
   <nav className={s.container}>
     <NavLink
-      to="/dairy"
+      to="/diary"
       exact
       className={s.link}
       activeClassName={s.activeLink}

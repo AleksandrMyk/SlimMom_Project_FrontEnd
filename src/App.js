@@ -7,6 +7,7 @@ import Spiner from "./Components/Spiner";
 import Register from "./Views/Register";
 import Login from "./Views/Login";
 import "./app.css";
+import DiaryPage from "./pages/DiaryPage";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         {/* <Route exact path="/" component={DailyCaloriesForm} /> */}
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
+        <Route exact path="/diary" component={DiaryPage} />
       </Switch>
     </>
   );

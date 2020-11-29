@@ -5,7 +5,7 @@ export default {
   login: "/login",
   register: "/register",
   calculator: "/calculator",
-  dairy: "/dairy",
+  diary: "/diary",
 };
 
 // export default [

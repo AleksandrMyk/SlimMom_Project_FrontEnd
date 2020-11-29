@@ -73,7 +73,7 @@ class BurgerMenu extends React.Component {
         <a id="calculator" className="menu-item" href="/calculator">
           Калькулятор
         </a>
-        <a id="dairy" className="menu-item" href="/dairy">
+        <a id="diary" className="menu-item" href="/diary">
           Дневник
         </a>
       </Menu>
