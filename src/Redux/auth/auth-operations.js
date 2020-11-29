@@ -1,7 +1,8 @@
 import axios from "axios";
 import authActions from "./auth-actions";
 
-axios.defaults.baseURL = "https://slimmom.herokuapp.com/";
+axios.defaults.baseURL = "http://localhost:3000/";
+// axios.defaults.baseURL = "https://slimmom.herokuapp.com/";
 
 const token = {
   set(token) {
@@ -16,21 +17,10 @@ const registerUser = (credentials) => async (dispatch) => {
   dispatch(authActions.registerRequest());
 
   try {
-    // const response = await axios.post("users/register/", credentials);
-
-    const response = axios.post(
-      "https://slimmom.herokuapp.com/users/register/",
-      credentials,
-      {
-        headers: {
-          "content-type": "application/json",
-        },
-      }
-    );
-
+    const response = await axios.post("auth/register", credentials);
     console.log(response);
-    token.set(response.user.token);
-    dispatch(authActions.registerSuccess(response.user));
+    token.set(response.data.token);
+    dispatch(authActions.registerSuccess(response.data));
   } catch (error) {
     dispatch(authActions.registerError(error.message));
   }
