@@ -12,6 +12,7 @@
     "mdbreact": "^4.27.0",
     "react": "^17.0.1",
     "react-burger-menu": "^2.9.2",
+    "react-calendar": "^3.2.1",
     "react-dom": "^17.0.1",
     "react-final-form-hooks": "^2.0.2",
     "react-loader-spinner": "^3.1.14",

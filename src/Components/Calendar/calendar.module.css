@@ -1,0 +1,26 @@
+.calendar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.date {
+  font-family: Verdana;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  color: #212121;
+}
+
+.icon {
+  margin-left: 4px;
+  width: 18px;
+  height: 20px;
+}
+
+@media (min-width: 767px) {
+  .date {
+    font-size: 34px;
+    line-height: 41px;
+  }
+}
