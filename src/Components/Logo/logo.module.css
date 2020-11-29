@@ -27,7 +27,7 @@
 }
 @media (min-width: 767px) {
   .imgContainer {
-    margin-right: 12px;
+    /* margin-right: 12px; */
   }
 
   .logoName {
