@@ -1,29 +1,24 @@
 .container {
   display: flex;
-  padding: 0;
-  align-items: flex-end;
-  justify-content: center;
-  flex-wrap: no-wrap;
+  justify-content: space-between;
+  align-items: center;
   font-size: 14px;
-  /* DRAFT FONT STYLES */
   font-family: Montserrat;
   font-weight: 700;
   letter-spacing: 4%;
-  width: 200px;
-  height: 40px;
   background-color: transparent;
   text-transform: uppercase;
   margin-right: 50px;
+  margin-left: auto;
 }
 
 .name {
-  display: inline-block;
   padding: 12px 15px;
   border-right: 2px solid #e0e0e0;
+  text-transform: none;
 }
 
 .exit {
-  display: inline-block;
   font-family: inherit;
   font-weight: inherit;
   color: #e0e0e0;
@@ -31,7 +26,12 @@
   background-color: transparent;
   border: 0;
   text-transform: inherit;
+  outline: none;
   cursor: pointer;
+}
+
+.exit:hover {
+  color: #212121;
 }
 
 @media (min-width: 767px) {
@@ -44,9 +44,7 @@
 @media (min-width: 1024px) {
   .container {
     justify-content: flex-start;
-    min-height: 100px;
-    margin-bottom: 34px;
-    align-items: flex-end;
+    min-height: 106px;
   }
 
   .link:first-child {
