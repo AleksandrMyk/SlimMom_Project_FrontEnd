@@ -1,6 +1,6 @@
 .container {
-  display: flex;
-  margin: 0;
+  display: none;
+  margin-bottom: 34px;
   padding: 0;
   align-items: flex-end;
   justify-content: center;
@@ -10,7 +10,7 @@
   font-family: Montserrat;
   font-weight: 700;
   letter-spacing: 4%;
-  width: 200px;
+  min-width: 200px;
   height: 100px;
   background-color: transparent;
 }
@@ -18,11 +18,31 @@
 .link {
   display: inline-block;
   text-decoration: none;
-  padding: 12px;
+  padding: 12px 25px;
   font-weight: 700;
   color: #e0e0e0;
 }
 
 .activeLink {
   color: #2a363b;
+}
+
+@media (min-width: 767px) {
+  .container {
+    align-items: center;
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 34px;
+    align-items: flex-end;
+  }
+
+  .link:first-child {
+    border-left: 2px solid #e0e0e0;
+  }
 }

@@ -1,4 +1,6 @@
+
 .wrapper__listItem{
+    display: contents;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 500;
     font-size: 10px;
@@ -6,32 +8,45 @@
     min-width: 300px;
     margin: 3px;
     margin-left: 10px;
-    box-shadow: 0px, 0px, 0px, 3px, rgb(119, 134, 141);;
+    box-shadow: 0px, 0px, 0px, 3px, rgb(19, 22, 24);
 }
-table{
+/* table{
   border-collapse: separate;
   border-spacing: 4px;  
+} */
+/* 
+th, td{
+  padding: 5px 5px;
+} */
+.listItem__title{
+    text-align: left;
+    font-size: 12px;
+    margin-right: 25px;
+    width: 58%;
+    padding: 10px 0px 10px 0px;
+    border-bottom: 1px solid#E0E0E0;;
 }
 
-th, td{
- border: 0px, 0px, 0px, 1px solid #1c2141;
-  padding: 5px 5px;
-}
-.listItem__title{
-    font-size: 12px;
-    margin-right: 15px;
-    width: 58%;
-}
 .listItem__weight{
+    text-align: end;
+    padding: 10px 0px 10px 0px;
+    border-bottom: 1px solid#E0E0E0;;
     font-size: 12px;
-    margin-right: 10px;
+    margin-right: 25px;
     width: 15%;
 }
 .listItem__calories{
+    text-align: end;
+    padding: 10px 0px 10px 0px;
+    border-bottom: 1px solid#E0E0E0;
+    ; 
     font-size: 12px;
+    margin-right: 25px;
     width: 23%;
 }
 .buttonRemove{
+    padding: 10px 0px 10px 0px;
+    background-color: rgb(255, 255, 255);
     border: none;
     color: rgb(119, 134, 141); 
     margin-left: 5px;
@@ -41,25 +56,34 @@ th, td{
     margin: 0 auto;
 }
 @media (min-width: 767px) {
-    .wrapper__listItem{
-        font-size: 14px;
-        display: block;
+    .wrapper__listItem {
+        font-size: 18px;
         min-width: 400px;
         margin: 3px;
         margin-left: 10px;
         box-shadow: 0px, 0px, 0px, 3px, rgb(119, 134, 141);;
     }
-    .listItem__calories{
-        width: 22%;
+    .listItem{
+        display: flex;
+        
+    }
+    .listItem__title,.listItem__weight,.listItem__calories {
+        font-size: 16px;
     }
   }
   @media (min-width: 1024px) {
-    .wrapper__listItem{
+    .wrapper__listItem {
         font-size: 18px;
-        display: block;
         min-width: 400px;
         margin: 3px;
         margin-left: 10px;
         box-shadow: 0px, 0px, 0px, 3px, rgb(119, 134, 141);;
+    }
+    .listItem{
+        display: flex;
+        
+    }
+    .listItem__title,.listItem__weight,.listItem__calories {
+        font-size: 16px;
     }
   }

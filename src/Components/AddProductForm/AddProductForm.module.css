@@ -1,22 +1,15 @@
-<<<<<<< HEAD
-=======
 * {
   margin: 0;
   padding: 0;
 }
 
->>>>>>> 30ab79f4dc2725d9d1d7243915c3647c4d068d6d
 .ProductEditor {
   display: flex;
   flex-direction: column;
 
   margin: 0 auto;
-<<<<<<< HEAD
-  padding: 15px;
-=======
   margin-bottom: 10px;
   padding-top: 10px;
->>>>>>> 30ab79f4dc2725d9d1d7243915c3647c4d068d6d
   width: 290px;
   height: 82px;
 }
@@ -138,13 +131,10 @@
     color: #ffffff;
     font-size: 16px;
   }
-<<<<<<< HEAD
-=======
 
   .ProductEditorErrorMsg {
     display: block;
     font-size: 8px;
     color: #bd0404;
   }
->>>>>>> 30ab79f4dc2725d9d1d7243915c3647c4d068d6d
 }
