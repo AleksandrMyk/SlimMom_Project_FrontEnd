@@ -5,7 +5,8 @@
 
 .pageWrapper {
   width: 100%;
-  background: white;
+  /* background: white; */
+  background-break: transparent;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -123,7 +124,7 @@
     width: 100%;
     text-align: start;
     padding-left: 90px;
-    background-image: url(./img/tablet-bg-register.jpg);
+    /* background-image: url(./img/tablet-bg-register.jpg); */
     background-repeat: no-repeat;
     background-position: bottom right;
     height: 100vh;
@@ -156,7 +157,7 @@
 @media (min-width: 1024px) {
   .pageWrapper {
     width: 100%;
-    background-image: url(./img/desktop-bg-REGISTER.jpg);
+    /* background-image: url(./img/desktop-bg-REGISTER.jpg); */
     background-size: cover;
   }
 

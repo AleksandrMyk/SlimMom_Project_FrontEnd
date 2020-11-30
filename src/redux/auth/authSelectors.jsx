@@ -1,4 +1,4 @@
-// const isAuthenticated = (state) => console.log("SATE", state);
+// const isAuthenticated = (state) => console.log("STATE", state);
 // const isAuthenticated = (state) => state.auth.token;
 const isAuthenticated = (state) => "state.auth.token";
 
