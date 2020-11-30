@@ -17,7 +17,6 @@ const LoginPage = () => {
 
   function login() {
     const data = JSON.stringify(values);
-    console.log(data);
     const headers = {
       "Content-Type": "application/json",
     };
@@ -48,25 +47,24 @@ const LoginPage = () => {
 
   return (
     <>
-      <nav>
-        <div className={style.container}>
-          <NavLink className={style.logoContainer} exact to="/">
-            <Logo />
-          </NavLink>
-
-          <div className={style.navContainer}>
-            <NavLink exact to="/login" className={style.login}>
-              <span>Вход</span>
-            </NavLink>
-            <NavLink exact to="/register">
-              <span>Регистрация</span>
-            </NavLink>
-          </div>
-        </div>
-      </nav>
-
       <div className={style.pageWrapper}>
         <div className={style.loginWrapper}>
+          <nav>
+            <div className={style.container}>
+              <NavLink className={style.logoContainer} exact to="/">
+                <Logo />
+              </NavLink>
+
+              <div className={style.navContainer}>
+                <NavLink exact to="/login" className={style.login}>
+                  <span>Вход</span>
+                </NavLink>
+                <NavLink exact to="/register">
+                  <span>Регистрация</span>
+                </NavLink>
+              </div>
+            </div>
+          </nav>
           <div className={`${style.messageContainer} `}>
             <div className={style.registrationFormContainer}>
               {message && (

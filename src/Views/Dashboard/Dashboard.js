@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 
@@ -23,9 +24,10 @@ const Dashboard = () => {
         headers,
       })
       .then((response) => {
+        console.log(response);
         const responseJson = response.data.user.name;
         setUserName(responseJson);
-        console.log(userName);
+        // console.log(userName);
       })
       .catch((error) => {
         if (error) {

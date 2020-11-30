@@ -12,12 +12,11 @@
 }
 
 .loginWrapper {
-  width: 290px;
+  width: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: auto;
+  margin: 0;
 }
 
 .messageContainer > div > div {
@@ -132,8 +131,8 @@
 @media (min-width: 767px) {
   .loginWrapper {
     width: 100%;
+
     text-align: start;
-    padding-left: 90px;
     background-image: url(./img/tablet-bg-register.jpg);
     background-repeat: no-repeat;
     background-position: bottom right;
@@ -196,6 +195,7 @@
 nav {
   height: 80px;
   border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 200px;
 }
 
 .container {
