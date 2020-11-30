@@ -1,45 +1,62 @@
-import React, { Suspense, Component } from "react";
-import { Switch } from "react-router-dom";
-import routes from "./routes";
+import React, { lazy, Suspense } from "react";
 import Spiner from "./Components/Spiner";
-import PrivateRoute from "./CustomRoutes/PrivateRoute";
-import PublicRoute from "./CustomRoutes/PublicRoute";
-import authOperations from "./Redux/auth/auth-operations";
-import { connect } from "react-redux";
-// import AppBar from "./Components/AppBar";
-// import DailyCaloriesForm from "./Views/DailyCaloriesForm";
-// import Register from "./Views/Register";
-// import Login from "./Views/Login";
-// import NavigationBar from "./Components/Navigation";
-
+import {
+  Route,
+  BrowserRouter as Router,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import "./app.css";
 
-class App extends Component {
-  componentDidMount() {
-    this.props.getCurrentUser();
-  }
+// import Login from "./Views/Login";
+// import Register from "./Views/Register";
+// import Dashboard from "./Views/Dashboard";
+// import DailyCaloriesForm from "./Views/DailyCaloriesForm";
 
-  render() {
-    return (
-      <>
-        <Suspense fallback={<Spiner />}>
-          <Switch>
-            {routes.map((route) =>
-              route.private ? (
-                <PrivateRoute key={route.label} {...route} />
-              ) : (
-                <PublicRoute key={route.label} {...route} />
-              )
-            )}
-          </Switch>
-        </Suspense>
-      </>
-    );
-  }
-}
+const Login = lazy(() =>
+  import("./Views/Login/index" /* webpackChunkName: "Login-page" */)
+);
 
-const mapDispatchToProps = {
-  getCurrentUser: authOperations.getCurrentUser,
+const Register = lazy(() =>
+  import("./Views/Register/index" /* webpackChunkName: "moviesSearch-page" */)
+);
+
+const Dashboard = lazy(() =>
+  import("./Views/Dashboard/index" /* webpackChunkName: "moviesDetails-page" */)
+);
+
+const DailyCaloriesForm = lazy(() =>
+  import(
+    "./Views/DailyCaloriesForm/index" /* webpackChunkName: "moviesDetails-page" */
+  )
+);
+
+const authGuard = (Component) => () => {
+  return localStorage.getItem("token") ? (
+    <Component />
+  ) : (
+    <Redirect to="/login" />
+  );
 };
+const App = (props) => (
+  <Router {...props}>
+    <Suspense fallback={<Spiner />}>
+      <Switch>
+        <Route exact path="/" component={DailyCaloriesForm} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+        <Route
+          exact
+          path="/dashboard"
+          component={Dashboard}
+          render={authGuard(Dashboard)}
+        />
+        {/* <Route path="*">
+        <NotFound />
+      </Route> */}
+      </Switch>
+    </Suspense>
+  </Router>
+);
 
-export default connect(null, mapDispatchToProps)(App);
+export default App;

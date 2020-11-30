@@ -5,8 +5,10 @@ import useForm from "./useForm";
 import validate from "./validationRules";
 import Logo from "../../Components/Logo";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const Register = () => {
+  const history = useHistory();
   const { values, errors, handleChange, handleSubmit } = useForm(
     register,
     validate
@@ -21,8 +23,12 @@ const Register = () => {
       .post("https://slimmom.herokuapp.com/users/register/", data, {
         headers,
       })
-      .then((response) => console.log(response))
-      .then(() => console.log("You are registered"))
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem("token", response.data.token);
+        history.push("/");
+        console.log("You are registered");
+      })
       .catch((error) => console.error("There was an error!", error));
   }
 

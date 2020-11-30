@@ -4,6 +4,12 @@
   margin-top: 26px;
 }
 
+.bgContainer {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
 .form__title {
   margin-bottom: 30px;
   font-family: Verdana, sans-serif;
@@ -28,6 +34,7 @@
   line-height: 17px;
   letter-spacing: 0.04em;
   color: #9b9faa;
+  background-color: transparent;
 }
 
 .input::placeholder {
@@ -157,6 +164,12 @@
 }
 
 @media (min-width: 767px) {
+  .bgContainer {
+    background-image: url(./img/home_tablet.png);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+  }
+
   .container {
     width: 605px;
     margin-left: 87px;
@@ -191,6 +204,12 @@
 }
 
 @media (min-width: 1024px) {
+  .bgContainer {
+    width: 100%;
+    background-image: url(./img/home_descktop.png);
+    background-size: contain;
+  }
+
   .container {
     width: 605px;
     margin-left: 115px;

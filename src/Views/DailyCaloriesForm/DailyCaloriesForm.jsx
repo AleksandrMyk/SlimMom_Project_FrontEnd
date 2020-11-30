@@ -17,7 +17,7 @@ const DailyCalopiesForm = () => {
   }
 
   return (
-    <>
+    <div className={styles.bgContainer}>
       <AppBar></AppBar>
       <div className={styles.container}>
         <h2 className={styles.form__title}>
@@ -110,7 +110,7 @@ const DailyCalopiesForm = () => {
           <button className={styles.form_button}>Похудеть</button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 
