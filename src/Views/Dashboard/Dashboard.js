@@ -1,40 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
 
 const Dashboard = () => {
-  const [dashboard, setDashboard] = useState(null);
+  const [userName, setUserName] = useState();
   const history = useHistory();
+  const token = localStorage.getItem("token");
 
   const logout = () => {
-    /* eslint-disable */
-    const toLogout = confirm("Are you sure to logout ?");
-    /* eslint-enable */
-    if (toLogout) {
-      localStorage.clear();
-      history.push("/login");
-    }
+    history.push("/login");
+    localStorage.clear();
   };
 
-  //   useEffect(() => {
-  //     fetch(`${config.baseUrl}/dashboard`, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         "auth-token": localStorage.getItem("token"),
-  //       },
-  //     })
-  //       .then((res) => res.json())
-  //       .then(({ error, data }) =>
-  //         error ? history.push("/login") : setDashboard(data)
-  //       );
-  //   }, [history]);
+  useEffect(() => {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: token,
+    };
+    axios
+      .get("https://slimmom.herokuapp.com/users/getuser", {
+        headers,
+      })
+      .then((response) => {
+        const responseJson = response.data.user.name;
+        setUserName(responseJson);
+        console.log(userName);
+      })
+      .catch((error) => {
+        if (error) {
+          console.log("its some errors ", error);
+          history.push("/login");
+        }
+      });
+  }, [history, userName, token]);
 
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="/">
-          Application to handle Authentication using ReactJS
-        </a>
         <button
           className="navbar-toggler"
           type="button"
@@ -48,11 +51,7 @@ const Dashboard = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarText">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
-              <a className="nav-link" href="/dashboard">
-                Dashboard <span className="sr-only">(current)</span>
-              </a>
-            </li>
+            <li className="nav-item active"></li>
             <li className="nav-item">
               <span
                 className="nav-link cursor-pointer"
@@ -62,13 +61,9 @@ const Dashboard = () => {
               </span>
             </li>
           </ul>
-          <span className="navbar-text">Welcome! {dashboard?.user?.name}</span>
+          <span className="navbar-text">Welcome! {userName} </span>
         </div>
       </nav>
-      <div className="px-3">
-        <h1>{dashboard?.title}</h1>
-        <p>{dashboard?.content}</p>
-      </div>
     </>
   );
 };

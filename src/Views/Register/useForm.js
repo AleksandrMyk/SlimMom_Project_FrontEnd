@@ -19,7 +19,6 @@ const useForm = (callback, validate) => {
     if (event) event.preventDefault();
     setErrors(validate(values));
     setIsSubmitting(true);
-    event.target.reset();
   };
 
   const handleChange = (e) => {

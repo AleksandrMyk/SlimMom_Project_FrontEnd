@@ -45,12 +45,7 @@ const App = (props) => (
         <Route exact path="/" component={DailyCaloriesForm} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        <Route
-          exact
-          path="/dashboard"
-          component={Dashboard}
-          render={authGuard(Dashboard)}
-        />
+        <Route exact path="/dashboard" render={authGuard(Dashboard)} />
         {/* <Route path="*">
         <NotFound />
       </Route> */}

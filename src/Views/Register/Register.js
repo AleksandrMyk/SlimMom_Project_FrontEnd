@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import style from "./register.module.css";
 import useForm from "./useForm";
 import validate from "./validationRules";
 import Logo from "../../Components/Logo";
 import axios from "axios";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { useHistory } from "react-router-dom";
 
 const Register = () => {
   const history = useHistory();
+  const [message, setMessage] = useState();
+
   const { values, errors, handleChange, handleSubmit } = useForm(
     register,
     validate
@@ -25,11 +28,23 @@ const Register = () => {
       })
       .then((response) => {
         console.log(response);
-        localStorage.setItem("token", response.data.token);
-        history.push("/");
-        console.log("You are registered");
+        setMessage({
+          data: "Registered , You will transfer to login page",
+          type: "alert-success",
+        });
+
+        setTimeout(() => {
+          history.push("/login");
+          console.log("You are registered");
+        }, 4000);
       })
-      .catch((error) => console.error("There was an error!", error));
+      .catch((error) => {
+        setMessage({
+          data: "Wrong credentials",
+          type: "alert-danger",
+        });
+        console.error("There was an error!", error);
+      });
   }
 
   return (
@@ -53,6 +68,23 @@ const Register = () => {
 
       <div className={style.pageWrapper}>
         <div className={style.loginWrapper}>
+          <div className={`${style.messageContainer} `}>
+            <div className={style.registrationFormContainer}>
+              {message && (
+                <div className={` ${message.type}`} role="alert">
+                  {message.data}
+                  <span
+                    aria-hidden="true"
+                    className={style.cursorPointer}
+                    onClick={() => setMessage(null)}
+                  >
+                    &times;
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+
           <div className={style.registerTitle}>регистрация</div>
           <form onSubmit={handleSubmit} noValidate>
             <div className={style.inputModule}>

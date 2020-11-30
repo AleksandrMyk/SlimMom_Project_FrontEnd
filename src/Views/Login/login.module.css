@@ -20,6 +20,17 @@
   margin: auto;
 }
 
+.messageContainer > div > div {
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.cursorPointer {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
 .registerTitle {
   font-family: GothamProBold;
   font-style: normal;
@@ -127,6 +138,12 @@
     background-repeat: no-repeat;
     background-position: bottom right;
     height: 100vh;
+  }
+
+  .messageContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   .registerTitle {

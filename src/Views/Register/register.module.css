@@ -30,6 +30,17 @@ nav {
   align-items: center;
 }
 
+.messageContainer > div > div {
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.cursorPointer {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
 .navContainer > a {
   font-family: GothamProBold;
   font-style: normal;
@@ -219,6 +230,12 @@ button:focus {
     height: 100vh;
   }
 
+  .messageContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
   .noActiveButton {
     margin-right: 30px;
   }
@@ -240,6 +257,15 @@ button:focus {
     align-items: flex-start;
     flex-direction: row;
   }
+}
+
+.alert-success {
+  width: 200px;
+  background-color: lightgreen;
+}
+.alert-danger {
+  width: 200px;
+  background-color: rgb(182, 134, 134);
 }
 
 @media (min-width: 1024px) {

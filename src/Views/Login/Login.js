@@ -1,18 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./login.module.css";
 import useForm from "./useForm";
 import validate from "./validationRules";
 import { NavLink } from "react-router-dom";
 import Logo from "../../Components/Logo";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-const Login = () => {
+const LoginPage = () => {
+  const history = useHistory();
+  const [message, setMessage] = useState();
   const { values, errors, handleChange, handleSubmit } = useForm(
     login,
     validate
   );
 
   function login() {
-    console.log("You are logged in");
+    const data = JSON.stringify(values);
+    console.log(data);
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    axios
+      .post("https://slimmom.herokuapp.com/users/login/", data, {
+        headers,
+      })
+      .then((response) => {
+        console.log(response);
+        setMessage({
+          data: "Login sucess ,You will transfer to dashboard..",
+          type: "alert-success",
+        });
+
+        localStorage.setItem("token", response.data.token);
+        setTimeout(() => {
+          history.push("/dashboard");
+        }, 1000);
+      })
+      .catch((error) => {
+        setMessage({
+          data: "Wrong Credentials",
+          type: "alert-danger",
+        });
+        console.error("There was an error!", error);
+      });
   }
 
   return (
@@ -36,6 +67,23 @@ const Login = () => {
 
       <div className={style.pageWrapper}>
         <div className={style.loginWrapper}>
+          <div className={`${style.messageContainer} `}>
+            <div className={style.registrationFormContainer}>
+              {message && (
+                <div className={` ${message.type}`} role="alert">
+                  {message.data}
+                  <span
+                    aria-hidden="true"
+                    className={style.cursorPointer}
+                    onClick={() => setMessage(null)}
+                  >
+                    &times;
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+
           <div className={style.registerTitle}>вход</div>
           <form onSubmit={handleSubmit} noValidate>
             <div className={style.inputModule}>
@@ -82,4 +130,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;
