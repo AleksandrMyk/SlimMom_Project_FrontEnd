@@ -177,6 +177,7 @@ input {
     width: 100%;
     background-image: url(./img/desktop-bg-REGISTER.jpg);
     background-size: cover;
+    padding-bottom: 200px;
   }
 
   .input {
@@ -184,8 +185,8 @@ input {
   }
 
   .loginWrapper {
+    height: 100vh;
     text-align: start;
-    padding-left: 115px;
     background-image: none;
   }
 
