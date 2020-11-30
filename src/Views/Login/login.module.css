@@ -41,9 +41,10 @@
   color: #fc842d;
 }
 
-.loginWrapper input {
+input {
   outline: none;
   padding-left: 5px;
+  background-color: transparent;
 }
 
 .inputModule {
@@ -138,7 +139,9 @@
     background-position: bottom right;
     height: 100vh;
   }
-
+  .formWrapper {
+    padding-left: 90px;
+  }
   .messageContainer {
     display: flex;
     justify-content: flex-start;
