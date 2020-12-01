@@ -49,25 +49,24 @@ const Register = () => {
 
   return (
     <>
-      <nav>
-        <div className={style.container}>
-          <NavLink className={style.logoContainer} exact to="/">
-            <Logo />
-          </NavLink>
-
-          <div className={style.navContainer}>
-            <NavLink exact to="/login" className={style.login}>
-              <span>Вход</span>
-            </NavLink>
-            <NavLink exact to="/register">
-              <span>Регистрация</span>
-            </NavLink>
-          </div>
-        </div>
-      </nav>
-
       <div className={style.pageWrapper}>
         <div className={style.loginWrapper}>
+          <nav>
+            <div className={style.container}>
+              <NavLink className={style.logoContainer} exact to="/">
+                <Logo />
+              </NavLink>
+
+              <div className={style.navContainer}>
+                <NavLink exact to="/login" className={style.login}>
+                  <span>Вход</span>
+                </NavLink>
+                <NavLink exact to="/register">
+                  <span>Регистрация</span>
+                </NavLink>
+              </div>
+            </div>
+          </nav>
           <div className={`${style.messageContainer} `}>
             <div className={style.registrationFormContainer}>
               {message && (
@@ -84,60 +83,61 @@ const Register = () => {
               )}
             </div>
           </div>
+          <div className={style.formWrapper}>
+            <div className={style.registerTitle}>Регистрация</div>
+            <form onSubmit={handleSubmit} noValidate>
+              <div className={style.inputModule}>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Имя *"
+                  className={style.input}
+                  onChange={handleChange}
+                  value={values.name || ""}
+                  required
+                />
 
-          <div className={style.registerTitle}>регистрация</div>
-          <form onSubmit={handleSubmit} noValidate>
-            <div className={style.inputModule}>
-              <input
-                type="text"
-                name="name"
-                placeholder="Имя *"
-                className={style.input}
-                onChange={handleChange}
-                value={values.name || ""}
-                required
-              />
+                {errors.name && <p className={style.error}>{errors.name}</p>}
 
-              {errors.name && <p className={style.error}>{errors.name}</p>}
+                <input
+                  type="text"
+                  name="login"
+                  placeholder="Логин *"
+                  className={style.input}
+                  onChange={handleChange}
+                  value={values.login || ""}
+                  required
+                />
 
-              <input
-                type="text"
-                name="login"
-                placeholder="Логин *"
-                className={style.input}
-                onChange={handleChange}
-                value={values.login || ""}
-                required
-              />
+                {errors.login && <p className={style.error}>{errors.login}</p>}
 
-              {errors.login && <p className={style.error}>{errors.login}</p>}
+                <input
+                  autoComplete="nope"
+                  type="password"
+                  name="password"
+                  placeholder="Пароль *"
+                  className={style.input}
+                  onChange={handleChange}
+                  value={values.password || ""}
+                  required
+                />
 
-              <input
-                autoComplete="nope"
-                type="password"
-                name="password"
-                placeholder="Пароль *"
-                className={style.input}
-                onChange={handleChange}
-                value={values.password || ""}
-                required
-              />
+                {errors.password && (
+                  <p className={style.error}>{errors.password}</p>
+                )}
+              </div>
 
-              {errors.password && (
-                <p className={style.error}>{errors.password}</p>
-              )}
-            </div>
+              <div className={style.butModule}>
+                <NavLink className={style.noActiveButton} exact to="/login">
+                  <span>Вход</span>
+                </NavLink>
 
-            <div className={style.butModule}>
-              <NavLink className={style.noActiveButton} exact to="/login">
-                <span>Вход</span>
-              </NavLink>
-
-              <button type="submit" className={style.activeButton}>
-                Регистрация
-              </button>
-            </div>
-          </form>
+                <button type="submit" className={style.activeButton}>
+                  Регистрация
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </>

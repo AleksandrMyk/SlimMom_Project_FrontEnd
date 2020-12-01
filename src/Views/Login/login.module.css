@@ -9,15 +9,15 @@
   height: 100vh;
   display: flex;
   justify-content: center;
+  padding-bottom: 100px;
 }
 
 .loginWrapper {
-  width: 290px;
+  width: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: auto;
+  margin: 0;
 }
 
 .messageContainer > div > div {
@@ -31,6 +31,10 @@
   margin-left: 10px;
 }
 
+button:focus {
+  outline: none;
+}
+
 .registerTitle {
   font-family: GothamProBold;
   font-style: normal;
@@ -42,16 +46,19 @@
   color: #fc842d;
 }
 
-.loginWrapper input {
+input {
   outline: none;
   padding-left: 5px;
+  background-color: transparent;
 }
 
 .inputModule {
+  width: 80%;
   text-align: start;
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin: auto;
   margin-bottom: 35px;
 }
 
@@ -132,14 +139,24 @@
 @media (min-width: 767px) {
   .loginWrapper {
     width: 100%;
+
     text-align: start;
-    padding-left: 90px;
-    background-image: url(./img/tablet-bg-register.jpg);
-    background-repeat: no-repeat;
-    background-position: bottom right;
+
     height: 100vh;
   }
 
+  .pageWrapper {
+    width: 100%;
+    background-image: url(./img/tablet-bg-register.jpg);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: cover;
+    padding-bottom: 200px;
+  }
+
+  .formWrapper {
+    padding-left: 90px;
+  }
   .messageContainer {
     display: flex;
     justify-content: flex-start;
@@ -153,6 +170,9 @@
   .inputModule {
     text-align: start;
     align-items: flex-start;
+
+    margin: 0;
+    margin-bottom: 35px;
   }
 
   .butModule > button {
@@ -182,8 +202,8 @@
   }
 
   .loginWrapper {
+    height: 100vh;
     text-align: start;
-    padding-left: 115px;
     background-image: none;
   }
 
@@ -196,6 +216,7 @@
 nav {
   height: 80px;
   border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 200px;
 }
 
 .container {

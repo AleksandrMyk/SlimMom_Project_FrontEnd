@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-// import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 
 const Dashboard = () => {
-  const [userName, setUserName] = useState();
+  const [userName, setuserName] = useState("");
+
   const history = useHistory();
   const token = localStorage.getItem("token");
 
@@ -13,7 +13,7 @@ const Dashboard = () => {
     localStorage.clear();
   };
 
-  useEffect(() => {
+  const getCurrentUserData = () => {
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,
@@ -23,8 +23,8 @@ const Dashboard = () => {
         headers,
       })
       .then((response) => {
-        const responseJson = response.data.user.name;
-        setUserName(responseJson);
+        console.log(response);
+        setuserName(response.data.user.name);
         console.log(userName);
       })
       .catch((error) => {
@@ -33,7 +33,11 @@ const Dashboard = () => {
           history.push("/login");
         }
       });
-  }, [history, userName, token]);
+  };
+
+  useEffect(() => {
+    getCurrentUserData();
+  }, [userName]);
 
   return (
     <>
