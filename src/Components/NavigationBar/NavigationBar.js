@@ -10,20 +10,20 @@ import Logo from "../Logo";
 import AuthNav from "../AuthNav";
 import UserNav from "../UserNav";
 import UserInfo from "../UserInfo";
-// import BurgerMenu from "../BurgerMenu";
+import BurgerMenu from "../BurgerMenu";
 
 import PropTypes from "prop-types";
 
 import style from "./navigationbar.module.css";
 
-//TODO:MOVE TO SEPARATE COMPONENT
-const GLOBAL_MEDIA_QUERIES = {
-  mobile: "(max-width: 766px)",
-  tablet: "(min-width: 767px) and (max-width: 1023px)",
-  desktop: "(min-width: 1024px)",
-};
-
 const NavigationBar = ({ isAuthenticated }) => {
+  //TODO:MOVE TO SEPARATE COMPONENT
+  const GLOBAL_MEDIA_QUERIES = {
+    mobile: "(max-width: 766px)",
+    tablet: "(min-width: 767px) and (max-width: 1023px)",
+    desktop: "(min-width: 1024px)",
+  };
+
   const matches = useMedia({ queries: GLOBAL_MEDIA_QUERIES });
 
   return (
@@ -33,11 +33,9 @@ const NavigationBar = ({ isAuthenticated }) => {
           <NavLink className={style.logoContainer} exact to="/">
             <Logo></Logo>
           </NavLink>
-          {isAuthenticated ? <UserNav /> : <AuthNav />}
-          {/* {isAuthenticated && <UserNav />}
-          {!isLoginPageLoaded && <AuthNav />} */}
+          {isAuthenticated ? matches.desktop && <UserNav /> : <AuthNav />}
           {isAuthenticated && !matches.mobile && <UserInfo />}
-          {/* {isAuthenticated && !matches.desktop && <BurgerMenu />} */}
+          {isAuthenticated && !matches.desktop && <BurgerMenu />}
         </div>
         {isAuthenticated && (
           <div className={style.LowerUserInfoContainer}>

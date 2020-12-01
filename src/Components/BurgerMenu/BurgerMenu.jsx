@@ -7,7 +7,7 @@ const styles = {
     width: "36px",
     height: "30px",
     right: "50px",
-    top: "36px",
+    top: "25px",
     marginLeft: "50px",
   },
   bmBurgerBars: {
@@ -69,7 +69,12 @@ class BurgerMenu extends React.Component {
 
   render() {
     return (
-      <Menu right width={"100%"} styles={styles}>
+      <Menu
+        customCrossIcon={<img src="img/cross.svg" />}
+        right
+        width={"100%"}
+        styles={styles}
+      >
         <a id="calculator" className="menu-item" href="/calculator">
           Калькулятор
         </a>
@@ -82,3 +87,8 @@ class BurgerMenu extends React.Component {
 }
 
 export default BurgerMenu;
+
+{
+  /* <Menu customBurgerIcon={ <img src="img/icon.svg" /> } />
+<Menu customCrossIcon={ <img src="img/cross.svg" /> } /> */
+}
