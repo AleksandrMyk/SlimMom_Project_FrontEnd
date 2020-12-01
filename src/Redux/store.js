@@ -1,23 +1,52 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { createStore, applyMiddleware } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import rootReducer from "./reducers/root";
 
-import authReducer from "./auth/auth-reducer";
+const middlewares = [thunk];
 
-const authPersistConfig = {
-  key: "auth",
-  storage,
-  whitelist: ["token"],
-};
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(...middlewares))
+);
 
-const store = configureStore({
-  reducer: {
-    auth: persistReducer(authPersistConfig, authReducer),
-  },
-  middleware: [thunk],
-});
+export default store;
 
-const persistor = persistStore(store);
+/**** Миш посмотри на такой вариант Стора*/
+// import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 
-export default { store, persistor };
+// import storage from "redux-persist/lib/storage";
+// import {
+//   persistStore,
+//   persistReducer,
+//   FLUSH,
+//   REHYDRATE,
+//   PAUSE,
+//   PERSIST,
+//   PURGE,
+//   REGISTER,
+// } from "redux-persist";
+// import productReducer from "./product/productReducer";
+// import authReducer from "./auth/authReducers";
+
+// const defaultMiddleware = getDefaultMiddleware();
+
+// const authPersistConfig = {
+//   key: "auth",
+//   storage,
+//   whitelist: ["token"],
+// };
+
+// export const store = configureStore({
+//   reducer: {
+//     products: productReducer,
+//     auth: persistReducer(authPersistConfig, authReducer),
+//   },
+//   middleware: getDefaultMiddleware({
+//     serializableCheck: {
+//       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+//     },
+//   }),
+// });
+
+// export const persistor = persistStore(store);

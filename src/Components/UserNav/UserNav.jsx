@@ -4,25 +4,14 @@ import { NavLink } from "react-router-dom";
 import s from "./UserNav.module.css";
 
 const UserNav = () => (
-  <nav className={s.container}>
-    <NavLink
-      to="/dairy"
-      exact
-      className={s.link}
-      activeClassName={s.activeLink}
-    >
-      Дневник
+  <div className={s.navContainer}>
+    <NavLink exact to="/dashboard/dairy" className={s.login}>
+      <span className={s.Span}>Дневник</span>
     </NavLink>
-
-    <NavLink
-      to="/calculator"
-      exact
-      className={s.link}
-      activeClassName={s.activeLink}
-    >
-      Калькулятор
+    <NavLink exact to="/dashboard/calculator">
+      <span className={s.Span}>Калькулятор</span>
     </NavLink>
-  </nav>
+  </div>
 );
 
 export default UserNav;

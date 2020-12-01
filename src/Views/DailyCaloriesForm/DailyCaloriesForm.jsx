@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./DailyCaloriesForm.module.css";
-import AppBar from "../../Components/AppBar";
+import NavigationBar from "../../Components/NavigationBar";
 
 const BludValue = {
   FIRST: "1",
@@ -18,7 +18,7 @@ const DailyCalopiesForm = () => {
 
   return (
     <div className={styles.bgContainer}>
-      <AppBar></AppBar>
+      <NavigationBar></NavigationBar>
       <div className={styles.container}>
         <h2 className={styles.form__title}>
           Просчитай свою суточную норму калорий прямо сейчас

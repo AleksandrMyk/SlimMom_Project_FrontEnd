@@ -1,28 +1,85 @@
+nav {
+  height: 80px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.Span {
+  padding: 12px 24px;
+}
+
 .container {
+  height: 100%;
   display: flex;
-  margin: 0;
-  padding: 0;
-  align-items: flex-end;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 15px;
+  margin-right: auto;
+}
+
+.logoContainer {
+  display: flex;
   justify-content: center;
-  flex-wrap: no-wrap;
-  font-size: 14px;
-  /* DRAFT FONT STYLES */
-  font-family: Montserrat;
-  font-weight: 700;
-  letter-spacing: 4%;
-  width: 200px;
-  height: 100px;
-  background-color: transparent;
-}
-
-.link {
-  display: inline-block;
+  align-items: center;
+  flex-direction: row;
   text-decoration: none;
-  padding: 12px;
-  font-weight: 700;
-  color: #e0e0e0;
 }
 
-.activeLink {
-  color: #2a363b;
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navContainer > a {
+  font-family: GothamProBold;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: right;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #e0e0e0;
+  text-decoration: none;
+}
+
+.navContainer > a:active {
+  color: #212121;
+}
+
+.navContainer a :hover {
+  color: #212121;
+}
+
+@media (min-width: 767px) {
+  .container {
+    padding: 0px 75px;
+  }
+}
+
+@media (min-width: 1024px) {
+  nav {
+    padding-top: 30px;
+    height: 140px;
+    border-bottom: none;
+  }
+
+  .container {
+    height: 82px;
+    justify-content: flex-start;
+  }
+
+  .navContainer {
+    height: 106px;
+  }
+
+  .login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+  }
+
+  .login > span {
+    border-left: 2px solid #e0e0e0;
+  }
 }

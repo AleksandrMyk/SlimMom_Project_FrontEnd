@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import LogoDashboard from "../../Components/LogoDashboard";
+import BurgerMenu from "../../Components/BurgerMenu";
+import UserNav from "../../Components/UserNav";
+import UserInfo from "../../Components/UserInfo";
 import axios from "axios";
+import style from "./dashboard.module.css";
 
 const Dashboard = () => {
   const [userName, setuserName] = useState("");
@@ -36,23 +41,25 @@ const Dashboard = () => {
 
   useEffect(() => {
     getCurrentUserData();
-  }, [userName]);
+  }, [userName, history]);
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="collapse navbar-collapse" id="navbarText">
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <span
-                className="nav-link cursor-pointer"
-                onClick={() => logout()}
-              >
-                Logout
-              </span>
-            </li>
-          </ul>
-          <span className="navbar-text">Welcome! {userName} </span>
+      <nav>
+        <div className={style.headerContainer}>
+          <div className={style.headerContainer}>
+            <LogoDashboard />
+          </div>
+
+          <div className={style.burgerContainer}>
+            <BurgerMenu />
+          </div>
+
+          {/* <UserNav />
+          <UserInfo userName={userName} onLogout={logout}></UserInfo> */}
+        </div>
+        <div className={style.greyZone}>
+          <UserInfo userName={userName} onLogout={logout}></UserInfo>
         </div>
       </nav>
     </>

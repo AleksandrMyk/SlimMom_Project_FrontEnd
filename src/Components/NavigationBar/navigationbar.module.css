@@ -1,0 +1,101 @@
+nav {
+  min-height: 80px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 15px;
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  text-decoration: none;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navContainer > a {
+  font-family: GothamProBold;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: right;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #9b9faa;
+  text-decoration: none;
+}
+.login {
+  margin-right: 15px;
+}
+.navContainer > a:active {
+  color: #212121;
+}
+
+.navContainer a :hover {
+  color: #212121;
+}
+
+.Hidden {
+  display: none;
+}
+
+.LowerUserInfoContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  background-color: #eff1f3;
+}
+
+.LowerUserInfoContainer > div {
+  margin: 0;
+}
+
+@media (min-width: 767px) {
+  .container {
+    padding: 0px 75px;
+  }
+
+  .LowerUserInfoContainer {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  nav {
+    padding-top: 80px;
+    min-height: 140px;
+    border-bottom: none;
+  }
+
+  .container {
+    height: 82px;
+    justify-content: flex-start;
+  }
+
+  .navContainer {
+    height: 106px;
+  }
+
+  .login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    border-left: 2px solid #9b9faa;
+    padding-left: 24px;
+  }
+}
