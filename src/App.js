@@ -8,6 +8,8 @@ import {
 } from "react-router-dom";
 import "./app.css";
 
+const token = localStorage.getItem("token");
+
 // import Login from "./Views/Login";
 // import Register from "./Views/Register";
 // import Dashboard from "./Views/Dashboard";
@@ -18,26 +20,21 @@ const Login = lazy(() =>
 );
 
 const Register = lazy(() =>
-  import("./Views/Register/index" /* webpackChunkName: "moviesSearch-page" */)
+  import("./Views/Register/index" /* webpackChunkName: "Register-page" */)
 );
 
 const Dashboard = lazy(() =>
-  import("./Views/Dashboard/index" /* webpackChunkName: "moviesDetails-page" */)
+  import("./Views/Dashboard/index" /* webpackChunkName: "Dashboard-page" */)
 );
 
 const DailyCaloriesForm = lazy(() =>
-  import(
-    "./Views/DailyCaloriesForm/index" /* webpackChunkName: "moviesDetails-page" */
-  )
+  import("./Views/DailyCaloriesForm/index" /* webpackChunkName: "Home-page" */)
 );
 
 const authGuard = (Component) => () => {
-  return localStorage.getItem("token") ? (
-    <Component />
-  ) : (
-    <Redirect to="/login" />
-  );
+  return token ? <Component /> : <Redirect to="/login" />;
 };
+
 const App = (props) => (
   <Router {...props}>
     <Suspense fallback={<Spiner />}>
@@ -45,7 +42,7 @@ const App = (props) => (
         <Route exact path="/" component={DailyCaloriesForm} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        <Route exact path="/dashboard" render={authGuard(Dashboard)} />
+        <Route exact path="/dashboard" component={authGuard(Dashboard)} />
         {/* <Route path="*">
         <NotFound />
       </Route> */}

@@ -4,7 +4,6 @@ import axios from "axios";
 
 const Dashboard = () => {
   const [userName, setuserName] = useState("");
-
   const history = useHistory();
   const token = localStorage.getItem("token");
 
@@ -42,20 +41,8 @@ const Dashboard = () => {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarText"
-          aria-controls="navbarText"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
         <div className="collapse navbar-collapse" id="navbarText">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item active"></li>
             <li className="nav-item">
               <span
                 className="nav-link cursor-pointer"
