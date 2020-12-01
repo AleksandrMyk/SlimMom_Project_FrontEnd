@@ -1,21 +1,41 @@
 .container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   font-size: 14px;
   font-family: Montserrat;
   font-weight: 700;
   letter-spacing: 4%;
   background-color: transparent;
-  text-transform: uppercase;
-  margin-right: 50px;
-  margin-left: auto;
 }
 
 .name {
-  padding: 12px 15px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-right: 2px solid #e0e0e0;
   text-transform: none;
+  padding-right: 15px;
+  font-family: GothamProBold;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 13px;
+  text-align: right;
+  letter-spacing: 0.04em;
+}
+.logoutButton {
+  padding-right: 15px;
+  padding-left: 15px;
+  font-family: GothamProBold;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 13px;
+  letter-spacing: 0.04em;
+
+  color: #9b9faa;
 }
 
 .exit {
@@ -23,7 +43,6 @@
   font-weight: inherit;
   color: #e0e0e0;
   padding: 12px 15px;
-  background-color: transparent;
   border: 0;
   text-transform: inherit;
   outline: none;

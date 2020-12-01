@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 
 const useForm = (callback, validate) => {
-  const [values, setValues] = useState({});
+  const [values, setValues] = useState({
+    login: "",
+    password: "",
+  });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -18,11 +21,11 @@ const useForm = (callback, validate) => {
   };
 
   const handleChange = (event) => {
-    event.persist();
-    setValues((values) => ({
+    const { name, value } = event.target;
+    setValues({
       ...values,
-      [event.target.name]: event.target.value,
-    }));
+      [name]: value,
+    });
   };
 
   return {

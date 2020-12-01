@@ -4,13 +4,14 @@ import { slide as Menu } from "react-burger-menu";
 const styles = {
   bmBurgerButton: {
     position: "fixed",
-    width: "36px",
-    height: "30px",
-    right: "50px",
-    top: "25px",
+    width: "30px",
+    height: "24px",
+    right: "20px",
+    top: "30px",
     marginLeft: "50px",
   },
   bmBurgerBars: {
+    height: "10%",
     background: "#373a47",
   },
   bmBurgerBarsHover: {
@@ -30,7 +31,7 @@ const styles = {
   bmMenuWrap: {
     position: "fixed",
     height: "100%",
-    top: "100px",
+    top: "80px",
   },
   bmMenu: {
     background: "#373a47",
