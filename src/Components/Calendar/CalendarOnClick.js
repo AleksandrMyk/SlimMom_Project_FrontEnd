@@ -18,14 +18,20 @@ export default class DiaryDateCalendar extends Component {
   };
 
   showCalendarOnClick = () => {
-    this.setState({
-      showCalendar: true,
-    });
+    if (!this.state.showCalendar) {
+      this.setState({
+        showCalendar: true,
+      });
+    } else {
+      this.setState({
+        showCalendar: false,
+      });
+    }
   };
 
   render() {
     return (
-      <div>
+      <div className={styles.calendar_on}>
         <div className={styles.calendar}>
           <p className={styles.date}>{this.state.date.toLocaleDateString()}</p>
           <img
