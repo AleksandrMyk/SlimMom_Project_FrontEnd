@@ -6,7 +6,6 @@ import productActions from "./productActions";
 const addProduct = (nameProd, gramProd) => (dispatch) => {
   dispatch(productActions.addProductRequest()); //запрос на сервер
   //addProductRequest() это createAction возвращ обьект с {type: "ADD_PRODUCT"}
-  //и этот обьект диспатчится в Редусер
   axios
     .post("/products", { nameProd, gramProd })
     .then((response) => {
