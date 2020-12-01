@@ -3,9 +3,225 @@
   padding: 0;
 }
 
+.pageWrapper {
+  width: 100%;
+  background: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 100px;
+}
+
+.loginWrapper {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.messageContainer > div > div {
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.cursorPointer {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.registerTitle {
+  font-family: GothamProBold;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fc842d;
+}
+
+input {
+  outline: none;
+  padding-left: 5px;
+  background-color: transparent;
+}
+
+.inputModule {
+  width: 80%;
+  text-align: start;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+  margin-bottom: 35px;
+}
+
+.input {
+  padding: 0;
+  font-size: 15px;
+  height: 50px;
+  width: 90%;
+  text-align: start;
+  vertical-align: bottom;
+  border: none;
+  border-bottom: 1px solid #9b9faa;
+  margin-top: 20px;
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+}
+::placeholder {
+  color: #9b9faa;
+}
+button:focus {
+  outline: none;
+}
+
+.butModule {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: Verdana sans-serif;
+}
+
+.butModule > button {
+  font-family: Verdana;
+  font-size: 14px;
+  margin-top: 20px;
+  height: 40px;
+  width: 176px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.noActiveButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Verdana;
+  font-size: 14px;
+  margin-top: 20px;
+  height: 40px;
+  width: 176px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  border: 2px solid rgb(252, 132, 44);
+  background-color: transparent;
+  color: rgb(252, 132, 44);
+  text-decoration: none;
+}
+.activeButton {
+  color: white;
+  background: rgb(252, 132, 44);
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  border: none;
+}
+
+.error {
+  padding-top: 3px;
+  color: red;
+  font-size: 12px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+@media (min-width: 767px) {
+  .loginWrapper {
+    width: 100%;
+
+    text-align: start;
+
+    height: 100vh;
+  }
+
+  .pageWrapper {
+    width: 100%;
+    background-image: url(./img/tablet-bg-register.jpg);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: cover;
+    padding-bottom: 200px;
+  }
+
+  .formWrapper {
+    padding-left: 90px;
+  }
+  .messageContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .registerTitle {
+    text-align: left;
+  }
+
+  ::placeholder {
+    color: #9b9faa;
+  }
+  .button:focus {
+    outline: none;
+  }
+  .noActiveButton {
+    margin-right: 30px;
+  }
+  .inputModule {
+    text-align: start;
+    align-items: flex-start;
+
+    margin: 0;
+    margin-bottom: 35px;
+  }
+
+  .butModule > button {
+    margin-right: 30px;
+  }
+
+  .input {
+    width: 240px;
+  }
+
+  .butModule {
+    margin-top: 45px;
+    align-items: flex-start;
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pageWrapper {
+    width: 100%;
+    background-image: url(./img/desktop-bg-REGISTER.jpg);
+    background-size: cover;
+  }
+
+  .input {
+    width: 240px;
+  }
+
+  .loginWrapper {
+    height: 100vh;
+    text-align: start;
+    background-image: none;
+  }
+
+  .butModule {
+    margin-top: 45px;
+    text-align: start;
+  }
+}
+
 nav {
   height: 80px;
   border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 200px;
 }
 
 .container {
@@ -28,17 +244,6 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.messageContainer > div > div {
-  height: 60px;
-  display: flex;
-  align-items: center;
-}
-
-.cursorPointer {
-  cursor: pointer;
-  margin-left: 10px;
 }
 
 .navContainer > a {
@@ -97,196 +302,5 @@ nav {
     height: 20px;
     border-left: 2px solid #9b9faa;
     padding-left: 24px;
-  }
-}
-
-.pageWrapper {
-  width: 100%;
-  background: white;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-}
-
-.loginWrapper {
-  width: 290px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: auto;
-}
-
-.registerTitle {
-  font-family: GothamProBold;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 14px;
-  text-align: center;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #fc842d;
-}
-
-.loginWrapper input {
-  outline: none;
-  padding-left: 5px;
-}
-
-button:focus {
-  outline: none;
-}
-
-.inputModule {
-  text-align: start;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin-bottom: 35px;
-}
-
-.input {
-  padding: 0;
-  font-size: 15px;
-  height: 50px;
-  width: 90%;
-  text-align: start;
-  vertical-align: bottom;
-  border: none;
-  border-bottom: 1px solid #9b9faa;
-  margin-top: 20px;
-  font-family: Verdana;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 17px;
-  letter-spacing: 0.04em;
-}
-::placeholder {
-  color: #9b9faa;
-}
-.button:focus {
-  outline: none;
-}
-
-.butModule {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  font-family: Verdana sans-serif;
-}
-
-.butModule > button {
-  font-family: Verdana;
-  font-size: 14px;
-  margin-top: 20px;
-  height: 40px;
-  width: 176px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.noActiveButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Verdana;
-  font-size: 14px;
-  margin-top: 20px;
-  height: 40px;
-  width: 176px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: bold;
-  border: 2px solid rgb(252, 132, 44);
-  background-color: transparent;
-  color: rgb(252, 132, 44);
-  text-decoration: none;
-}
-.activeButton {
-  color: white;
-  background: rgb(252, 132, 44);
-  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
-  border: none;
-}
-
-.error {
-  padding-top: 3px;
-  color: red;
-  font-size: 12px;
-  font-weight: bolder;
-  text-align: center;
-}
-
-@media (min-width: 767px) {
-  .loginWrapper {
-    width: 100%;
-    text-align: start;
-    padding-left: 90px;
-    background-image: url(./img/tablet-bg-register.jpg);
-    background-repeat: no-repeat;
-    background-position: bottom right;
-    height: 100vh;
-  }
-
-  .messageContainer {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
-
-  .noActiveButton {
-    margin-right: 30px;
-  }
-  .registerTitle {
-    text-align: left;
-  }
-
-  .inputModule {
-    text-align: start;
-    align-items: flex-start;
-  }
-
-  .input {
-    width: 240px;
-  }
-
-  .butModule {
-    margin-top: 45px;
-    align-items: flex-start;
-    flex-direction: row;
-  }
-}
-
-.alert-success {
-  width: 200px;
-  background-color: lightgreen;
-}
-.alert-danger {
-  width: 200px;
-  background-color: rgb(182, 134, 134);
-}
-
-@media (min-width: 1024px) {
-  .pageWrapper {
-    width: 100%;
-    background-image: url(./img/desktop-bg-REGISTER.jpg);
-    background-size: cover;
-  }
-
-  .input {
-    width: 240px;
-  }
-
-  .loginWrapper {
-    text-align: start;
-    padding-left: 115px;
-    background-image: none;
-  }
-
-  .butModule {
-    margin-top: 45px;
-    text-align: start;
   }
 }

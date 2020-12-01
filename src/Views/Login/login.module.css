@@ -9,6 +9,7 @@
   height: 100vh;
   display: flex;
   justify-content: center;
+  padding-bottom: 100px;
 }
 
 .loginWrapper {
@@ -30,6 +31,10 @@
   margin-left: 10px;
 }
 
+button:focus {
+  outline: none;
+}
+
 .registerTitle {
   font-family: GothamProBold;
   font-style: normal;
@@ -48,10 +53,12 @@ input {
 }
 
 .inputModule {
+  width: 80%;
   text-align: start;
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin: auto;
   margin-bottom: 35px;
 }
 
@@ -134,11 +141,19 @@ input {
     width: 100%;
 
     text-align: start;
+
+    height: 100vh;
+  }
+
+  .pageWrapper {
+    width: 100%;
     background-image: url(./img/tablet-bg-register.jpg);
     background-repeat: no-repeat;
     background-position: bottom right;
-    height: 100vh;
+    background-size: cover;
+    padding-bottom: 200px;
   }
+
   .formWrapper {
     padding-left: 90px;
   }
@@ -155,6 +170,9 @@ input {
   .inputModule {
     text-align: start;
     align-items: flex-start;
+
+    margin: 0;
+    margin-bottom: 35px;
   }
 
   .butModule > button {
@@ -177,7 +195,6 @@ input {
     width: 100%;
     background-image: url(./img/desktop-bg-REGISTER.jpg);
     background-size: cover;
-    padding-bottom: 200px;
   }
 
   .input {

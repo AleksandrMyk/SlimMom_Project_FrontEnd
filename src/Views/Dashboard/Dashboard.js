@@ -5,16 +5,19 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 const Dashboard = () => {
-  const [userName, setUserName] = useState();
+  const [userName, setuserName] = useState("");
+  // const [userLogin, setuserLogin] = useState();
   const history = useHistory();
   const token = localStorage.getItem("token");
+  // let userData;
+  // const name = userData.name;
 
   const logout = () => {
     history.push("/login");
     localStorage.clear();
   };
 
-  useEffect(() => {
+  const getCurrentUserData = () => {
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,
@@ -25,9 +28,8 @@ const Dashboard = () => {
       })
       .then((response) => {
         console.log(response);
-        const responseJson = response.data.user.name;
-        setUserName(responseJson);
-        // console.log(userName);
+        setuserName(response.data.user.name);
+        console.log(userName);
       })
       .catch((error) => {
         if (error) {
@@ -35,7 +37,11 @@ const Dashboard = () => {
           history.push("/login");
         }
       });
-  }, [history, userName, token]);
+  };
+
+  useEffect(() => {
+    getCurrentUserData();
+  }, [userName]);
 
   return (
     <>
