@@ -7,16 +7,17 @@ import UserInfo from "../../Components/UserInfo";
 import axios from "axios";
 import style from "./dashboard.module.css";
 import SideBar from "../../Components/RightSideBar";
+import AddProductForm from "../../Components/AddProductForm";
 
 const Calculator = lazy(() =>
   import("../../Components/Calculator" /* webpackChunkName: "Daily-calories" */)
 );
 
-const DailyCaloriesForm = lazy(() =>
-  import(
-    "../../Components/DiaryProductsList" /* webpackChunkName: "daily-list" */
-  )
-);
+// const Calendar = lazy(() =>
+//   import(
+//     "../../Components/Calendar/CalendarOnClick" /* webpackChunkName: "product-form" */
+//   )
+// );
 
 const Dashboard = () => {
   const [userName, setuserName] = useState("");
@@ -81,7 +82,7 @@ const Dashboard = () => {
           </div>
           <Switch>
             <Route exact path="/dashboard" component={Calculator} />
-            {/* <Route exact path={routes.login} component={Login} /> */}
+            <Route exact path="/dashboard/diary" component={AddProductForm} />
           </Switch>
         </div>
 

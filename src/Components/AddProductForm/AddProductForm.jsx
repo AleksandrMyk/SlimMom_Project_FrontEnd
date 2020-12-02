@@ -1,10 +1,11 @@
 import React, { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { useForm, useField } from "react-final-form-hooks";
-
 import { useMediaQuery } from "./hooks";
 import productOperations from "../../Redux/product/productOperations";
 import styles from "./AddProductForm.module.css";
+import Calendar from "../Calendar";
+import DiaryProductList from "../DiaryProductsList";
 
 const AddProductForm = () => {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ const AddProductForm = () => {
   const currentHideNav = useMediaQuery("(min-width: 767px)");
   return (
     <>
+      <Calendar></Calendar>
       <form onSubmit={handleSubmit} className={`${styles.ProductEditor} `}>
         <label className={`${styles.ProductEditorLabel} `}>
           <input
@@ -87,6 +89,8 @@ const AddProductForm = () => {
           {currentHideNav ? "+" : "Добавить"}
         </button>
       </form>
+
+      <DiaryProductList></DiaryProductList>
     </>
   );
 };
