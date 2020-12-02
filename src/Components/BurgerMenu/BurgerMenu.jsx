@@ -3,11 +3,11 @@ import { slide as Menu } from "react-burger-menu";
 
 const styles = {
   bmBurgerButton: {
-    position: "fixed",
+    position: "relative",
     width: "30px",
-    height: "24px",
+    height: "22px",
     right: "20px",
-    top: "30px",
+    // top: "30px",
     marginLeft: "50px",
   },
   bmBurgerBars: {
@@ -37,6 +37,7 @@ const styles = {
     background: "#373a47",
     padding: "2.5em 1.5em 0",
     fontSize: "1.15em",
+    overflow: "hidden",
   },
   bmMorphShape: {
     fill: "#373a47",
@@ -76,7 +77,7 @@ class BurgerMenu extends React.Component {
         width={"100%"}
         styles={styles}
       >
-        <a id="calculator" className="menu-item" href="/calculator">
+        <a id="calculator" className="menu-item" href="/dashboard">
           Калькулятор
         </a>
         <a id="diary" className="menu-item" href="/diary">

@@ -8,7 +8,7 @@ const UserNav = () => (
     <NavLink exact to="/dashboard/dairy" className={s.login}>
       <span className={s.Span}>Дневник</span>
     </NavLink>
-    <NavLink exact to="/dashboard/calculator">
+    <NavLink exact to="/dashboard">
       <span className={s.Span}>Калькулятор</span>
     </NavLink>
   </div>

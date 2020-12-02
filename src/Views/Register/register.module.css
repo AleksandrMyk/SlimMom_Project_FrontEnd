@@ -88,6 +88,10 @@ button:focus {
   flex-direction: column;
   font-family: Verdana sans-serif;
 }
+.formWrapper {
+  width: 290px;
+  margin: auto;
+}
 
 .butModule > button {
   font-family: Verdana;
@@ -151,6 +155,7 @@ button:focus {
   }
 
   .formWrapper {
+    margin: 0;
     padding-left: 90px;
   }
   .messageContainer {
@@ -218,10 +223,10 @@ button:focus {
   }
 }
 
-nav {
+.loginWrapper > nav {
   height: 80px;
   border-bottom: 2px solid #e0e0e0;
-  margin-bottom: 200px;
+  margin-bottom: 100px;
 }
 
 .container {
@@ -279,7 +284,7 @@ nav {
 }
 
 @media (min-width: 1024px) {
-  nav {
+  .loginWrapper > nav {
     padding-top: 30px;
     height: 140px;
     border-bottom: none;
