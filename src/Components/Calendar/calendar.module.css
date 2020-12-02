@@ -10,7 +10,7 @@
   font-size: 18px;
   line-height: 22px;
   color: #212121;
-  
+
   margin-top: 80px;
 }
 
@@ -22,8 +22,8 @@
 }
 
 .calendar_on {
-  position: absolute;
-  z-index: 60;
+  /* position: absolute;
+  z-index: 60; */
   margin-left: 15px;
 }
 
