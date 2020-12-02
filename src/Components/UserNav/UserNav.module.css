@@ -1,63 +1,5 @@
-.container {
-  display: none;
-  margin-bottom: 34px;
-  padding: 0;
-  align-items: flex-end;
-  justify-content: center;
-  flex-wrap: no-wrap;
-  font-size: 14px;
-  /* DRAFT FONT STYLES */
-  font-family: Montserrat;
-  font-weight: 700;
-  letter-spacing: 4%;
-  min-width: 200px;
-  height: 100px;
-  background-color: transparent;
-}
-
-.link {
-  display: inline-block;
-  text-decoration: none;
-  padding: 12px 25px;
-  font-weight: 700;
-  color: #e0e0e0;
-}
-
-.activeLink {
-  color: #2a363b;
-}
-
-@media (min-width: 767px) {
-  .container {
-    align-items: center;
-    margin-bottom: 0;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    display: flex;
-    justify-content: flex-start;
-    margin-bottom: 34px;
-    align-items: flex-end;
-  }
-
-  .link:first-child {
-    border-left: 2px solid #e0e0e0;
-  }
-}
-<<<<<<< HEAD
-=======
-
-/* STYLES FROM MICHAEL NAVIGATIN BAR */
-
-nav {
-  height: 80px;
-  border-bottom: 2px solid #e0e0e0;
-}
-
-span {
-  padding: 12px 15px;
+.Span {
+  padding: 12px 24px;
 }
 
 .container {
@@ -94,9 +36,7 @@ span {
   color: #e0e0e0;
   text-decoration: none;
 }
-.login {
-  /* margin-right: 15px; */
-}
+
 .navContainer > a:active {
   color: #212121;
 }
@@ -105,10 +45,6 @@ span {
   color: #212121;
 }
 
-/* .active {
-  color: #212121;
-} */
-
 @media (min-width: 767px) {
   .container {
     padding: 0px 75px;
@@ -116,12 +52,6 @@ span {
 }
 
 @media (min-width: 1024px) {
-  nav {
-    padding-top: 30px;
-    height: 140px;
-    border-bottom: none;
-  }
-
   .container {
     height: 82px;
     justify-content: flex-start;
@@ -136,12 +66,9 @@ span {
     justify-content: center;
     align-items: center;
     height: 20px;
-    /* border-left: 2px solid #e0e0e0; */
-    /* padding-left: 24px; */
   }
 
   .login > span {
     border-left: 2px solid #e0e0e0;
   }
 }
->>>>>>> 8aaf7efbfc3b5b57d22171e7d971f07d009fbc3a

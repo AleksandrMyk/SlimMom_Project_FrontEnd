@@ -1,58 +1,50 @@
 .container {
   display: flex;
-<<<<<<< HEAD
-  padding: 0;
-  align-items: flex-end;
-  justify-content: center;
-  flex-wrap: no-wrap;
-=======
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
->>>>>>> 8aaf7efbfc3b5b57d22171e7d971f07d009fbc3a
   font-size: 14px;
   font-family: Montserrat;
   font-weight: 700;
   letter-spacing: 4%;
-<<<<<<< HEAD
-  width: 200px;
-  height: 40px;
   background-color: transparent;
-  text-transform: uppercase;
-  margin-right: 50px;
 }
 
 .name {
-  display: inline-block;
-  padding: 12px 15px;
-  border-right: 2px solid #e0e0e0;
-=======
-  background-color: transparent;
-  text-transform: uppercase;
-  margin-right: 50px;
-  margin-left: auto;
-}
-
-.name {
-  padding: 12px 15px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-right: 2px solid #e0e0e0;
   text-transform: none;
->>>>>>> 8aaf7efbfc3b5b57d22171e7d971f07d009fbc3a
+  padding-right: 15px;
+  font-family: GothamProBold;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 13px;
+  text-align: right;
+  letter-spacing: 0.04em;
+}
+.logoutButton {
+  padding-right: 15px;
+  padding-left: 15px;
+  font-family: GothamProBold;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 13px;
+  letter-spacing: 0.04em;
+
+  color: #9b9faa;
 }
 
 .exit {
-  display: inline-block;
   font-family: inherit;
   font-weight: inherit;
   color: #e0e0e0;
   padding: 12px 15px;
-  background-color: transparent;
   border: 0;
   text-transform: inherit;
-<<<<<<< HEAD
-  cursor: pointer;
-}
-
-=======
   outline: none;
   cursor: pointer;
 }
@@ -61,7 +53,6 @@
   color: #212121;
 }
 
->>>>>>> 8aaf7efbfc3b5b57d22171e7d971f07d009fbc3a
 @media (min-width: 767px) {
   /* .container {
     align-items: center;
@@ -72,13 +63,6 @@
 @media (min-width: 1024px) {
   .container {
     justify-content: flex-start;
-<<<<<<< HEAD
-    min-height: 100px;
-    margin-bottom: 34px;
-    align-items: flex-end;
-=======
-    min-height: 106px;
->>>>>>> 8aaf7efbfc3b5b57d22171e7d971f07d009fbc3a
   }
 
   .link:first-child {

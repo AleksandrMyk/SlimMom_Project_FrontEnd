@@ -6,7 +6,6 @@ import productActions from "./productActions";
 const addProduct = (nameProd, gramProd) => (dispatch) => {
   dispatch(productActions.addProductRequest()); //запрос на сервер
   //addProductRequest() это createAction возвращ обьект с {type: "ADD_PRODUCT"}
-  //и этот обьект диспатчится в Редусер
   axios
     .post("/products", { nameProd, gramProd })
     .then((response) => {
@@ -14,20 +13,7 @@ const addProduct = (nameProd, gramProd) => (dispatch) => {
     })
     .catch((error) => dispatch(productActions.addProductError(error)));
 };
-<<<<<<< HEAD
-const removeProduct = (id) => (dispatch) => {
-  dispatch(productActions.removeProductRequest());
-  axios.delete(`/products/${id}`)
-    .then(() => dispatch(productActions.removeProductSuccess(id)))
-    .catch((error) => dispatch(productActions.removeProductError()));
-};
 
 export default {
   addProduct,
-  removeProduct
-=======
-
-export default {
-  addProduct,
->>>>>>> 8aaf7efbfc3b5b57d22171e7d971f07d009fbc3a
 };

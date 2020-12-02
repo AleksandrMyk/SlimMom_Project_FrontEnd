@@ -1,5 +1,8 @@
 nav {
-  min-height: 80px;
+  /* display: flex;
+  flex-direction: row;
+  align-items: center; */
+  height: 80px;
   border-bottom: 2px solid #e0e0e0;
 }
 
@@ -47,10 +50,6 @@ nav {
   color: #212121;
 }
 
-/* .active {
-  color: #212121;
-} */
-
 .Hidden {
   display: none;
 }
@@ -61,7 +60,7 @@ nav {
   align-items: center;
   height: 50px;
   width: 100%;
-  /* background-color: #eff1f3; */
+  background-color: #eff1f3;
 }
 
 .LowerUserInfoContainer > div {
@@ -80,7 +79,6 @@ nav {
 
 @media (min-width: 1024px) {
   nav {
-    /* padding-top: 30px; */
     padding-top: 80px;
     min-height: 140px;
     border-bottom: none;

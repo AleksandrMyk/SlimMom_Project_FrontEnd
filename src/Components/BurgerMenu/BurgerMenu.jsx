@@ -1,21 +1,17 @@
-<<<<<<< HEAD
-import { slide as Menu } from "react-burger-menu";
-import React from "react";
-=======
 import React from "react";
 import { slide as Menu } from "react-burger-menu";
->>>>>>> 8aaf7efbfc3b5b57d22171e7d971f07d009fbc3a
 
 const styles = {
   bmBurgerButton: {
-    position: "fixed",
-    width: "36px",
-    height: "30px",
-    right: "50px",
-    top: "36px",
+    position: "relative",
+    width: "30px",
+    height: "22px",
+    right: "20px",
+    // top: "30px",
     marginLeft: "50px",
   },
   bmBurgerBars: {
+    height: "10%",
     background: "#373a47",
   },
   bmBurgerBarsHover: {
@@ -35,12 +31,13 @@ const styles = {
   bmMenuWrap: {
     position: "fixed",
     height: "100%",
-    top: "100px",
+    top: "80px",
   },
   bmMenu: {
     background: "#373a47",
     padding: "2.5em 1.5em 0",
     fontSize: "1.15em",
+    overflow: "hidden",
   },
   bmMorphShape: {
     fill: "#373a47",
@@ -74,15 +71,16 @@ class BurgerMenu extends React.Component {
 
   render() {
     return (
-      <Menu right width={"100%"} styles={styles}>
-        <a id="calculator" className="menu-item" href="/calculator">
+      <Menu
+        customCrossIcon={<img src="img/cross.svg" />}
+        right
+        width={"100%"}
+        styles={styles}
+      >
+        <a id="calculator" className="menu-item" href="/dashboard">
           Калькулятор
         </a>
-<<<<<<< HEAD
-        <a id="dairy" className="menu-item" href="/dairy">
-=======
         <a id="diary" className="menu-item" href="/diary">
->>>>>>> 8aaf7efbfc3b5b57d22171e7d971f07d009fbc3a
           Дневник
         </a>
       </Menu>
@@ -91,3 +89,8 @@ class BurgerMenu extends React.Component {
 }
 
 export default BurgerMenu;
+
+{
+  /* <Menu customBurgerIcon={ <img src="img/icon.svg" /> } />
+<Menu customCrossIcon={ <img src="img/cross.svg" /> } /> */
+}

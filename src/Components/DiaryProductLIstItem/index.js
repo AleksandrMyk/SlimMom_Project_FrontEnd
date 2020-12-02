@@ -1,3 +1,1 @@
-import DiaryProductListItem from "./DiaryProductLIstItem.jsx";
-
-export default DiaryProductListItem;
+export {default as DiaryProductsListItem} from "./DiaryProductsLIstItem"

@@ -1,32 +1,55 @@
-import React, { Suspense } from "react";
-import { Route, Switch } from "react-router-dom";
-<<<<<<< HEAD
-// import NavigationBar from "./Components/NavigationBar";
-import AppBar from "./Components/AppBar";
-=======
-import NavigationBar from "./Components/NavigationBar";
-// import AppBar from "./Components/AppBar";
->>>>>>> 8aaf7efbfc3b5b57d22171e7d971f07d009fbc3a
+import React, { lazy, Suspense } from "react";
 import Spiner from "./Components/Spiner";
-// import DailyCaloriesForm from "./Views/DailyCaloriesForm";
-import Register from "./Views/Register";
-import Login from "./Views/Login";
+import {
+  Route,
+  BrowserRouter as Router,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+import routes from "./routes";
+
 import "./app.css";
+import {DiaryProductsList} from "./Components/DiaryProductsList/index"
 
+const token = localStorage.getItem("token");
 
-const App = () => {
-  return (
-    <>
+const Login = lazy(() =>
+  import("./Views/Login/index" /* webpackChunkName: "Login-page" */)
+);
 
-      <Suspense fallback={<Spiner />}></Suspense>
-      <Switch>
-        {/* <Route exact path="/" component={DailyCaloriesForm} /> */}
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/diary" component={DiaryPage} />
-      </Switch>
-    </>
-  );
+const Register = lazy(() =>
+  import("./Views/Register/index" /* webpackChunkName: "Register-page" */)
+);
+
+const Dashboard = lazy(() =>
+  import("./Views/Dashboard/index" /* webpackChunkName: "Dashboard-page" */)
+);
+
+const DailyCaloriesForm = lazy(() =>
+  import("./Views/DailyCaloriesForm/index" /* webpackChunkName: "Home-page" */)
+);
+
+const authGuard = (Component) => () => {
+  return token ? <Component /> : <Redirect to={routes.login} />;
 };
+
+const App = (props) => (
+  <>
+  <Router {...props}>
+    <Suspense fallback={<Spiner />}>
+      <Switch>
+        <Route exact path={routes.home} component={DailyCaloriesForm} />
+        <Route exact path={routes.login} component={Login} />
+        <Route exact path={routes.register} component={Register} />
+        <Route exact path={routes.dashboard} component={authGuard(Dashboard)} />
+        {/* <Route path="*">
+        <NotFound />
+      </Route> */}
+      </Switch>
+    </Suspense>
+  </Router>
+  <DiaryProductsList/>
+</>
+);
 
 export default App;
