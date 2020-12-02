@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import styles from "./DailyCaloriesForm.module.css";
 import NavigationBar from "../../Components/NavigationBar";
 
+import Modal from "../../Components/Modal";
+import useModal from "../../Components/Modal/useModal";
+
 const BludValue = {
   FIRST: "1",
   SECOND: "2",
@@ -10,11 +13,17 @@ const BludValue = {
 };
 
 const DailyCalopiesForm = () => {
-  const [blud, setBlud] = useState(null);
+  const [bludType, setBludType] = useState(null);
 
   function handleBludChange(e) {
-    setBlud(e.target.value);
+    setBludType(e.target.value);
   }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+
+  const { isShowing, toggle } = useModal();
 
   return (
     <div className={styles.bgContainer}>
@@ -23,7 +32,7 @@ const DailyCalopiesForm = () => {
         <h2 className={styles.form__title}>
           Просчитай свою суточную норму калорий прямо сейчас
         </h2>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.form__inputs}>
             <input
               className={styles.input}
@@ -59,7 +68,7 @@ const DailyCalopiesForm = () => {
                     type="radio"
                     value={BludValue.FIRST}
                     onChange={handleBludChange}
-                    checked={blud === BludValue.FIRST}
+                    checked={bludType === BludValue.FIRST}
                   />
                   <label htmlFor="radio-1" className={styles.radio_value}>
                     1
@@ -72,7 +81,7 @@ const DailyCalopiesForm = () => {
                     type="radio"
                     value={BludValue.SECOND}
                     onChange={handleBludChange}
-                    checked={blud === BludValue.SECOND}
+                    checked={bludType === BludValue.SECOND}
                   />
                   <label htmlFor="radio-2" className={styles.radio_value}>
                     2
@@ -85,7 +94,7 @@ const DailyCalopiesForm = () => {
                     type="radio"
                     value={BludValue.THIRD}
                     onChange={handleBludChange}
-                    checked={blud === BludValue.THIRD}
+                    checked={bludType === BludValue.THIRD}
                   />
                   <label htmlFor="radio-3" className={styles.radio_value}>
                     3
@@ -98,7 +107,7 @@ const DailyCalopiesForm = () => {
                     type="radio"
                     value={BludValue.FOURTH}
                     onChange={handleBludChange}
-                    checked={blud === BludValue.FOURTH}
+                    checked={bludType === BludValue.FOURTH}
                   />
                   <label htmlFor="radio-4" className={styles.radio_value}>
                     4
@@ -107,7 +116,10 @@ const DailyCalopiesForm = () => {
               </ul>
             </div>
           </div>
-          <button className={styles.form_button}>Похудеть</button>
+          <button className={styles.form_button} onClick={toggle}>
+            Похудеть
+          </button>
+          <Modal isShowing={isShowing} hide={toggle} />
         </form>
       </div>
     </div>

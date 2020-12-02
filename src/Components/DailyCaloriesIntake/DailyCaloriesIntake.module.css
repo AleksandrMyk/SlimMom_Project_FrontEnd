@@ -1,10 +1,11 @@
-.modal {
+.container {
   background-color: #e5e5e5;
   display: block;
   height: 638px;
-  width: 320px;
+  width: 290px;
   margin: 0 auto;
 }
+
 .close {
   margin: 17px 15px 0 17px;
   border: none;
@@ -15,6 +16,7 @@
   color: #000000;
   cursor: pointer;
 }
+
 .title {
   width: 290px;
   display: block;
@@ -27,6 +29,7 @@
   line-height: 26px;
   color: #212121;
 }
+
 .kcal {
   margin-top: 40px;
   font-family: Verdana;
@@ -39,6 +42,7 @@
 
   color: #264061;
 }
+
 .kcalDes {
   font-size: 18px;
   letter-spacing: normal;
@@ -58,6 +62,7 @@
   color: #212121;
   margin-bottom: 22px;
 }
+
 .btnStart {
   width: 176px;
   height: 44px;
@@ -77,6 +82,7 @@
   margin: 0 auto;
   color: #ffffff;
 }
+
 @media (min-width: 767px) {
   .modal {
     margin-top: 220px;
@@ -103,6 +109,7 @@
     width: 330px;
   }
 }
+
 @media (min-width: 1024px) {
   .modal {
     width: 690px;
