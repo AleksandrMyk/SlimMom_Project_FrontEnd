@@ -6,17 +6,6 @@
   margin: 0 auto;
 }
 
-.close {
-  margin: 17px 15px 0 17px;
-  border: none;
-  outline: none;
-  width: 20px;
-  height: 13px;
-  background: url("./images/back.svg") no-repeat scroll 0 0 transparent;
-  color: #000000;
-  cursor: pointer;
-}
-
 .title {
   width: 290px;
   display: block;
@@ -101,16 +90,11 @@
   .list {
     margin-left: 112px;
   }
-  .modal {
-    margin-top: 220px;
+  .container {
     width: 594px;
     height: 580px;
   }
-  .close {
-    background: url("./images/close.svg") no-repeat scroll 0 0 transparent;
-    margin-left: 559px;
-    margin-top: 24px;
-  }
+
   .title {
     margin-top: 28px;
     width: 509px;
@@ -133,10 +117,8 @@
     height: 580px;
     margin-top: 135px;
   }
-  .close {
-    margin-left: 654px;
-  }
+
   .list {
-    margin-left: 160px;
+    margin-left: 112px;
   }
 }

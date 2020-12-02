@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./DailyCaloriesIntake.module.css";
 
-
 const ModalRecomendedWindow = ({ hide }) => {
   return (
     <div className={styles.container}>

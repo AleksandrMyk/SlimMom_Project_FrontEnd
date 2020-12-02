@@ -22,11 +22,8 @@ const Modal = ({ isShowing, hide }) =>
                   type="button"
                   className={styles.modal_close_button}
                   data-dismiss="modal"
-                  aria-label="Close"
                   onClick={hide}
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                ></button>
               </div>
               <DailyCaloriesIntake />
             </div>
