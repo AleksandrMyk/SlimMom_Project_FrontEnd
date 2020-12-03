@@ -18,10 +18,12 @@ const addProduct = (productId, weight, date) => (dispatch) => {
 };
 
 //GET-запрос на получение перечня продуктов по query строке
+
 const fetchProductsQuery = (searchTerm) => (dispatch) => {
   dispatch(productActions.getProductRequest());
   axios
     .get(`/products?name=${searchTerm}&page=1&limit=10`)
+
     .then((response) => {
       return dispatch(productActions.getProductSuccess(response.data));
     })
