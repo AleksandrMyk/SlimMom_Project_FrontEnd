@@ -1,13 +1,12 @@
 import React from "react";
 import styles from "./DailyCaloriesIntakeList.module.css";
 
-const ModalRecomendedList = () => {
+const ModalRecomendedList = (products) => {
   return (
     <ol className={styles.list}>
-      <li className={styles.productList}>Мучные продукты</li>
-      <li className={styles.productList}>Молоко</li>
-      <li className={styles.productList}>Красное мясо</li>
-      <li className={styles.productList}>Копчености</li>
+      {products.map((product) => (
+        <li className={styles.productList}>{product}</li>
+      ))}
     </ol>
   );
 };

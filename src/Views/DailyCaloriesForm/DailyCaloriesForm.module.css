@@ -164,6 +164,24 @@
   color: #ffffff;
 }
 
+.error {
+  margin: 0;
+  margin-top: -14px;
+  color: red;
+  font-size: 12px;
+  font-weight: bolder;
+  /* text-align: center; */
+}
+
+.error_blood {
+  margin: 0;
+  margin-top: -35px;
+  color: red;
+  font-size: 12px;
+  font-weight: bolder;
+  /* text-align: center; */
+}
+
 @media (min-width: 767px) {
   .bgContainer {
     background-image: url(./img/home_tablet.png);
