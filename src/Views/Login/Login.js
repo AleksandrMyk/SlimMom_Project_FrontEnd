@@ -39,7 +39,7 @@ const LoginPage = () => {
       })
       .catch((error) => {
         setMessage({
-          data: "Неправильные двнные ",
+          data: "Неправильные данные ",
           type: "danger",
         });
         console.error("There was an error!", error);
