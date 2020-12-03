@@ -21,6 +21,12 @@ const DailyCaloriesForm = lazy(() =>
   import("./Views/DailyCaloriesForm/index" /* webpackChunkName: "Home-page" */)
 );
 
+const AddProductForm = lazy(() =>
+  import(
+    "./Components/AddProductForm/AddProductForm" /* webpackChunkName: "Home-page" */
+  )
+);
+
 const App = () => (
   <Suspense fallback={<Spiner />}>
     <Switch>
@@ -40,6 +46,11 @@ const App = () => (
         active={true}
         path="/dashboard"
         component={Dashboard}
+      />
+      <ProtectedComponent
+        active={true}
+        path="/diary"
+        component={AddProductForm}
       />
 
       {/* <Route path="*">
