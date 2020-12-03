@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import Logo from "../../Components/Logo";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import "./alertLoginStyle.css";
 
 const LoginPage = () => {
   const history = useHistory();
@@ -27,8 +28,8 @@ const LoginPage = () => {
       .then((response) => {
         console.log(response);
         setMessage({
-          data: "Login sucess ,You will transfer to dashboard..",
-          type: "alert-success",
+          data: "Успешный логин , перенаправление в личный кабинет",
+          type: "sucess",
         });
 
         localStorage.setItem("token", response.data.token);
@@ -38,8 +39,8 @@ const LoginPage = () => {
       })
       .catch((error) => {
         setMessage({
-          data: "Wrong Credentials",
-          type: "alert-danger",
+          data: "Неправильные двнные ",
+          type: "danger",
         });
         console.error("There was an error!", error);
       });
@@ -65,10 +66,11 @@ const LoginPage = () => {
               </div>
             </div>
           </nav>
-          <div className={`${style.messageContainer} `}>
-            <div className={style.registrationFormContainer}>
+
+          <div className={style.formWrapper}>
+            <div className={`${style.messageContainer} `}>
               {message && (
-                <div className={` ${message.type}`} role="alert">
+                <div className={`${message.type}`} role="alert">
                   {message.data}
                   <span
                     aria-hidden="true"
@@ -80,8 +82,6 @@ const LoginPage = () => {
                 </div>
               )}
             </div>
-          </div>
-          <div className={style.formWrapper}>
             <div className={style.registerTitle}>вход</div>
             <form onSubmit={handleSubmit} noValidate>
               <div className={style.inputModule}>
