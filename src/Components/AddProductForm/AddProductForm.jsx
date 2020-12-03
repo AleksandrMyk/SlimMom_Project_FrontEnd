@@ -1,97 +1,192 @@
 import React, { useState, useCallback } from "react";
-import { useDispatch } from "react-redux";
-import { useForm, useField } from "react-final-form-hooks";
-import { useMediaQuery } from "./hooks";
-import productOperations from "../../Redux/product/productOperations";
+// import { useDispatch } from "react-redux";
+// import { useForm, useField } from "react-final-form-hooks";
+// import { useMediaQuery } from "./hooks";
+// import productOperations from "../../Redux/product/productOperations";
 import styles from "./AddProductForm.module.css";
-import Calendar from "../Calendar";
-import DiaryProductList from "../DiaryProductsList";
+// import Calendar from "../Calendar";
+// import DiaryProductList from "../DiaryProductsList";
+import AsyncSelect from "react-select/async";
+import axios from "axios";
 
-const AddProductForm = () => {
-  const dispatch = useDispatch();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+// import AsyncSelect from "react-select/async";
 
-  const onSubmit = useCallback(
-    (e) => {
-      //e.preventDefault();
-      dispatch(productOperations.addProduct());
-      setIsSubmitting(true);
-      window.alert(JSON.stringify(e, 0, 2));
-    },
-    [dispatch]
-  );
+// const AddProductForm = () => {
+//   const dispatch = useDispatch();
+//   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const validate = (values) => {
-    const errors = {};
-    if (!values.nameProd) {
-      errors.nameProd = "Required";
-    }
-    if (values.nameProd && RegExp("^[a-zA-Z0-9]+$").test(values.nameProd)) {
-      errors.nameProd = "Введите продукт кириллицей";
-    }
-    if (!values.gramProd) {
-      errors.gramProd = "Required";
-    }
-    if (values.gramProd && RegExp("^d+$").test(values.gramProd)) {
-      errors.gramProd = "Введите цифры";
-    }
-    return errors;
+//   const onSubmit = useCallback(
+//     (e) => {
+//       //e.preventDefault();
+//       dispatch(productOperations.addProduct());
+//       setIsSubmitting(true);
+//       window.alert(JSON.stringify(e, 0, 2));
+//     },
+//     [dispatch]
+//   );
+
+//   const validate = (values) => {
+//     const errors = {};
+//     if (!values.nameProd) {
+//       errors.nameProd = "Required";
+//     }
+//     if (values.nameProd && RegExp("^[a-zA-Z0-9]+$").test(values.nameProd)) {
+//       errors.nameProd = "Введите продукт кириллицей";
+//     }
+//     if (!values.gramProd) {
+//       errors.gramProd = "Required";
+//     }
+//     if (values.gramProd && RegExp("^d+$").test(values.gramProd)) {
+//       errors.gramProd = "Введите цифры";
+//     }
+//     return errors;
+//   };
+
+//   const { form, handleSubmit, values, pristine, submitting } = useForm({
+//     onSubmit,
+//     validate,
+//   });
+
+//   const nameProd = useField("nameProd", form);
+//   const gramProd = useField("gramProd", form);
+
+//   const currentHideNav = useMediaQuery("(min-width: 767px)");
+//   return (
+//     <>
+//       <Calendar></Calendar>
+//       <form onSubmit={handleSubmit} className={`${styles.ProductEditor} `}>
+//         <label className={`${styles.ProductEditorLabel} `}>
+//           <input
+//             name="nameProd"
+//             {...nameProd.input}
+//             className={`${styles.ProductEditorInput} ${styles.ProductEditorInputName}`}
+//             type="text"
+//             placeholder="Введите название продукта*"
+//           />
+//           {nameProd.meta.error && nameProd.meta.touched && (
+//             <span className={`${styles.ProductEditorErrorMsg}`}>
+//               {nameProd.meta.error}
+//             </span>
+//           )}
+//         </label>
+
+//         <label className={`${styles.ProductEditorLabel} ${styles.Otstup}`}>
+//           <input
+//             name="gramProd"
+//             {...gramProd.input}
+//             className={`${styles.ProductEditorInput}  ${styles.ProductEditorInputKkal}`}
+//             type="number"
+//             placeholder="Граммы*"
+//           />
+//           {gramProd.meta.error && gramProd.meta.touched && (
+//             <span className={`${styles.ProductEditorErrorMsg}`}>
+//               {gramProd.meta.error}
+//             </span>
+//           )}
+//         </label>
+
+//         <button
+//           type="submit"
+//           disabled={pristine || submitting}
+//           className={styles.ProductEditorButton}
+//         >
+//           {currentHideNav ? "+" : "Добавить"}
+//         </button>
+//       </form>
+
+//       {/* <DiaryProductList></DiaryProductList> */}
+//     </>
+//   );
+// };
+// export default AddProductForm;
+
+function AddProductForm() {
+  const [inputValue, setValue] = useState("");
+  // const [options, setOptions] = useState([]);
+  const [selectedValue, setSelectedValue] = useState(null);
+  console.log(selectedValue);
+  // handle input change event
+  const handleInputChange = (value) => {
+    setValue(value);
   };
 
-  const { form, handleSubmit, values, pristine, submitting } = useForm({
-    onSubmit,
-    validate,
-  });
+  // handle selection
+  const handleChange = (value) => {
+    setSelectedValue(value);
+  };
 
-  const nameProd = useField("nameProd", form);
-  const gramProd = useField("gramProd", form);
+  // load options using API call
+  const loadOptions = (inputValue, callback) => {
+    if (!inputValue) {
+      callback([]);
+    } else {
+      const headers = {
+        "Content-Type": "application/json",
+      };
 
-  const currentHideNav = useMediaQuery("(min-width: 767px)");
+      return axios
+        .get(`https://slimmom.herokuapp.com/products?name=${inputValue}`, {
+          headers,
+        })
+        .then((response) => {
+          const options = response.data.docs;
+          // console.log(response);
+          const sel = options.map((item) => item.title.ru);
+
+          console.log(sel);
+
+          const tempArray = [];
+          sel.forEach((element) => {
+            tempArray.push({ label: `${element}`, value: element });
+          });
+          callback(tempArray);
+        })
+        .catch((error) => {
+          if (error) {
+            console.log("its some errors ", error);
+          }
+        });
+    }
+  };
+
   return (
-    <>
-      <Calendar></Calendar>
-      <form onSubmit={handleSubmit} className={`${styles.ProductEditor} `}>
-        <label className={`${styles.ProductEditorLabel} `}>
-          <input
-            name="nameProd"
-            {...nameProd.input}
-            className={`${styles.ProductEditorInput} ${styles.ProductEditorInputName}`}
-            type="text"
-            placeholder="Введите название продукта*"
-          />
-          {nameProd.meta.error && nameProd.meta.touched && (
-            <span className={`${styles.ProductEditorErrorMsg}`}>
-              {nameProd.meta.error}
-            </span>
-          )}
-        </label>
+    <form className={`${styles.ProductEditor} `}>
+      <AsyncSelect
+        cacheOptions
+        defaultOptions
+        value={selectedValue}
+        // getOptionLabel={(e) => e.data.docs.title.ru}
+        // getOptionValue={(e) => e.data.docs.title.ru}
+        loadOptions={loadOptions}
+        onInputChange={handleInputChange}
+        onChange={handleChange}
+      />
 
-        <label className={`${styles.ProductEditorLabel} ${styles.Otstup}`}>
-          <input
-            name="gramProd"
-            {...gramProd.input}
-            className={`${styles.ProductEditorInput}  ${styles.ProductEditorInputKkal}`}
-            type="number"
-            placeholder="Граммы*"
-          />
-          {gramProd.meta.error && gramProd.meta.touched && (
-            <span className={`${styles.ProductEditorErrorMsg}`}>
-              {gramProd.meta.error}
-            </span>
-          )}
-        </label>
+      {/* 
+      <label className={`${styles.ProductEditorLabel} ${styles.Otstup}`}>
+        <input
+          name="gramProd"
+          {...gramProd.input}
+          className={`${styles.ProductEditorInput}  ${styles.ProductEditorInputKkal}`}
+          type="number"
+          placeholder="Граммы*"
+        />
+        {gramProd.meta.error && gramProd.meta.touched && (
+          <span className={`${styles.ProductEditorErrorMsg}`}>
+            {gramProd.meta.error}
+          </span>
+        )}
+      </label>
 
-        <button
-          type="submit"
-          disabled={pristine || submitting}
-          className={styles.ProductEditorButton}
-        >
-          {currentHideNav ? "+" : "Добавить"}
-        </button>
-      </form>
-
-      <DiaryProductList></DiaryProductList>
-    </>
+      <button
+        type="submit"
+        disabled={pristine || submitting}
+        className={styles.ProductEditorButton}
+      >
+        {currentHideNav ? "+" : "Добавить"}
+      </button> */}
+    </form>
   );
-};
+}
+
 export default AddProductForm;

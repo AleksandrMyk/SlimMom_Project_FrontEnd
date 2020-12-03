@@ -22,8 +22,9 @@
 }
 
 .calendar_on {
-  /* position: absolute;
-  z-index: 60; */
+  position: absolute;
+  z-index: 60;
+  top: 200px;
   margin-left: 15px;
 }
 
