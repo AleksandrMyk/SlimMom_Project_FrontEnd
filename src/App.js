@@ -41,10 +41,6 @@ const App = () => (
         path="/dashboard"
         component={Dashboard}
       />
-
-      {/* <Route path="*">
-        <NotFound />
-      </Route> */}
     </Switch>
   </Suspense>
 );

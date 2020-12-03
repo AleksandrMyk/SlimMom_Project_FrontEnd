@@ -1,6 +1,9 @@
 * {
   margin: 0;
 }
+.Select {
+  border: none;
+}
 
 .ProductEditor {
   display: flex;
