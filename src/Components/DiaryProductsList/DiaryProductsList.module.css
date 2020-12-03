@@ -1,13 +1,13 @@
 .wrapper {
   width: 100%;
   position: relative;
+  margin-top: 100px;
 }
 
 .container {
   position: relative;
-  max-height: 130px;
+  max-height: 240px;
   overflow-y: scroll;
-  padding: 10px;
 }
 
 .wrapper:after {
@@ -44,16 +44,14 @@
   background: #264061;
 }
 
- @media (min-width: 768px) {
-.container{
-  padding: 70px;
-  
- }
-} 
-@media (min-width: 1024px) {
+@media (max-width: 480px) {
   .container {
-    padding: 70px 20px 0px 70px;
-    width: 53%;
+    padding: 10px;
   }
 }
 
+@media (max-width: 380px) {
+  .wrapper:after {
+    height: 25px;
+  }
+}

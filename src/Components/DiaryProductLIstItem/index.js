@@ -1,1 +1,2 @@
-export {default as DiaryProductsListItem} from "./DiaryProductsLIstItem"
+import DairyProductsListItem from "./DiaryProductsLIstItem"
+export  default DairyProductsListItem

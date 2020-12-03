@@ -31,6 +31,7 @@
     width: 23%;
 }
 .listItem__buttonRemove{
+    padding-top: 10px;
     border: none;
     background-color: rgb(255, 255, 255);
 }
