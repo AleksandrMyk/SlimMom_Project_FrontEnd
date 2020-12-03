@@ -8,8 +8,15 @@ const addProductRequest = createAction("ADD_PRODUCT_REQUEST");
 const addProductSuccess = createAction("ADD_PRODUCT_SUCCESS");
 const addProductError = createAction("ADD_PRODUCT_ERROR");
 
+const getProductRequest = createAction("GET_PRODUCT_REQUEST");
+const getProductSuccess = createAction("GET_PRODUCT_SUCCESS");
+const getProductError = createAction("GET_PRODUCT_ERROR");
+
 export default {
   addProductRequest,
   addProductSuccess,
   addProductError,
+  getProductRequest,
+  getProductSuccess,
+  getProductError,
 };
