@@ -5,7 +5,7 @@ import useForm from "./useForm";
 import validate from "./validationRules";
 import Logo from "../../Components/Logo";
 import axios from "axios";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import "./alertStyle.css";
 import { useHistory } from "react-router-dom";
 
 const Register = () => {
@@ -29,19 +29,18 @@ const Register = () => {
       .then((response) => {
         console.log(response);
         setMessage({
-          data: "Registered , You will transfer to login page",
-          type: "alert-success",
+          data: "Вы успешно зарегестрировались на сайте",
+          type: "success",
         });
 
         setTimeout(() => {
           history.push("/login");
-          console.log("You are registered");
         }, 4000);
       })
       .catch((error) => {
         setMessage({
-          data: "Wrong credentials",
-          type: "alert-danger",
+          data: "Произошла ошибка , попробуйте еще раз",
+          type: "danger",
         });
         console.error("There was an error!", error);
       });
@@ -67,10 +66,11 @@ const Register = () => {
               </div>
             </div>
           </nav>
-          <div className={`${style.messageContainer} `}>
-            <div className={style.registrationFormContainer}>
+
+          <div className={style.formWrapper}>
+            <div className={`${style.messageContainer} `}>
               {message && (
-                <div className={` ${message.type}`} role="alert">
+                <div className={`${message.type}`} role="alert">
                   {message.data}
                   <span
                     aria-hidden="true"
@@ -82,8 +82,7 @@ const Register = () => {
                 </div>
               )}
             </div>
-          </div>
-          <div className={style.formWrapper}>
+
             <div className={style.registerTitle}>Регистрация</div>
             <form onSubmit={handleSubmit} noValidate>
               <div className={style.inputModule}>
