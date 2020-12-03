@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
+import { useDispatch } from "react-redux";
 import { useForm, useField } from "react-final-form-hooks";
-
 import { useMediaQuery } from "./hooks";
+import productOperations from "../../Redux/product/productOperations";
 import styles from "./AddProductForm.module.css";
+import Calendar from "../Calendar";
+import DiaryProductList from "../DiaryProductsList";
+
 const AddProductForm = () => {
+  const dispatch = useDispatch();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const onSubmit = (e) => {
-    //e.preventDefault();
-    setIsSubmitting(true);
-    window.alert(JSON.stringify(e, 0, 2));
-  };
+
+  const onSubmit = useCallback(
+    (e) => {
+      //e.preventDefault();
+      dispatch(productOperations.addProduct());
+      setIsSubmitting(true);
+      window.alert(JSON.stringify(e, 0, 2));
+    },
+    [dispatch]
+  );
 
   const validate = (values) => {
     const errors = {};
@@ -39,6 +49,7 @@ const AddProductForm = () => {
   const currentHideNav = useMediaQuery("(min-width: 767px)");
   return (
     <>
+      <Calendar></Calendar>
       <form onSubmit={handleSubmit} className={`${styles.ProductEditor} `}>
         <label className={`${styles.ProductEditorLabel} `}>
           <input
@@ -78,8 +89,9 @@ const AddProductForm = () => {
           {currentHideNav ? "+" : "Добавить"}
         </button>
       </form>
+
+      <DiaryProductList></DiaryProductList>
     </>
   );
 };
-
 export default AddProductForm;

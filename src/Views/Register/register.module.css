@@ -9,7 +9,6 @@
   height: 100vh;
   display: flex;
   justify-content: center;
-  padding-bottom: 100px;
 }
 
 .loginWrapper {
@@ -82,13 +81,24 @@ button:focus {
   outline: none;
 }
 
+.messageContainer > div {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
 .butModule {
   display: flex;
   align-items: center;
   flex-direction: column;
   font-family: Verdana sans-serif;
 }
-
+.formWrapper {
+  margin: auto;
+}
+.formWrapper > form {
+  width: 320px;
+}
 .butModule > button {
   font-family: Verdana;
   font-size: 14px;
@@ -147,11 +157,15 @@ button:focus {
     background-repeat: no-repeat;
     background-position: bottom right;
     background-size: cover;
-    padding-bottom: 200px;
   }
 
   .formWrapper {
+    margin: 0;
     padding-left: 90px;
+  }
+
+  .formWrapper > form {
+    width: auto;
   }
   .messageContainer {
     display: flex;
@@ -201,7 +215,9 @@ button:focus {
     background-image: url(./img/desktop-bg-REGISTER.jpg);
     background-size: cover;
   }
-
+  .noActiveButton {
+    width: 176px;
+  }
   .input {
     width: 240px;
   }
@@ -218,10 +234,10 @@ button:focus {
   }
 }
 
-nav {
+.loginWrapper > nav {
   height: 80px;
   border-bottom: 2px solid #e0e0e0;
-  margin-bottom: 200px;
+  margin-bottom: 100px;
 }
 
 .container {
@@ -279,7 +295,7 @@ nav {
 }
 
 @media (min-width: 1024px) {
-  nav {
+  .loginWrapper > nav {
     padding-top: 30px;
     height: 140px;
     border-bottom: none;
@@ -294,7 +310,9 @@ nav {
     display: none;
     height: 106px;
   }
-
+  .formWrapper {
+    width: 100%;
+  }
   .login {
     display: flex;
     justify-content: center;

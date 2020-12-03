@@ -26,6 +26,7 @@
   letter-spacing: 0.04em;
 }
 .logoutButton {
+  cursor: pointer;
   padding-right: 15px;
   padding-left: 15px;
   font-family: GothamProBold;
@@ -36,6 +37,10 @@
   letter-spacing: 0.04em;
 
   color: #9b9faa;
+}
+
+.logoutButton :hover {
+  color: #212121;
 }
 
 .exit {
@@ -63,7 +68,6 @@
 @media (min-width: 1024px) {
   .container {
     justify-content: flex-start;
-    min-height: 106px;
   }
 
   .link:first-child {

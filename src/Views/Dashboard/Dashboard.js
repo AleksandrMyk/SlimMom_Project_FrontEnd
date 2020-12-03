@@ -1,11 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState, lazy } from "react";
+import { Route, Switch, useHistory } from "react-router-dom";
 import LogoDashboard from "../../Components/LogoDashboard";
 import BurgerMenu from "../../Components/BurgerMenu";
 import UserNav from "../../Components/UserNav";
 import UserInfo from "../../Components/UserInfo";
 import axios from "axios";
 import style from "./dashboard.module.css";
+import SideBar from "../../Components/RightSideBar";
+import AddProductForm from "../../Components/AddProductForm";
+
+const Calculator = lazy(() =>
+  import("../../Components/Calculator" /* webpackChunkName: "Daily-calories" */)
+);
+
+// const Calendar = lazy(() =>
+//   import(
+//     "../../Components/Calendar/CalendarOnClick" /* webpackChunkName: "product-form" */
+//   )
+// );
 
 const Dashboard = () => {
   const [userName, setuserName] = useState("");
@@ -45,23 +57,37 @@ const Dashboard = () => {
 
   return (
     <>
-      <nav>
-        <div className={style.headerContainer}>
+      <div className={style.directionWrapper}>
+        <div className={style.componentContainer}>
           <div className={style.headerContainer}>
-            <LogoDashboard />
-          </div>
-
-          <div className={style.burgerContainer}>
-            <BurgerMenu />
-          </div>
-
-          {/* <UserNav />
+            <div className={style.logoContainer}>
+              <LogoDashboard />
+            </div>
+            <div className={style.userNavContainer}>
+              <UserNav />
+            </div>
+            <div className={style.nagigationWrapper}>
+              <div className={style.tabletZone}>
+                <UserInfo userName={userName} onLogout={logout} />
+              </div>
+              <div className={style.burgerContainer}>
+                <BurgerMenu />
+              </div>
+            </div>
+            {/* <UserNav />
           <UserInfo userName={userName} onLogout={logout}></UserInfo> */}
+          </div>
+          <div className={style.greyZone}>
+            <UserInfo userName={userName} onLogout={logout} />
+          </div>
+          <Switch>
+            <Route exact path="/dashboard" component={Calculator} />
+            <Route exact path="/dashboard/diary" component={AddProductForm} />
+          </Switch>
         </div>
-        <div className={style.greyZone}>
-          <UserInfo userName={userName} onLogout={logout}></UserInfo>
-        </div>
-      </nav>
+
+        <SideBar userName={userName} logout={logout}></SideBar>
+      </div>
     </>
   );
 };
