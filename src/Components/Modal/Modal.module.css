@@ -10,9 +10,8 @@
 
 .modal_wrapper {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
   z-index: 1050;
   margin: 0 auto;
   overflow-x: hidden;
@@ -62,6 +61,11 @@ button {
   .modal_header {
     display: flex;
     justify-content: flex-end;
+  }
+  .modal_wrapper {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   .modal {
     margin-top: 222px;
