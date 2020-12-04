@@ -1,192 +1,129 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 // import { useDispatch } from "react-redux";
-// import { useForm, useField } from "react-final-form-hooks";
-// import { useMediaQuery } from "./hooks";
-// import productOperations from "../../Redux/product/productOperations";
-import styles from "./AddProductForm.module.css";
-// import Calendar from "../Calendar";
-// import DiaryProductList from "../DiaryProductsList";
 import AsyncSelect from "react-select/async";
 import axios from "axios";
+import Calendar from "../../Components/Calendar";
+import styles from "./AddProductForm.module.css";
+import DiaryProductsList from "../../Components/DiaryProductsList";
+//
 
-// import AsyncSelect from "react-select/async";
+import { useMediaQuery } from "./hooks";
+// import productOperations from "../../Redux/product/productOperations";
 
-// const AddProductForm = () => {
-//   const dispatch = useDispatch();
-//   const [isSubmitting, setIsSubmitting] = useState(false);
+const SEARCH_URL = "https://slimmom.herokuapp.com/";
+const END_OPTIONS = "&page=1&limit=10";
+const QUERY = `products?name=`;
 
-//   const onSubmit = useCallback(
-//     (e) => {
-//       //e.preventDefault();
-//       dispatch(productOperations.addProduct());
-//       setIsSubmitting(true);
-//       window.alert(JSON.stringify(e, 0, 2));
-//     },
-//     [dispatch]
-//   );
+export default function AddProductForm() {
+  const [selectedTitle, setSelectedTitle] = useState("");
+  const [productId, setIdProduct] = useState("");
+  const [weight, setGramProd] = useState(0);
+  const [date, setDate] = useState();
 
-//   const validate = (values) => {
-//     const errors = {};
-//     if (!values.nameProd) {
-//       errors.nameProd = "Required";
-//     }
-//     if (values.nameProd && RegExp("^[a-zA-Z0-9]+$").test(values.nameProd)) {
-//       errors.nameProd = "Введите продукт кириллицей";
-//     }
-//     if (!values.gramProd) {
-//       errors.gramProd = "Required";
-//     }
-//     if (values.gramProd && RegExp("^d+$").test(values.gramProd)) {
-//       errors.gramProd = "Введите цифры";
-//     }
-//     return errors;
-//   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: token,
+    };
 
-//   const { form, handleSubmit, values, pristine, submitting } = useForm({
-//     onSubmit,
-//     validate,
-//   });
-
-//   const nameProd = useField("nameProd", form);
-//   const gramProd = useField("gramProd", form);
-
-//   const currentHideNav = useMediaQuery("(min-width: 767px)");
-//   return (
-//     <>
-//       <Calendar></Calendar>
-//       <form onSubmit={handleSubmit} className={`${styles.ProductEditor} `}>
-//         <label className={`${styles.ProductEditorLabel} `}>
-//           <input
-//             name="nameProd"
-//             {...nameProd.input}
-//             className={`${styles.ProductEditorInput} ${styles.ProductEditorInputName}`}
-//             type="text"
-//             placeholder="Введите название продукта*"
-//           />
-//           {nameProd.meta.error && nameProd.meta.touched && (
-//             <span className={`${styles.ProductEditorErrorMsg}`}>
-//               {nameProd.meta.error}
-//             </span>
-//           )}
-//         </label>
-
-//         <label className={`${styles.ProductEditorLabel} ${styles.Otstup}`}>
-//           <input
-//             name="gramProd"
-//             {...gramProd.input}
-//             className={`${styles.ProductEditorInput}  ${styles.ProductEditorInputKkal}`}
-//             type="number"
-//             placeholder="Граммы*"
-//           />
-//           {gramProd.meta.error && gramProd.meta.touched && (
-//             <span className={`${styles.ProductEditorErrorMsg}`}>
-//               {gramProd.meta.error}
-//             </span>
-//           )}
-//         </label>
-
-//         <button
-//           type="submit"
-//           disabled={pristine || submitting}
-//           className={styles.ProductEditorButton}
-//         >
-//           {currentHideNav ? "+" : "Добавить"}
-//         </button>
-//       </form>
-
-//       {/* <DiaryProductList></DiaryProductList> */}
-//     </>
-//   );
-// };
-// export default AddProductForm;
-
-function AddProductForm() {
-  const [inputValue, setValue] = useState("");
-  // const [options, setOptions] = useState([]);
-  const [selectedValue, setSelectedValue] = useState(null);
-  console.log(selectedValue);
-  // handle input change event
-  const handleInputChange = (value) => {
-    setValue(value);
+    const data = {
+      productId: productId,
+      weight: weight,
+      date: date,
+    };
+    const dataToSend = JSON.stringify(data);
+    console.log(dataToSend);
+    axios
+      .post("https://slimmom.herokuapp.com/days", dataToSend, {
+        headers,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        if (error) {
+          console.log("its some errors ", error);
+        }
+      });
   };
+  console.log(date);
 
-  // handle selection
-  const handleChange = (value) => {
-    setSelectedValue(value);
-  };
+  function handleSetNewDate(newValue) {
+    setDate(newValue);
+  }
 
-  // load options using API call
-  const loadOptions = (inputValue, callback) => {
-    if (!inputValue) {
-      callback([]);
-    } else {
-      const headers = {
-        "Content-Type": "application/json",
-      };
+  const handleChange = useCallback(
+    (e) => setGramProd(Number(e.currentTarget.value)),
+    []
+  );
 
-      return axios
-        .get(`https://slimmom.herokuapp.com/products?name=${inputValue}`, {
-          headers,
-        })
-        .then((response) => {
-          const options = response.data.docs;
-          // console.log(response);
-          const sel = options.map((item) => item.title.ru);
+  const handleSearchTitles = (movieTitle) => {
+    console.log("searching for", movieTitle);
+    let searchTerm = movieTitle;
 
-          console.log(sel);
+    if (!movieTitle || movieTitle === " ") {
+      searchTerm = "омлет";
+    }
 
-          const tempArray = [];
-          sel.forEach((element) => {
-            tempArray.push({ label: `${element}`, value: element });
-          });
-          callback(tempArray);
-        })
-        .catch((error) => {
-          if (error) {
-            console.log("its some errors ", error);
-          }
-        });
+    const urlRequest = `${SEARCH_URL}${QUERY}${searchTerm}${END_OPTIONS}`;
+    const newRequest = axios.get(urlRequest);
+
+    if (newRequest) {
+      // new promise: pending
+      return newRequest.then((response) => {
+        console.log("response.data.results", response.data.docs);
+        // promise resolved : now I have the data, do a filter
+        const compare = response.data.docs.filter((i) =>
+          i.title.ru.toLowerCase().includes(movieTitle.toLowerCase())
+        );
+        console.log("compare", compare);
+        // reurning the label for react-select baed on the title
+        return compare.map((prod) => ({
+          label: prod.title.ru,
+          value: prod._id,
+        }));
+      });
     }
   };
 
+  //
+  const currentHideNav = useMediaQuery("(min-width: 767px)");
   return (
-    <form className={`${styles.ProductEditor} `}>
-      <AsyncSelect
-        cacheOptions
-        defaultOptions
-        value={selectedValue}
-        // getOptionLabel={(e) => e.data.docs.title.ru}
-        // getOptionValue={(e) => e.data.docs.title.ru}
-        loadOptions={loadOptions}
-        onInputChange={handleInputChange}
-        onChange={handleChange}
-      />
+    <>
+      <Calendar onChange={handleSetNewDate}></Calendar>
+      <form className={`${styles.ProductEditor} `} onSubmit={handleSubmit}>
+        <div className={`${styles.ProductEditorLabel} `}>
+          <AsyncSelect
+            placeholder="Введите название продукта*"
+            className={`${styles.ProductEditorInput} ${styles.ProductEditorInputName}`}
+            cacheOptions
+            defaultOptions
+            value={selectedTitle}
+            loadOptions={handleSearchTitles}
+            onChange={(property, value) => {
+              console.log(property);
+              setSelectedTitle(property);
+              setIdProduct(property.value);
+            }}
+          />
+        </div>
+        <label className={`${styles.ProductEditorLabel} ${styles.Otstup}`}>
+          <input
+            className={`${styles.ProductEditorInput}  ${styles.ProductEditorInputKkal}`}
+            type="number"
+            placeholder="Граммы*"
+            value={weight}
+            onChange={handleChange}
+          />
+        </label>
+        <button type="submit" className={styles.ProductEditorButton}>
+          {currentHideNav ? "+" : "Добавить"}
+        </button>
+      </form>
 
-      {/* 
-      <label className={`${styles.ProductEditorLabel} ${styles.Otstup}`}>
-        <input
-          name="gramProd"
-          {...gramProd.input}
-          className={`${styles.ProductEditorInput}  ${styles.ProductEditorInputKkal}`}
-          type="number"
-          placeholder="Граммы*"
-        />
-        {gramProd.meta.error && gramProd.meta.touched && (
-          <span className={`${styles.ProductEditorErrorMsg}`}>
-            {gramProd.meta.error}
-          </span>
-        )}
-      </label>
-
-      <button
-        type="submit"
-        disabled={pristine || submitting}
-        className={styles.ProductEditorButton}
-      >
-        {currentHideNav ? "+" : "Добавить"}
-      </button> */}
-    </form>
+      <DiaryProductsList day={date}></DiaryProductsList>
+    </>
   );
 }
-
-export default AddProductForm;
