@@ -43,6 +43,11 @@ const DailyCalopiesForm = () => {
 
         setCalories(dayNormCalories.toString());
         setProducts([...notAllowedCategories]);
+      })
+      .catch((error) => {
+        if (error) {
+          console.log("its some errors ", error);
+        }
       });
   }
 
@@ -55,13 +60,13 @@ const DailyCalopiesForm = () => {
         <h2 className={styles.form__title}>
           Просчитай свою суточную норму калорий прямо сейчас
         </h2>
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form className={styles.form} noValidate onSubmit={handleSubmit}>
           <div className={styles.form__inputs}>
             <input
               className={styles.input}
               type="text"
               name="height"
-              value={values.height}
+              value={values.height || ""}
               placeholder="Рост *"
               onChange={handleChange}
               autoComplete="off"
@@ -70,10 +75,10 @@ const DailyCalopiesForm = () => {
             {errors.height && <p className={styles.error}>{errors.height}</p>}
 
             <input
-              className={styles.input}
+              className={styles.input || ""}
               type="text"
               name="age"
-              value={values.age}
+              value={values.age || ""}
               placeholder="Возраст *"
               onChange={handleChange}
               autoComplete="off"
@@ -85,7 +90,7 @@ const DailyCalopiesForm = () => {
               className={styles.input}
               type="text"
               name="currentWeight"
-              value={values.currentWeight}
+              value={values.currentWeight || ""}
               placeholder="Текущий вес *"
               onChange={handleChange}
               autoComplete="off"
@@ -99,7 +104,7 @@ const DailyCalopiesForm = () => {
               className={styles.input}
               type="text"
               name="targetWeight"
-              value={values.targetWeight}
+              value={values.targetWeight || ""}
               placeholder="Желаемый вес *"
               onChange={handleChange}
               autoComplete="off"
