@@ -43,6 +43,7 @@ const DailyCalopiesForm = () => {
 
         setCalories(dayNormCalories.toString());
         setProducts([...notAllowedCategories]);
+        toggle();
       })
       .catch((error) => {
         if (error) {
@@ -176,13 +177,7 @@ const DailyCalopiesForm = () => {
             </div>
           </div>
 
-          <button
-            className={styles.form_button}
-            onClick={() => {
-              getCalories();
-              toggle();
-            }}
-          >
+          <button className={styles.form_button} onClick={getCalories}>
             Похудеть
           </button>
           <Modal
