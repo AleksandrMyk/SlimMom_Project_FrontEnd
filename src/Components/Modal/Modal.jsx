@@ -12,7 +12,7 @@ const Modal = ({ isShowing, hide, calories, list }) => {
       {isShowing
         ? ReactDOM.createPortal(
             <React.Fragment>
-              <div className={styles.modal_overlay} />
+              <div className={styles.modal_overlay} onClick={hide} />
               <div
                 className={styles.modal_wrapper}
                 aria-modal
@@ -28,9 +28,7 @@ const Modal = ({ isShowing, hide, calories, list }) => {
                       data-dismiss="modal"
                       aria-label="Close"
                       onClick={hide}
-                    >
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+                    ></button>
                   </div>
                   {list.length === 0 ? (
                     <Spiner />

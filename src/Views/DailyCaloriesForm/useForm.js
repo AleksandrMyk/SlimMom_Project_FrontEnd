@@ -18,8 +18,6 @@ const useForm = (callback, validate) => {
       ...validate(values),
     });
 
-    console.log("second");
-
     setValues({
       height: "",
       age: "",
@@ -30,8 +28,8 @@ const useForm = (callback, validate) => {
     setBludType(null);
   };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setValues({
       ...values,
       [name]: Number(value),
@@ -41,7 +39,6 @@ const useForm = (callback, validate) => {
   const handleBludChange = (e) => {
     setBludType(e.target.value);
     values.bloodType = Number(e.target.value);
-    console.log(values);
   };
 
   return {
