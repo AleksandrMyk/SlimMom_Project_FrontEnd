@@ -9,7 +9,6 @@
   height: 100vh;
   display: flex;
   justify-content: center;
-  padding-bottom: 100px;
 }
 
 .loginWrapper {
@@ -86,6 +85,12 @@ input {
   outline: none;
 }
 
+.messageContainer > div {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
 .butModule {
   display: flex;
   align-items: center;
@@ -93,8 +98,10 @@ input {
   font-family: Verdana sans-serif;
 }
 .formWrapper {
-  width: 290px;
   margin: auto;
+}
+.formWrapper > form {
+  width: 320px;
 }
 .butModule > button {
   font-family: Verdana;
@@ -147,6 +154,9 @@ input {
 
     height: 100vh;
   }
+  .formWrapper > form {
+    width: auto;
+  }
 
   .pageWrapper {
     width: 100%;
@@ -154,7 +164,6 @@ input {
     background-repeat: no-repeat;
     background-position: bottom right;
     background-size: cover;
-    padding-bottom: 200px;
   }
 
   .formWrapper {
