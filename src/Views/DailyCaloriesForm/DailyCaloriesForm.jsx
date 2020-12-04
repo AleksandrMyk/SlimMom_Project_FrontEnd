@@ -1,6 +1,12 @@
 import React, { useState } from "react";
+import axios from "axios";
 import styles from "./DailyCaloriesForm.module.css";
 import NavigationBar from "../../Components/NavigationBar";
+
+import Modal from "../../Components/Modal";
+import useModal from "../../Components/Modal/useModal";
+import useForm from "./useForm";
+import validate from "./validateForm";
 
 const BludValue = {
   FIRST: "1",
@@ -10,11 +16,37 @@ const BludValue = {
 };
 
 const DailyCalopiesForm = () => {
-  const [blud, setBlud] = useState(null);
+  const {
+    values,
+    errors,
+    bludType,
+    handleChange,
+    handleSubmit,
+    handleBludChange,
+  } = useForm(getCalories, validate);
 
-  function handleBludChange(e) {
-    setBlud(e.target.value);
+  const [calories, setCalories] = useState("");
+  const [products, setProducts] = useState([]);
+
+  function getCalories() {
+    const data = JSON.stringify(values);
+    const headers = {
+      "Content-Type": "application/json",
+    };
+
+    axios
+      .patch("https://slimmom.herokuapp.com/users/dailycalPublic", data, {
+        headers,
+      })
+      .then((res) => {
+        const { dayNormCalories, notAllowedCategories } = res.data;
+
+        setCalories(dayNormCalories.toString());
+        setProducts([...notAllowedCategories]);
+      });
   }
+
+  const { isShowing, toggle } = useModal();
 
   return (
     <div className={styles.bgContainer}>
@@ -23,32 +55,60 @@ const DailyCalopiesForm = () => {
         <h2 className={styles.form__title}>
           Просчитай свою суточную норму калорий прямо сейчас
         </h2>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.form__inputs}>
             <input
               className={styles.input}
               type="text"
+              name="height"
+              value={values.height}
               placeholder="Рост *"
-              required
+              onChange={handleChange}
+              autoComplete="off"
             />
+
+            {errors.height && <p className={styles.error}>{errors.height}</p>}
+
             <input
               className={styles.input}
               type="text"
+              name="age"
+              value={values.age}
               placeholder="Возраст *"
-              required
+              onChange={handleChange}
+              autoComplete="off"
             />
+
+            {errors.age && <p className={styles.error}>{errors.age}</p>}
+
             <input
               className={styles.input}
               type="text"
+              name="currentWeight"
+              value={values.currentWeight}
               placeholder="Текущий вес *"
-              required
+              onChange={handleChange}
+              autoComplete="off"
             />
+
+            {errors.currentWeight && (
+              <p className={styles.error}>{errors.currentWeight}</p>
+            )}
+
             <input
               className={styles.input}
               type="text"
+              name="targetWeight"
+              value={values.targetWeight}
               placeholder="Желаемый вес *"
-              required
+              onChange={handleChange}
+              autoComplete="off"
             />
+
+            {errors.targetWeight && (
+              <p className={styles.error}>{errors.targetWeight}</p>
+            )}
+
             <div className={styles.radio_buttons}>
               <span className={styles.blud}>Группа крови *</span>
               <ul className={styles.radio_list}>
@@ -59,7 +119,7 @@ const DailyCalopiesForm = () => {
                     type="radio"
                     value={BludValue.FIRST}
                     onChange={handleBludChange}
-                    checked={blud === BludValue.FIRST}
+                    checked={bludType === BludValue.FIRST}
                   />
                   <label htmlFor="radio-1" className={styles.radio_value}>
                     1
@@ -72,7 +132,7 @@ const DailyCalopiesForm = () => {
                     type="radio"
                     value={BludValue.SECOND}
                     onChange={handleBludChange}
-                    checked={blud === BludValue.SECOND}
+                    checked={bludType === BludValue.SECOND}
                   />
                   <label htmlFor="radio-2" className={styles.radio_value}>
                     2
@@ -85,7 +145,7 @@ const DailyCalopiesForm = () => {
                     type="radio"
                     value={BludValue.THIRD}
                     onChange={handleBludChange}
-                    checked={blud === BludValue.THIRD}
+                    checked={bludType === BludValue.THIRD}
                   />
                   <label htmlFor="radio-3" className={styles.radio_value}>
                     3
@@ -98,16 +158,34 @@ const DailyCalopiesForm = () => {
                     type="radio"
                     value={BludValue.FOURTH}
                     onChange={handleBludChange}
-                    checked={blud === BludValue.FOURTH}
+                    checked={bludType === BludValue.FOURTH}
                   />
                   <label htmlFor="radio-4" className={styles.radio_value}>
                     4
                   </label>
                 </li>
               </ul>
+              {errors.bloodType && (
+                <p className={styles.error_blood}>{errors.bloodType}</p>
+              )}
             </div>
           </div>
-          <button className={styles.form_button}>Похудеть</button>
+
+          <button
+            className={styles.form_button}
+            onClick={() => {
+              getCalories();
+              toggle();
+            }}
+          >
+            Похудеть
+          </button>
+          <Modal
+            isShowing={isShowing}
+            hide={toggle}
+            calories={calories}
+            list={products}
+          />
         </form>
       </div>
     </div>
