@@ -2,9 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import DailyCaloriesIntake from "../DailyCaloriesIntake";
+import Spiner from "../Spiner";
 import styles from "./Modal.module.css";
 
 const Modal = ({ isShowing, hide, calories, list }) => {
+  // console.log(list);
   return (
     <>
       {isShowing
@@ -30,7 +32,11 @@ const Modal = ({ isShowing, hide, calories, list }) => {
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <DailyCaloriesIntake ccal={calories} products={list} />
+                  {list.length === 0 ? (
+                    <Spiner />
+                  ) : (
+                    <DailyCaloriesIntake ccal={calories} products={list} />
+                  )}
                 </div>
               </div>
             </React.Fragment>,
