@@ -8,29 +8,86 @@ import styles from "./AddProductForm.module.css";
 import { useMediaQuery } from "./hooks";
 import productOperations from "../../Redux/product/productOperations";
 
-const SEARCH_URL = "https://slimmom.herokuapp.com/products";
+const SEARCH_URL = "https://slimmom.herokuapp.com/";
 const END_OPTIONS = "&page=1&limit=10";
-const QUERY = `?name=`;
+const QUERY = `products?name=`;
 
 export default function AddProductForm() {
   const dispatch = useDispatch();
 
   const [selectedTitle, setSelectedTitle] = useState("");
   const [productId, setIdProduct] = useState("");
-  const [gramProd, setGramProd] = useState(0);
+  const [weight, setGramProd] = useState(0);
+  const [isHandleSubmit, setIsHandleSubmit] = useState(false);
+
+  // const handleSubmit = () => setIsHandleSubmit(true);
 
   const handleSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(productOperations.addProduct(productId, gramProd, "2020-12-13"));
-      // setIsSubmitting(true);
-      // window.alert(JSON.stringify(e, 0, 2));
+      if (!productId || weight === 0) {
+        return;
+      }
+      console.log("Id", productId);
+      console.log("gram", weight);
+
+      const date = "2020-12-12";
+
+      const results_products = dispatch(
+        productOperations.addProduct(productId, weight, date)
+      );
+      console.log("results_products", results_products);
+
+      setIdProduct("");
+      setGramProd(0);
     },
-    [dispatch]
+    [dispatch, productId, weight]
   );
 
+  // useEffect(
+  //   (e) => {
+  //     e.preventDefault();
+  //     if (!isHandleSubmit) {
+  //       return;
+  //     }
+  //     debugger;
+  //     //e.preventDefault();
+  //     debugger;
+  //     console.log("Id", productId);
+  //     console.log("gram", weight);
+  //     console.log("Submit", isHandleSubmit);
+  //     debugger;
+  //     const date = "2020-12-12";
+  //     const results_products = dispatch(
+  //       productOperations.addProduct(productId, weight, date)
+  //     );
+  //     debugger;
+  //     console.log("results_products", results_products);
+  //     debugger;
+  //     setIdProduct("");
+  //     setGramProd(0);
+  //     setIsHandleSubmit(false);
+  //   },
+  //   [isHandleSubmit]
+  // );
+
+  // const handleSubmit = useCallback(
+  //   (e) => {
+  //     e.preventDefault();
+  //     console.log("productId", productId);
+  //     console.log("gramProd", gramProd);
+  //     const results_products = dispatch(
+  //       productOperations.addProduct(productId, gramProd, "2020-12-13")
+  //     );
+  //     console.log("results_products", results_products);
+  //     // setIsSubmitting(true);
+  //     // window.alert(JSON.stringify(e, 0, 2));
+  //   },
+  //   [dispatch]
+  // );
+
   const handleChange = useCallback(
-    (e) => setGramProd(e.currentTarget.value),
+    (e) => setGramProd(Number(e.currentTarget.value)),
     []
   );
 
@@ -63,6 +120,7 @@ export default function AddProductForm() {
       });
     }
   };
+
   //
   const currentHideNav = useMediaQuery("(min-width: 767px)");
   return (
@@ -88,6 +146,7 @@ export default function AddProductForm() {
             className={`${styles.ProductEditorInput}  ${styles.ProductEditorInputKkal}`}
             type="number"
             placeholder="Граммы*"
+            value={weight}
             onChange={handleChange}
           />
         </label>
