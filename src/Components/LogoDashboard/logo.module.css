@@ -38,7 +38,8 @@
 }
 @media (min-width: 1024px) {
   .imgContainer {
-    height: 130px;
+    transform: translateY(-10px);
+    height: 120px;
     content: url(./images/logo.jpg) !important;
   }
   .logoName {

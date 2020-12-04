@@ -2,16 +2,24 @@
   width: 290px;
   margin: auto;
   padding-top: 26px;
+  padding-bottom: 40px;
 }
 
 .bgContainer {
   margin: 0;
   padding: 0;
-  height: 100vh;
+}
+.error {
+  padding-top: 3px;
+  color: red;
+  font-size: 12px;
+  font-weight: bolder;
+  text-align: left;
 }
 
 .form__title {
   margin: 0;
+  padding: 0;
   margin-bottom: 30px;
   font-family: Verdana, sans-serif;
   font-size: 18px;
@@ -22,7 +30,7 @@
 
 .input {
   margin-bottom: 20px;
-  width: 60%;
+  width: 240px;
   height: 36px;
   padding: 0;
   border: none;
@@ -56,7 +64,7 @@
 
 .blud {
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
   width: 240px;
   height: 16px;
   font-family: Verdana;
@@ -89,7 +97,6 @@
 
 .radio_input {
   position: absolute;
-  display: none;
 }
 
 .radio_input + label {
@@ -141,16 +148,10 @@
   font-weight: 700;
   color: #fc842d;
 }
-.form__inputs {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
 
 .form_button {
   display: block;
   margin: 0 auto;
-
   align-items: center;
   padding: 13px 48px;
   width: 176px;
@@ -159,7 +160,6 @@
   border: 1px solid #fc842d;
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   border-radius: 30px;
-
   font-family: Verdana;
   font-style: normal;
   font-weight: bold;
@@ -170,39 +170,11 @@
   color: #ffffff;
 }
 
-.error {
-  margin: 0;
-  margin-top: -14px;
-  color: red;
-  font-size: 12px;
-  font-weight: bolder;
-  /* text-align: center; */
-}
-
-.error_blood {
-  margin: 0;
-  margin-top: -35px;
-  color: red;
-  font-size: 12px;
-  font-weight: bolder;
-  /* text-align: center; */
-}
-
 @media (min-width: 767px) {
-  .bgContainer {
-    background-image: url(./img/home_tablet.png);
-    background-repeat: no-repeat;
-    background-position: bottom right;
-    background-size: cover;
-    height: 100vh;
-  }
-
   .container {
-    padding: 0;
-    padding-top: 100px;
     width: 605px;
-    padding-bottom: 0px;
-    margin-left: 87px;
+    margin-left: 130px;
+    padding-top: 100px;
   }
 
   .form__title {
@@ -215,13 +187,13 @@
     width: 532px;
     height: 300px;
     margin-right: 0px;
+    margin-bottom: 35px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
   }
 
   .input {
-    width: 240px;
     margin-bottom: 25px;
     height: 54px;
   }
@@ -234,20 +206,21 @@
 @media (min-width: 1024px) {
   .bgContainer {
     width: 100%;
-    background-image: url(./img/home_descktop.png);
-    background-size: contain;
   }
 
   .container {
-    padding: 0;
     width: 605px;
-    margin-left: 115px;
+    margin-left: 100px;
   }
 
   .form__title {
     margin-bottom: 48px;
     font-size: 34px;
     line-height: 41px;
+  }
+
+  .form__inputs {
+    margin-bottom: 38px;
   }
 
   .form_button {

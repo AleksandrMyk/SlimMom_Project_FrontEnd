@@ -1,0 +1,194 @@
+import React, { useState } from "react";
+import styles from "./Calculator.module.css";
+import useForm from "./useForm";
+import validate from "./validationRules";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import "./alertSendData.css";
+
+const BludValue = {
+  FIRST: 1,
+  SECOND: 2,
+  THIRD: 3,
+  FOURTH: 4,
+};
+
+const Calculator = () => {
+  const history = useHistory();
+  const token = localStorage.getItem("token");
+  const [message, setMessage] = useState();
+  const {
+    values,
+    errors,
+    handleChange,
+    handleSubmit,
+    handleBludChange,
+  } = useForm(send, validate);
+
+  function send() {
+    const data = JSON.stringify(values);
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: token,
+    };
+    axios
+      .patch("https://slimmom.herokuapp.com/users/dailycalPrivate", data, {
+        headers,
+      })
+      .then((response) => {
+        console.log(response);
+
+        setMessage({
+          data: "Вы успешно обновили данные !!!",
+          type: "sucess",
+        });
+      })
+      .catch((error) => {
+        if (error) {
+          setMessage({
+            data: "Что-то пошло не так ",
+            type: "danger",
+          });
+          console.log("its some errors ", error);
+          history.push("/login");
+        }
+      });
+  }
+
+  return (
+    <div className={styles.bgContainer}>
+      <div className={styles.container}>
+        <div className={`${styles.messageContainer} `}>
+          {message && (
+            <div className={`${message.type}`} role="alert">
+              {message.data}
+              <span
+                aria-hidden="true"
+                className={styles.cursorPointer}
+                onClick={() => setMessage(null)}
+              >
+                &times;
+              </span>
+            </div>
+          )}
+        </div>
+        <h2 className={styles.form__title}>
+          Узнай свою суточную норму калорий
+        </h2>
+        <form onSubmit={handleSubmit} noValidate className={styles.form}>
+          <div className={styles.form__inputs}>
+            <input
+              className={styles.input}
+              type="text"
+              name="height"
+              placeholder="Рост *"
+              onChange={handleChange}
+              value={values.height || ""}
+              required
+            />
+            {errors.height && <p className={styles.error}>{errors.height}</p>}
+            <input
+              className={styles.input}
+              type="text"
+              name="age"
+              placeholder="Возраст *"
+              onChange={handleChange}
+              value={values.age || ""}
+              required
+            />
+            {errors.age && <p className={styles.error}>{errors.age}</p>}
+            <input
+              className={styles.input}
+              type="text"
+              name="currentWeight"
+              placeholder="Текущий вес *"
+              onChange={handleChange}
+              value={values.currentWeight || ""}
+              required
+            />
+            {errors.currentWeight && (
+              <p className={styles.error}>{errors.currentWeight}</p>
+            )}
+            <input
+              className={styles.input}
+              type="text"
+              name="targetWeight"
+              placeholder="Желаемый вес *"
+              onChange={handleChange}
+              value={values.targetWeight || ""}
+              required
+            />
+            {errors.targetWeight && (
+              <p className={styles.error}>{errors.targetWeight}</p>
+            )}
+            <div className={styles.radio_buttons}>
+              <span className={styles.blud}>Группа крови *</span>
+              <ul className={styles.radio_list}>
+                <li className={styles.radio_item}>
+                  <input
+                    id="radio-1"
+                    className={styles.radio_input}
+                    type="radio"
+                    value={BludValue.FIRST}
+                    onChange={handleBludChange}
+                    checked={values.bloodType === BludValue.FIRST}
+                  />
+                  <label htmlFor="radio-1" className={styles.radio_value}>
+                    1
+                  </label>
+                </li>
+                <li className={styles.radio_item}>
+                  <input
+                    id="radio-2"
+                    className={styles.radio_input}
+                    type="radio"
+                    value={BludValue.SECOND}
+                    onChange={handleBludChange}
+                    checked={values.bloodType === BludValue.SECOND}
+                  />
+                  <label htmlFor="radio-2" className={styles.radio_value}>
+                    2
+                  </label>
+                </li>
+                <li className={styles.radio_item}>
+                  <input
+                    id="radio-3"
+                    className={styles.radio_input}
+                    type="radio"
+                    value={BludValue.THIRD}
+                    onChange={handleBludChange}
+                    checked={values.bloodType === BludValue.THIRD}
+                  />
+                  <label htmlFor="radio-3" className={styles.radio_value}>
+                    3
+                  </label>
+                </li>
+                <li className={styles.radio_item}>
+                  <input
+                    id="radio-4"
+                    className={styles.radio_input}
+                    type="radio"
+                    value={BludValue.FOURTH}
+                    onChange={handleBludChange}
+                    checked={values.bloodType === BludValue.FOURTH}
+                  />
+                  <label htmlFor="radio-4" className={styles.radio_value}>
+                    4
+                  </label>
+                </li>
+              </ul>
+              {errors.bloodType && (
+                <p className={styles.error}>{errors.bloodType}</p>
+              )}
+            </div>
+          </div>
+          <button type="submit" className={styles.form_button}>
+            Похудеть
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Calculator;

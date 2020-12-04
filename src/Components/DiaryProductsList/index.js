@@ -1,1 +1,1 @@
-export { default as DiaryProductsList } from "./DiaryProductsList";
+export { default } from "./DiaryProductsList";

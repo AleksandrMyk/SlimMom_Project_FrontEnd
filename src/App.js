@@ -1,16 +1,9 @@
 import React, { lazy, Suspense } from "react";
 import Spiner from "./Components/Spiner";
-import {
-  Route,
-  BrowserRouter as Router,
-  Switch,
-  Redirect,
-} from "react-router-dom";
-import routes from "./routes";
+import ProtectedComponent from "./Components/CustomRoutes/ProtectedRoute";
+import { Switch } from "react-router-dom";
 
 import "./app.css";
-
-const token = localStorage.getItem("token");
 
 const Login = lazy(() =>
   import("./Views/Login/index" /* webpackChunkName: "Login-page" */)
@@ -28,24 +21,28 @@ const DailyCaloriesForm = lazy(() =>
   import("./Views/DailyCaloriesForm/index" /* webpackChunkName: "Home-page" */)
 );
 
-const authGuard = (Component) => () => {
-  return token ? <Component /> : <Redirect to={routes.login} />;
-};
-
-const App = (props) => (
-  <Router {...props}>
-    <Suspense fallback={<Spiner />}>
-      <Switch>
-        <Route exact path={routes.home} component={DailyCaloriesForm} />
-        <Route exact path={routes.login} component={Login} />
-        <Route exact path={routes.register} component={Register} />
-        <Route exact path={routes.dashboard} component={authGuard(Dashboard)} />
-        {/* <Route path="*">
-        <NotFound />
-      </Route> */}
-      </Switch>
-    </Suspense>
-  </Router>
+const App = () => (
+  <Suspense fallback={<Spiner />}>
+    <Switch>
+      <ProtectedComponent active={false} path="/login" component={Login} />
+      <ProtectedComponent
+        active={false}
+        path="/register"
+        component={Register}
+      />
+      <ProtectedComponent
+        active={false}
+        exact
+        path="/"
+        component={DailyCaloriesForm}
+      />
+      <ProtectedComponent
+        active={true}
+        path="/dashboard"
+        component={Dashboard}
+      />
+    </Switch>
+  </Suspense>
 );
 
 export default App;
