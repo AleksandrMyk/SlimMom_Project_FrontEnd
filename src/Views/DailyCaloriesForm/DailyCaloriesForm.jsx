@@ -44,6 +44,11 @@ const DailyCalopiesForm = () => {
         setCalories(dayNormCalories.toString());
         setProducts([...notAllowedCategories]);
       });
+    // .catch((error) => {
+    //   if (error) {
+    //     console.log("its some errors ", error);
+    //   }
+    // })
   }
 
   const { isShowing, toggle } = useModal();
@@ -55,7 +60,7 @@ const DailyCalopiesForm = () => {
         <h2 className={styles.form__title}>
           Просчитай свою суточную норму калорий прямо сейчас
         </h2>
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form className={styles.form} noValidate onSubmit={handleSubmit}>
           <div className={styles.form__inputs}>
             <input
               className={styles.input}

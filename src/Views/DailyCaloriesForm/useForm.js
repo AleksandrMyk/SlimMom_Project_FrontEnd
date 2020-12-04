@@ -9,11 +9,16 @@ const useForm = (callback, validate) => {
     targetWeight: "",
     bloodType: "",
   });
+
   const [errors, setErrors] = useState({});
 
   const handleSubmit = (event) => {
     if (event) event.preventDefault();
-    setErrors(validate(values));
+    setErrors({
+      ...validate(values),
+    });
+
+    console.log("second");
 
     setValues({
       height: "",
@@ -22,6 +27,7 @@ const useForm = (callback, validate) => {
       targetWeight: "",
       bloodType: "",
     });
+    setBludType(null);
   };
 
   const handleChange = (event) => {
@@ -35,6 +41,7 @@ const useForm = (callback, validate) => {
   const handleBludChange = (e) => {
     setBludType(e.target.value);
     values.bloodType = Number(e.target.value);
+    console.log(values);
   };
 
   return {
