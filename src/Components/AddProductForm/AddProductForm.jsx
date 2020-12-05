@@ -1,64 +1,99 @@
-import React, { useState, useCallback, useEffect } from "react";
-// import { useDispatch } from "react-redux";
+import React, { useState, useEffect, useCallback } from "react";
+import CalendarOnClick from '../Calendar/CalendarOnClick.jsx';
+import { useDispatch } from "react-redux";
 import AsyncSelect from "react-select/async";
 import axios from "axios";
-import Calendar from "../../Components/Calendar";
 import styles from "./AddProductForm.module.css";
-import DiaryProductsList from "../../Components/DiaryProductsList";
 //
 
 import { useMediaQuery } from "./hooks";
-// import productOperations from "../../Redux/product/productOperations";
+import productOperations from "../../Redux/product/productOperations";
 
 const SEARCH_URL = "https://slimmom.herokuapp.com/";
 const END_OPTIONS = "&page=1&limit=10";
 const QUERY = `products?name=`;
 
 export default function AddProductForm() {
+  const dispatch = useDispatch();
+
   const [selectedTitle, setSelectedTitle] = useState("");
   const [productId, setIdProduct] = useState("");
   const [weight, setGramProd] = useState(0);
-  const [date, setDate] = useState();
+  const [isHandleSubmit, setIsHandleSubmit] = useState(false);
+  const [Date, setDate] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const token = localStorage.getItem("token");
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: token,
-    };
+  // const handleSubmit = () => setIsHandleSubmit(true);
 
-    const data = {
-      productId: productId,
-      weight: weight,
-      date: date,
-    };
-    const dataToSend = JSON.stringify(data);
-    console.log(dataToSend);
-    axios
-      .post("https://slimmom.herokuapp.com/days", dataToSend, {
-        headers,
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        if (error) {
-          console.log("its some errors ", error);
-        }
-      });
-  };
-  console.log(date);
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (!productId || weight === 0) {
+        return;
+      }
+      console.log("Id", productId);
+      console.log("gram", weight);
 
-  function handleSetNewDate(newValue) {
-    setDate(newValue);
-  }
+      const date = "2020-12-12";
+
+      const results_products = dispatch(
+        productOperations.addProduct(productId, weight, date)
+      );
+      console.log("results_products", results_products);
+
+      setIdProduct("");
+      setGramProd(0);
+    },
+    [dispatch, productId, weight]
+  );
+
+  // useEffect(
+  //   (e) => {
+  //     e.preventDefault();
+  //     if (!isHandleSubmit) {
+  //       return;
+  //     }
+  //     debugger;
+  //     //e.preventDefault();
+  //     debugger;
+  //     console.log("Id", productId);
+  //     console.log("gram", weight);
+  //     console.log("Submit", isHandleSubmit);
+  //     debugger;
+  //     const date = "2020-12-12";
+  //     const results_products = dispatch(
+  //       productOperations.addProduct(productId, weight, date)
+  //     );
+  //     debugger;
+  //     console.log("results_products", results_products);
+  //     debugger;
+  //     setIdProduct("");
+  //     setGramProd(0);
+  //     setIsHandleSubmit(false);
+  //   },
+  //   [isHandleSubmit]
+  // );
+
+  // const handleSubmit = useCallback(
+  //   (e) => {
+  //     e.preventDefault();
+  //     console.log("productId", productId);
+  //     console.log("gramProd", gramProd);
+  //     const results_products = dispatch(
+  //       productOperations.addProduct(productId, gramProd, "2020-12-13")
+  //     );
+  //     console.log("results_products", results_products);
+  //     // setIsSubmitting(true);
+  //     // window.alert(JSON.stringify(e, 0, 2));
+  //   },
+  //   [dispatch]
+  // );
 
   const handleChange = useCallback(
     (e) => setGramProd(Number(e.currentTarget.value)),
     []
   );
 
+  //ф-ция которая вываливает данные в options
   const handleSearchTitles = (movieTitle) => {
     console.log("searching for", movieTitle);
     let searchTerm = movieTitle;
@@ -92,7 +127,7 @@ export default function AddProductForm() {
   const currentHideNav = useMediaQuery("(min-width: 767px)");
   return (
     <>
-      <Calendar onChange={handleSetNewDate}></Calendar>
+    <CalendarOnClick getDateValue={setDate}></CalendarOnClick>
       <form className={`${styles.ProductEditor} `} onSubmit={handleSubmit}>
         <div className={`${styles.ProductEditorLabel} `}>
           <AsyncSelect

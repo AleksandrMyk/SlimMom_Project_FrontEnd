@@ -8,6 +8,16 @@
 .bgContainer {
   margin: 0;
   padding: 0;
+<<<<<<< HEAD:src/Components/Calculator/Calculator.module.css
+=======
+}
+.error {
+  padding-top: 3px;
+  color: red;
+  font-size: 12px;
+  font-weight: bolder;
+  text-align: left;
+>>>>>>> 7f252da012fa2b4e8be5bb5c206e94901d75986f:src/Components/DailyCaloriesForm/DailyCaloriesForm.module.css
 }
 
 .form__title {
@@ -143,6 +153,8 @@
 }
 
 .form_button {
+  cursor: pointer;
+  outline: none;
   display: block;
   margin: 0 auto;
   align-items: center;
