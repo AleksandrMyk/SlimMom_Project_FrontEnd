@@ -5,7 +5,7 @@ import useForm from "./useForm";
 import validate from "./validationRules";
 import Logo from "../../Components/Logo";
 import axios from "axios";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import "./alertStyle.css";
 import { useHistory } from "react-router-dom";
 
 const Register = () => {
@@ -29,19 +29,18 @@ const Register = () => {
       .then((response) => {
         console.log(response);
         setMessage({
-          data: "Registered , You will transfer to login page",
-          type: "alert-success",
+          data: "Вы успешно зарегестрировались на сайте",
+          type: "success",
         });
 
         setTimeout(() => {
           history.push("/login");
-          console.log("You are registered");
         }, 4000);
       })
       .catch((error) => {
         setMessage({
-          data: "Wrong credentials",
-          type: "alert-danger",
+          data: "Произошла ошибка , попробуйте еще раз",
+          type: "danger",
         });
         console.error("There was an error!", error);
       });
@@ -67,23 +66,37 @@ const Register = () => {
               </div>
             </div>
           </nav>
-          <div className={`${style.messageContainer} `}>
-            <div className={style.registrationFormContainer}>
-              {message && (
-                <div className={` ${message.type}`} role="alert">
-                  {message.data}
-                  <span
-                    aria-hidden="true"
-                    className={style.cursorPointer}
-                    onClick={() => setMessage(null)}
-                  >
-                    &times;
-                  </span>
-                </div>
-              )}
-            </div>
-          </div>
+
           <div className={style.formWrapper}>
+            {message && (
+              <div className={`popup ${message.type}`}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="90"
+                  height="90"
+                  viewBox="0 0 50 50"
+                >
+                  <g transform="translate(-595.805 -678.805)">
+                    <circle
+                      cx="25"
+                      cy="25"
+                      r="25"
+                      transform="translate(595.805 678.805)"
+                      fill="#fff"
+                    />
+                    <path
+                      d="M2348.164,5670.065l5.524,5.523,9.476-9.476"
+                      transform="translate(-1735.235 -4967.489)"
+                      fill="none"
+                      stroke="rgb(88, 206, 88)"
+                      strokeWidth="4"
+                    />
+                  </g>
+                </svg>
+                <p>{message.data}</p>
+              </div>
+            )}
+
             <div className={style.registerTitle}>Регистрация</div>
             <form onSubmit={handleSubmit} noValidate>
               <div className={style.inputModule}>

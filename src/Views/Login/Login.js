@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import Logo from "../../Components/Logo";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import "./alertLoginStyle.css";
 
 const LoginPage = () => {
   const history = useHistory();
@@ -27,8 +28,8 @@ const LoginPage = () => {
       .then((response) => {
         console.log(response);
         setMessage({
-          data: "Login sucess ,You will transfer to dashboard..",
-          type: "alert-success",
+          data: "Успешный логин , перенаправление в личный кабинет",
+          type: "sucess",
         });
 
         localStorage.setItem("token", response.data.token);
@@ -38,8 +39,8 @@ const LoginPage = () => {
       })
       .catch((error) => {
         setMessage({
-          data: "Wrong Credentials",
-          type: "alert-danger",
+          data: "Неправильные данные ",
+          type: "danger",
         });
         console.error("There was an error!", error);
       });
@@ -65,23 +66,37 @@ const LoginPage = () => {
               </div>
             </div>
           </nav>
-          <div className={`${style.messageContainer} `}>
-            <div className={style.registrationFormContainer}>
-              {message && (
-                <div className={` ${message.type}`} role="alert">
-                  {message.data}
-                  <span
-                    aria-hidden="true"
-                    className={style.cursorPointer}
-                    onClick={() => setMessage(null)}
-                  >
-                    &times;
-                  </span>
-                </div>
-              )}
-            </div>
-          </div>
+
           <div className={style.formWrapper}>
+            {message && (
+              <div className={`popup ${message.type}`}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="90"
+                  height="90"
+                  viewBox="0 0 50 50"
+                >
+                  <g transform="translate(-595.805 -678.805)">
+                    <circle
+                      cx="25"
+                      cy="25"
+                      r="25"
+                      transform="translate(595.805 678.805)"
+                      fill="#fff"
+                    />
+                    <path
+                      d="M2348.164,5670.065l5.524,5.523,9.476-9.476"
+                      transform="translate(-1735.235 -4967.489)"
+                      fill="none"
+                      stroke="rgb(88, 206, 88)"
+                      strokeWidth="4"
+                    />
+                  </g>
+                </svg>
+                <p>{message.data}</p>
+              </div>
+            )}
+
             <div className={style.registerTitle}>вход</div>
             <form onSubmit={handleSubmit} noValidate>
               <div className={style.inputModule}>

@@ -15,7 +15,6 @@
     "react-burger-menu": "^2.9.2",
     "react-calendar": "^3.2.1",
     "react-dom": "^17.0.1",
-    "react-final-form-hooks": "^2.0.2",
     "react-loader-spinner": "^3.1.14",
     "react-media": "^2.0.0-rc.1",
     "react-redux": "^7.2.1",
@@ -26,6 +25,7 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-persist": "^6.0.0",
+    "shortid": "^2.2.16",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

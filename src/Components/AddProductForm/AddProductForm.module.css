@@ -2,6 +2,9 @@
   margin: 0;
   padding: 0;
 }
+.Select {
+  border: none;
+}
 
 .ProductEditor {
   display: flex;

@@ -1,0 +1,67 @@
+.sucess {
+  background-color: rgb(88, 206, 88);
+}
+.danger {
+  background-color: rgb(239, 61, 37);
+}
+
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600&display=swap");
+
+.successPopup {
+  position: fixed;
+  z-index: 999;
+}
+
+.popup {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 400px;
+  height: 100px;
+  bottom: 20px;
+  /* left: 50%; */
+  /* transform: translateX(-50%); */
+  /* z-index: 999; */
+  /* overflow: hidden; */
+  /* background-color: #4654ea; */
+  border-radius: 10px;
+
+  /* Animate this
+  opacity: 0;
+  visibility: hidden; */
+}
+
+.popup svg {
+  margin-left: 35px;
+}
+
+.popup p {
+  font-family: "Source Sans Pro";
+  font-weight: 600;
+  font-size: 24px;
+  color: white;
+  margin-left: 15px;
+}
+
+.popup .timeIndicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 400px;
+  height: 7px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(4, 5, 13, 0.9);
+  z-index: 10;
+
+  /* Animate this
+  opacity: 0;
+  visibility: hidden; */
+}

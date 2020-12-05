@@ -9,6 +9,13 @@
   margin: 0;
   padding: 0;
 }
+.error {
+  padding-top: 3px;
+  color: red;
+  font-size: 12px;
+  font-weight: bolder;
+  text-align: left;
+}
 
 .form__title {
   margin: 0;
@@ -143,6 +150,8 @@
 }
 
 .form_button {
+  cursor: pointer;
+  outline: none;
   display: block;
   margin: 0 auto;
   align-items: center;

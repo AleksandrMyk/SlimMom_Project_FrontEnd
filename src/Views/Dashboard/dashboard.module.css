@@ -79,7 +79,6 @@
     height: 100vh;
   }
   .headerContainer {
-    width: 960px;
     justify-content: flex-start;
     padding-top: 50px;
     margin-left: 100px;
