@@ -4,6 +4,7 @@
 }
 .Select {
   border: none;
+  outline: none;
 }
 
 .ProductEditor {
