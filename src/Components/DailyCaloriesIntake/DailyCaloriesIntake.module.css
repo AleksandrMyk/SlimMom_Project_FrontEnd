@@ -53,6 +53,7 @@
 }
 
 .btnStart {
+  cursor: pointer;
   width: 176px;
   height: 44px;
   left: 72px;
