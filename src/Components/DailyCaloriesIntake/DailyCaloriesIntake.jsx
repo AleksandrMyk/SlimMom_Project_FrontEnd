@@ -1,7 +1,10 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import styles from "./DailyCaloriesIntake.module.css";
+const shortid = require("shortid");
 
 const ModalRecomendedWindow = ({ hide, ccal, products }) => {
+  const history = useHistory();
   return (
     <div className={styles.container}>
       <p className={styles.title}>
@@ -16,12 +19,17 @@ const ModalRecomendedWindow = ({ hide, ccal, products }) => {
       </p>
       <ol className={styles.list}>
         {products.map((product) => (
-          <li key={product.index} className={styles.productList}>
+          <li key={shortid.generate()} className={styles.productList}>
             {product}
           </li>
         ))}
       </ol>
-      <button className={styles.btnStart} onClick={hide}>
+      <button
+        className={styles.btnStart}
+        onClick={() => {
+          history.push("/login");
+        }}
+      >
         Начать худеть
       </button>
     </div>

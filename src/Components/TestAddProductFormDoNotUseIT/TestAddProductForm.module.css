@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.ProductEditor {
+  display: flex;
+  flex-direction: column;
+  margin: 50px auto 0;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  width: auto;
+  height: 82px;
+}
+
+.ProductEditorLabel {
+  display: inline-block;
+  margin-right: 20px;
+  font-style: normal;
+  font-family: Verdana, Tahoma, sans-serif;
+  font-weight: bold;
+  line-height: 17px;
+  font-size: 14px;
+  color: #9b9faa;
+  cursor: pointer;
+}
+
+.ProductEditorInput {
+  width: 289px;
+  min-height: 26px;
+  color: #212121;
+  font: inherit;
+  font-size: 14px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border: 0;
+  cursor: text;
+  outline: 0;
+}
+
+.ProductEditorInput > input {
+  border: 0;
+}
+
+.ProductEditorInput::placeholder {
+  font-style: normal;
+  font-family: Verdana, Tahoma, sans-serif;
+  font-weight: bold;
+  line-height: 17px;
+  font-size: 14px;
+  color: #9b9faa;
+  cursor: pointer;
+}
+
+.ProductEditorInput:focus:invalid {
+  border-bottom: 1px solid #fc842d;
+}
+
+/* .TaskEditorInput:required:valid {
+  border-bottom: rgb(0, 255, 0);
+} */
+.Otstup {
+  margin-bottom: 40px;
+}
+
+.ProductEditorButton {
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 176px;
+  height: 44px;
+  padding: 13px 46px;
+  font-weight: bold;
+  font-family: Verdana;
+  color: #ffffff;
+  background-color: #fc842d;
+  border: 0;
+  outline: 0;
+  border-radius: 30px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 200ms ease-in-out;
+}
+
+.ProductEditorButton:hover {
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  background-color: #f18538;
+}
+
+.ProductEditorErrorMsg {
+  position: absolute;
+  display: block;
+  font-size: 8px;
+  color: #bd0404;
+}
+
+@media (min-width: 767px) {
+  .ProductEditor {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+  }
+
+  .ProductEditorLabel,
+  .Otstup {
+    margin-bottom: 0;
+  }
+
+  .ProductEditorInput {
+    width: auto;
+    min-height: 26px;
+    margin-right: 15px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .ProductEditorInputName {
+    width: 240px;
+  }
+
+  .ProductEditorInputKkal {
+    width: 104px;
+  }
+
+  .Otstup {
+    margin-bottom: 0 auto;
+  }
+
+  .ProductEditorButton {
+    /* Ellipse 6 */
+    display: inline-block;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    background: #fc842d;
+    color: #ffffff;
+    font-size: 16px;
+  }
+}

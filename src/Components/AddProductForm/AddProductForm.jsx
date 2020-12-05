@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import CalendarOnClick from '../Calendar/CalendarOnClick.jsx';
 import { useDispatch } from "react-redux";
 import AsyncSelect from "react-select/async";
 import axios from "axios";
@@ -19,6 +20,7 @@ export default function AddProductForm() {
   const [productId, setIdProduct] = useState("");
   const [weight, setGramProd] = useState(0);
   const [isHandleSubmit, setIsHandleSubmit] = useState(false);
+  const [Date, setDate] = useState("");
 
   // const handleSubmit = () => setIsHandleSubmit(true);
 
@@ -125,6 +127,7 @@ export default function AddProductForm() {
   const currentHideNav = useMediaQuery("(min-width: 767px)");
   return (
     <>
+    <CalendarOnClick getDateValue={setDate}></CalendarOnClick>
       <form className={`${styles.ProductEditor} `} onSubmit={handleSubmit}>
         <div className={`${styles.ProductEditorLabel} `}>
           <AsyncSelect
