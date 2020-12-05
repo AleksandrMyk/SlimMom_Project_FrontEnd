@@ -1,0 +1,125 @@
+.container {
+  background-color: #ffffff;
+  display: block;
+  height: 638px;
+  width: 290px;
+  margin: 0 auto;
+}
+
+.title {
+  width: 290px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 40px;
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 26px;
+  color: #212121;
+}
+
+.kcal {
+  margin-top: 40px;
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 58px;
+  text-align: center;
+  letter-spacing: 0.04em;
+
+  color: #264061;
+}
+
+.kcalDes {
+  font-size: 18px;
+  letter-spacing: normal;
+}
+
+.products {
+  margin-top: 50px;
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  width: 290px;
+  display: block;
+  margin: 0 auto;
+  color: #212121;
+  margin-bottom: 22px;
+}
+
+.btnStart {
+  cursor: pointer;
+  width: 176px;
+  height: 44px;
+  left: 72px;
+  top: 594px;
+  border: none;
+  background: #fc842d;
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  border-radius: 30px;
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  display: block;
+  margin: 0 auto;
+  color: #ffffff;
+}
+.productList {
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  margin-bottom: 14px;
+  color: #9b9faa;
+}
+.list {
+  width: 222px;
+  margin-bottom: 40px;
+}
+
+@media (min-width: 767px) {
+  .list {
+    margin-left: 112px;
+  }
+  .container {
+    width: 594px;
+    height: 580px;
+  }
+
+  .title {
+    margin-top: 28px;
+    width: 509px;
+    font-size: 26px;
+    line-height: 32px;
+    text-align: center;
+  }
+  .kcal {
+    margin-top: 42px;
+  }
+  .products {
+    margin-top: 22px;
+    width: 330px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .modal {
+    width: 690px;
+    height: 580px;
+    margin-top: 135px;
+  }
+
+  .list {
+    margin-left: 112px;
+  }
+}

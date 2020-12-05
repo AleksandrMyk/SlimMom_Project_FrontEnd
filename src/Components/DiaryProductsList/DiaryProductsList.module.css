@@ -1,13 +1,13 @@
 .wrapper {
   width: 100%;
   position: relative;
-  margin-top: 100px;
 }
 
 .container {
   position: relative;
   max-height: 240px;
   overflow-y: scroll;
+  padding-right: 40px;
 }
 
 .wrapper:after {
@@ -46,7 +46,7 @@
 
 @media (max-width: 480px) {
   .container {
-    padding: 10px;
+    padding-right: 10px;
   }
 }
 

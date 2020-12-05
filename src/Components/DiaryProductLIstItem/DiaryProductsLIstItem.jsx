@@ -8,7 +8,7 @@ const DairyProductsListItem = ({ _id, title ,calories, weight, onRemove }) => (
       <span className={style.listItem__title}>{title}</span>
       <span className={style.listItem__weight}>{weight} г</span>
       <span className={style.listItem__calories}>{calories} ккaл</span>
-      <span><button className={style.listItem__buttonRemove} onClick={()=>{ onRemove(_id)}}>
+      <span><button className={style.listItem__buttonRemove} onClick={()=>onRemove(_id)}>
       <RemoveIcon />
       </button>
       </span>
@@ -23,6 +23,6 @@ const MapDispatchToProps = {
 };
 export default connect(null, MapDispatchToProps)(DairyProductsListItem);
 
-
+// export default DairyProductsListItem
 
 

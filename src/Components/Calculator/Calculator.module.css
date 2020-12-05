@@ -150,6 +150,8 @@
 }
 
 .form_button {
+  cursor: pointer;
+  outline: none;
   display: block;
   margin: 0 auto;
   align-items: center;

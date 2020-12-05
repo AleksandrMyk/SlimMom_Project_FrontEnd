@@ -7,10 +7,6 @@ import { createAction } from "@reduxjs/toolkit";
 const addProductRequest = createAction("ADD_PRODUCT_REQUEST");
 const addProductSuccess = createAction("ADD_PRODUCT_SUCCESS");
 const addProductError = createAction("ADD_PRODUCT_ERROR");
-// remove product fom list
-const removeProductRequest = createAction("REMOVE_PRODUCT_REQUEST");
-const removeProductSuccess = createAction("REMOVE_PRODUCT_SUCCESS");
-const removeProductError = createAction("REMOVE_PRODUCT_ERROR");
 
 const getProductRequest = createAction("GET_PRODUCT_REQUEST");
 const getProductSuccess = createAction("GET_PRODUCT_SUCCESS");
@@ -20,13 +16,7 @@ export default {
   addProductRequest,
   addProductSuccess,
   addProductError,
-
-  removeProductRequest,
-  removeProductSuccess,
-  removeProductError,
-
   getProductRequest,
   getProductSuccess,
   getProductError,
-
 };
