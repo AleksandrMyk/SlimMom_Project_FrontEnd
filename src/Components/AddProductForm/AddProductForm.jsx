@@ -40,13 +40,11 @@ export default function AddProductForm() {
       date: dateToSend,
     };
     let dataToSend = JSON.stringify(data);
-    console.log(dataToSend);
     axios
       .post("https://slimmom.herokuapp.com/days", dataToSend, {
         headers,
       })
       .then((response) => {
-        console.log(response);
         getCurrentdayProductList(dateToSend);
       })
       .catch((error) => {
@@ -72,8 +70,6 @@ export default function AddProductForm() {
         headers,
       })
       .then((response) => {
-        console.log(response);
-
         setProducts(response.data);
       })
       .catch((error) => {
@@ -85,22 +81,13 @@ export default function AddProductForm() {
   };
 
   useEffect(() => {
-    // addNewItem();
-
     getCurrentdayProductList(dateToSend);
-
-    // console.log(products);
-    // setProducts([...products]);
   }, [dateToSend]);
 
   const handleChange = useCallback(
     (e) => setGramProd(Number(e.currentTarget.value)),
     []
   );
-
-  // useEffect(() => {
-  //   setDate();
-  // }, []);
 
   const handleSearchTitles = (movieTitle) => {
     let searchTerm = movieTitle;
@@ -113,20 +100,39 @@ export default function AddProductForm() {
     const newRequest = axios.get(urlRequest);
 
     if (newRequest) {
-      // new promise: pending
       return newRequest.then((response) => {
-        // console.log("response.data.results", response.data.docs);
-        // promise resolved : now I have the data, do a filter
         const compare = response.data.docs.filter((i) =>
           i.title.ru.toLowerCase().includes(movieTitle.toLowerCase())
         );
-        // reurning the label for react-select baed on the title
         return compare.map((prod) => ({
           label: prod.title.ru,
           value: prod._id,
         }));
       });
     }
+  };
+
+  const removeItem = (id, token) => {
+    const data = {
+      dayId: id,
+    };
+    const requestOptions = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(data),
+    };
+    fetch("https://slimmom.herokuapp.com/days", requestOptions)
+      .then((response) => {
+        getCurrentdayProductList(dateToSend);
+      })
+      .catch((error) => {
+        if (error) {
+          console.log("its some errors ", error);
+        }
+      });
   };
 
   //
@@ -144,7 +150,6 @@ export default function AddProductForm() {
             value={selectedTitle}
             loadOptions={handleSearchTitles}
             onChange={(property, value) => {
-              console.log(property);
               setSelectedTitle(property);
               setIdProduct(property.value);
             }}
@@ -164,7 +169,10 @@ export default function AddProductForm() {
         </button>
       </form>
 
-      <DiaryProductsList products={products}></DiaryProductsList>
+      <DiaryProductsList
+        removeItem={removeItem}
+        products={products}
+      ></DiaryProductsList>
     </>
   );
 }

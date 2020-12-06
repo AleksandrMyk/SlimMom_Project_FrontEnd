@@ -10,9 +10,8 @@ const DiaryProductsListItem = ({
   totalWeight,
   onRemove,
 }) => {
-  // useEffect(() => {}, [_id, product, totalCalories, totalWeight]);
-  console.log(_id);
   const token = localStorage.getItem("token");
+
   return (
     <div className={styles.item}>
       <div className={styles.name}>{product.title.ru}</div>
