@@ -13,7 +13,7 @@ const addProduct = (productId, weight, date) => (dispatch) => {
     weight: weight,
     date: date,
   };
-  debugger;
+
   dispatch(productActions.addProductRequest()); //запрос на сервер
   //addProductRequest() это createAction возвращ обьект с {type: "ADD_PRODUCT"}
   console.log("input data: ", dateAddProd);
@@ -28,10 +28,10 @@ const addProduct = (productId, weight, date) => (dispatch) => {
 
 //GET-запрос на получение перечня продуктов по query строке
 
-const fetchProductsQuery = (searchTerm) => (dispatch) => {
+const fetchProductsQuery = (query) => (dispatch) => {
   dispatch(productActions.getProductRequest());
   axios
-    .get(`/products?name=${searchTerm}&page=1&limit=10`)
+    .get(`/products?name=${query}&page=1&limit=10`)
 
     .then((response) => {
       return dispatch(productActions.getProductSuccess(response.data));
