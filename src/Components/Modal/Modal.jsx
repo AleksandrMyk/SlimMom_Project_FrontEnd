@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import DailyCaloriesIntake from "../DailyCaloriesIntake";
 import Spiner from "../Spiner";
 import styles from "./Modal.module.css";
-import escKeyPress from "./useKeyPress";
 
 const Modal = ({ isShowing, hide, calories, list }) => {
   useEffect(() => {
@@ -24,7 +23,7 @@ const Modal = ({ isShowing, hide, calories, list }) => {
         ? ReactDOM.createPortal(
             <React.Fragment>
               <div className={styles.modal_overlay} onClick={hide} />
-              {escKeyPress("Escape", hide)}
+              {/* {escKeyPress("Escape", hide)} */}
               <div
                 className={styles.modal_wrapper}
                 aria-modal
