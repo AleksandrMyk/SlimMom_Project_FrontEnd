@@ -15,7 +15,6 @@ const DairyProductsListItem = ({ _id, title ,calories, weight, onRemove }) => (
     </li>
 );
 
-
  
 
 const MapDispatchToProps = {
@@ -23,6 +22,6 @@ const MapDispatchToProps = {
 };
 export default connect(null, MapDispatchToProps)(DairyProductsListItem);
 
-// export default DairyProductsListItem
+
 
 
