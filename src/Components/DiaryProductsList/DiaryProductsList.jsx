@@ -1,40 +1,35 @@
 import React, {useState, useEffect} from 'react'
-import {DiaryProductsListItem} from '../DiaryProductsListItem'
+import DiaryProductsListItem from "../DiaryProductLIstItem/index"
 import styles from './DiaryProductsList.module.css'
 
+
 const DiaryProductsList = () => {
-    const [products, setProducts] = useState([
-        {id: 1, name: 'Баклажан', weight: '100', calories: '320'},
-        {id: 2, name: 'Мясо птицы', weight: '100', calories: '320'},
-        {id: 3, name: 'Хлеб', weight: '100', calories: '320'},
-        {id: 4, name: 'Орех', weight: '100', calories: '320'},
-        {id: 5, name: 'Мясо свинное', weight: '100', calories: '320'},
-        {id: 6, name: 'Баклажан', weight: '100', calories: '320'},
-        {id: 7, name: 'Мясо птицы', weight: '100', calories: '320'},
-        {id: 8, name: 'Хлеб', weight: '100', calories: '320'},
-        {id: 9, name: 'Орех', weight: '100', calories: '320'}
-    ]);
-    const [isLoading, setLoading] = useState(false);
+    const [products, setProducts] = useState([])
+    // const [isLoading, setLoading] = useState(false);
 
     const handleRemoveProduct = (id) => {
-        const res = products.filter(product => product.id !== id);
+        const res = products.filter(product => product._id !== id);
         setProducts(res);
     }
-
     useEffect(() => {
 
     }, []);
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.container}>
-                {isLoading && ''}
+            <ul className={styles.container}>
+                {/* {isLoading && ''} */}
                 {products.length !== 0 && products.map(product => (
-                    <DiaryProductsListItem key={product.id} {...product} onRemove={handleRemoveProduct} />
+                    <DiaryProductsListItem  
+                    key={product._id}
+                    title={product.title.ru}
+                    weight={product.weight}
+                    calories={product.calories}
+                    onRemove={handleRemoveProduct}/>      
                 ))}
-            </div>
+            </ul>
         </div>
     )
 }
 
-export default DiaryProductsList;
+  export default DiaryProductsList;

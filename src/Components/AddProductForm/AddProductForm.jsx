@@ -7,6 +7,10 @@ import styles from "./AddProductForm.module.css";
 
 import { useMediaQuery } from "./hooks";
 import productOperations from "../../Redux/product/productOperations";
+
+import DiaryProductsList from "../DiaryProductsList/index";
+
+
 //
 const SEARCH_URL = "https://slimmom.herokuapp.com/";
 const END_OPTIONS = "&page=1&limit=10";
@@ -20,7 +24,7 @@ export default function AddProductForm() {
   const [weight, setGramProd] = useState(0);
   const [isHandleSubmit, setIsHandleSubmit] = useState(false);
   const [Date, setDate] = useState("");
-
+ const [products, setProduct] = useState([])
   // const handleSubmit = () => setIsHandleSubmit(true);
 
   const handleSubmit = useCallback(
@@ -107,6 +111,7 @@ export default function AddProductForm() {
     if (newRequest) {
       // new promise: pending
       return newRequest.then((response) => {
+  
         console.log("response.data.results", response.data.docs);
         // promise resolved : now I have the data, do a filter
         const compare = response.data.docs.filter((i) =>
@@ -121,7 +126,7 @@ export default function AddProductForm() {
       });
     }
   };
-
+console.log()
   //
   const currentHideNav = useMediaQuery("(min-width: 767px)");
   return (
@@ -159,6 +164,7 @@ export default function AddProductForm() {
           {currentHideNav ? "+" : "Добавить"}
         </button>
       </form>
+      <DiaryProductsList products={setProduct} />
     </>
   );
 }
