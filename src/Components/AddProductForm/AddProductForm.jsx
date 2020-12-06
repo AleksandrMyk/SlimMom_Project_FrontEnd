@@ -17,16 +17,23 @@ export default function AddProductForm() {
   const [productId, setIdProduct] = useState("");
   const [weight, setGramProd] = useState(0);
   const [date, setDate] = useState(new Date());
+  const [products, setProducts] = useState([]);
+  const token = localStorage.getItem("token");
 
-  const handleSubmit = (e) => {
-    console.log(e);
-    e.preventDefault();
-    const token = localStorage.getItem("token");
+  const convertedDate = (date) => {
+    if (date.getDate() < 10) {
+      return `${date.getFullYear()}-${date.getMonth() + 1}-0${date.getDate()}`;
+    }
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  };
+
+  const dateToSend = convertedDate(date);
+
+  const addNewItem = () => {
     const headers = {
       "Content-Type": "application/json",
       Authorization: token,
     };
-
     const data = {
       productId: productId,
       weight: weight,
@@ -40,6 +47,7 @@ export default function AddProductForm() {
       })
       .then((response) => {
         console.log(response);
+        getCurrentdayProductList(dateToSend);
       })
       .catch((error) => {
         if (error) {
@@ -48,29 +56,57 @@ export default function AddProductForm() {
       });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addNewItem();
+    // getCurrentdayProductList();
+  };
+
+  const getCurrentdayProductList = (day) => {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: token,
+    };
+    axios
+      .get(`https://slimmom.herokuapp.com/days/${day}`, {
+        headers,
+      })
+      .then((response) => {
+        console.log(response);
+
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        if (error) {
+          setProducts([]);
+          console.log("its some errors ", error);
+        }
+      });
+  };
+
+  useEffect(() => {
+    // addNewItem();
+
+    getCurrentdayProductList(dateToSend);
+
+    // console.log(products);
+    // setProducts([...products]);
+  }, [dateToSend]);
+
   const handleChange = useCallback(
     (e) => setGramProd(Number(e.currentTarget.value)),
     []
   );
-  // const initialDate = new Date();
 
-  const convertedDate = (date) => {
-    if (date.getDate() < 10) {
-      return `${date.getFullYear()}-0${date.getDate()}-${date.getMonth() + 1}`;
-    }
-    return `${date.getFullYear()}-${date.getDate()}-${date.getMonth() + 1}`;
-  };
-  const dateToSend = convertedDate(date);
-
-  // useEffect((e) => {
-  //   handleSubmit(e);
+  // useEffect(() => {
+  //   setDate();
   // }, []);
 
   const handleSearchTitles = (movieTitle) => {
     let searchTerm = movieTitle;
 
     if (!movieTitle || movieTitle === " ") {
-      searchTerm = "омлет";
+      searchTerm = "";
     }
 
     const urlRequest = `${SEARCH_URL}${QUERY}${searchTerm}${END_OPTIONS}`;
@@ -128,7 +164,7 @@ export default function AddProductForm() {
         </button>
       </form>
 
-      <DiaryProductsList day={dateToSend}></DiaryProductsList>
+      <DiaryProductsList products={products}></DiaryProductsList>
     </>
   );
 }

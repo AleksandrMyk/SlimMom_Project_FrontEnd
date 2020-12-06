@@ -8,9 +8,11 @@ const DiaryProductsListItem = ({
   product,
   totalCalories,
   totalWeight,
+  onRemove,
 }) => {
   // useEffect(() => {}, [_id, product, totalCalories, totalWeight]);
-
+  console.log(_id);
+  const token = localStorage.getItem("token");
   return (
     <div className={styles.item}>
       <div className={styles.name}>{product.title.ru}</div>
@@ -18,14 +20,14 @@ const DiaryProductsListItem = ({
       <div className={styles.calories}>
         {totalCalories} <span>ккал</span>
       </div>
-      {/* <button
-      className={styles.btn}
-      onClick={() => {
-        onRemove(id);
-      }}
-    >
-      <RemoveIcon />
-    </button> */}
+      <button
+        className={styles.btn}
+        onClick={() => {
+          onRemove(_id, token);
+        }}
+      >
+        <RemoveIcon />
+      </button>
     </div>
   );
 };
