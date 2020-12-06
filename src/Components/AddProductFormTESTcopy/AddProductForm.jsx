@@ -55,6 +55,7 @@ const customStyles = {
     width: "100%",
     height: "50%",
     position: "absolute",
+
     top: 35,
   }),
 
@@ -79,7 +80,7 @@ export default function AddProductForm() {
 
   const [selectedTitle, setSelectedTitle] = useState("");
   const [productId, setIdProduct] = useState("");
-  const [weight, setGramProd] = useState(0);
+  const [weight, setGramProd] = useState("");
   const [isHandleSubmit, setIsHandleSubmit] = useState(false);
   const [Date, setDate] = useState("");
 
@@ -91,7 +92,8 @@ export default function AddProductForm() {
       if (!productId || weight === 0) {
         return;
       }
-      console.log("Id", productId);
+
+      console.log("PRODUCT Id", productId);
       console.log("gram", weight);
 
       const date = "2020-12-12";
@@ -101,8 +103,9 @@ export default function AddProductForm() {
       );
       console.log("results_products", results_products);
 
+      setSelectedTitle("");
       setIdProduct("");
-      setGramProd(0);
+      setGramProd("");
     },
     [dispatch, productId, weight]
   );
@@ -155,11 +158,11 @@ export default function AddProductForm() {
   );
 
   //ф-ция которая вываливает данные в options
-  const handleSearchTitles = (movieTitle) => {
-    console.log("searching for", movieTitle);
-    let searchTerm = movieTitle;
+  const handleSearchTitles = (productTitle) => {
+    console.log("searching for", productTitle);
+    let searchTerm = productTitle;
 
-    if (!movieTitle || movieTitle === " ") {
+    if (!productTitle || productTitle === " ") {
       searchTerm = "омлет";
     }
 
@@ -172,7 +175,7 @@ export default function AddProductForm() {
         console.log("response.data.results", response.data.docs);
         // promise resolved : now I have the data, do a filter
         const compare = response.data.docs.filter((i) =>
-          i.title.ru.toLowerCase().includes(movieTitle.toLowerCase())
+          i.title.ru.toLowerCase().includes(productTitle.toLowerCase())
         );
         console.log("compare", compare);
         // reurning the label for react-select baed on the title
@@ -186,7 +189,6 @@ export default function AddProductForm() {
 
   //
   const currentHideNav = useMediaQuery("(min-width: 767px)");
-  const currentWidth = currentHideNav ? "100px" : "300px";
 
   return (
     <>
@@ -201,26 +203,23 @@ export default function AddProductForm() {
             width="300px"
             value={selectedTitle}
             loadOptions={handleSearchTitles}
-            onChange={(property) => {
-              console.log("PROPERTY AT ADDPRODUCT: ", property);
-              setSelectedTitle(property.label);
+            onChange={(property, value) => {
+              console.log("PROPERTY", property);
+              setSelectedTitle(property);
               setIdProduct(property.value);
             }}
           />
         </div>
         <label className={`${styles.ProductEditorLabel} ${styles.Otstup}`}>
-          <AsyncSelect
-            styles={customStyles}
-            width={currentWidth}
-            isMulti
-            type="number"
-            placeholder="Граммы"
-            value={weight}
-            onChange={handleChange}
-            multiValue
-            // noOptionsMessage
-            min={0}
-          />
+          <div className={styles.ProductEditorInputWrapper}>
+            <input
+              className={`${styles.ProductEditorInput}  ${styles.ProductEditorInputKkal}`}
+              type="number"
+              placeholder="Граммы"
+              value={weight}
+              onChange={handleChange}
+            />
+          </div>
         </label>
         <button type="submit" className={styles.ProductEditorButton}>
           {currentHideNav ? "+" : "Добавить"}

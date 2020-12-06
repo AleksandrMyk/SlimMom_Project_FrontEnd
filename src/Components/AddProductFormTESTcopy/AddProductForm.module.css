@@ -24,6 +24,50 @@
   cursor: pointer;
 }
 
+/*  */
+.ProductEditorInputWrapper {
+  display: flex;
+  align-items: flex-end;
+  padding-top: 4px;
+  height: 60px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.ProductEditorInput {
+  display: flex;
+  flex-wrap: wrap;
+  height: 50%;
+  padding-bottom: 5px;
+  width: 300px;
+  min-height: 26px;
+  color: #212121;
+  font: inherit;
+  font-size: 14px;
+  border: none;
+  cursor: text;
+  outline: 0;
+  /* height: 60px; */
+  /* padding-top: 4px;
+  padding-bottom: 4px; */
+  /* border-bottom: 1px solid #e0e0e0; */
+}
+
+.ProductEditorInput::placeholder {
+  font-style: normal;
+  font-family: Verdana, Tahoma, sans-serif;
+  font-weight: bold;
+  line-height: 17px;
+  font-size: 14px;
+  color: #9b9faa;
+  cursor: pointer;
+}
+
+.ProductEditorInput:focus:invalid {
+  border-bottom: 1px solid #fc842d;
+}
+/*  */
+
 .Otstup {
   margin-bottom: 40px;
 }
@@ -77,6 +121,22 @@
   .Otstup {
     margin-bottom: 0 auto;
   }
+
+  /*  */
+  .ProductEditorInput {
+    width: auto;
+    min-height: 26px;
+    margin-right: 15px;
+  }
+
+  .ProductEditorInputName {
+    width: 240px;
+  }
+
+  .ProductEditorInputKkal {
+    width: 104px;
+  }
+  /*  */
 
   .ProductEditorButton {
     /* Ellipse 6 */
