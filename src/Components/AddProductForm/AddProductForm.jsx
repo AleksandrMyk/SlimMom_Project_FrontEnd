@@ -7,7 +7,10 @@ import styles from "./AddProductForm.module.css";
 
 import { useMediaQuery } from "./hooks";
 import productOperations from "../../Redux/product/productOperations";
+
 import DiaryProductsList from "../DiaryProductsList/index";
+
+
 //
 const SEARCH_URL = "https://slimmom.herokuapp.com/";
 const END_OPTIONS = "&page=1&limit=10";
