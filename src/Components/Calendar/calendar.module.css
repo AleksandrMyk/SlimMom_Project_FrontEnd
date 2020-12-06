@@ -1,7 +1,8 @@
 .calendar {
   display: flex;
-  flex-direction: row;
   align-items: center;
+  width: 287px;
+  margin: 0 auto;
 }
 
 .date {
@@ -10,7 +11,7 @@
   font-size: 18px;
   line-height: 22px;
   color: #212121;
-  
+
   margin-top: 80px;
 }
 
@@ -21,19 +22,23 @@
   height: 20px;
 }
 
-.calendar_on {
-  /* position: absolute;
+/* .calendar_on { */
+/* position: absolute;
   z-index: 60; */
-  margin-left: 15px;
-}
+/* margin-left: 15px; */
+/* } */
 
 @media (min-width: 767px) {
+  .calendar {
+    width: 600px;
+  }
+
   .date {
     font-size: 34px;
     line-height: 41px;
   }
 
-  .calendar_on {
-    margin-left: 92px;
-  }
+  /* .calendar_on { */
+  /* margin-left: 92px; */
+  /* } */
 }

@@ -6,7 +6,7 @@
 .ProductEditor {
   display: flex;
   flex-direction: column;
-  margin: 50px auto 60px;
+  margin: 30px auto 60px;
   padding-top: 10px;
   width: auto;
   min-height: 82px;
@@ -107,7 +107,7 @@
 @media (min-width: 767px) {
   .ProductEditor {
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     height: 50px;
     width: 605px;

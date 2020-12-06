@@ -73,6 +73,10 @@
   }
 }
 @media (min-width: 1024px) {
+  .componentContainer {
+    min-width: 60%;
+  }
+
   .directionWrapper {
     flex-direction: row;
     justify-content: center;
