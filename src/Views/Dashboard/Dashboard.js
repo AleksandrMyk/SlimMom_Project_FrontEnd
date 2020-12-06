@@ -60,23 +60,25 @@ const Dashboard = () => {
     <>
       <div className={style.directionWrapper}>
         <div className={style.componentContainer}>
-          <div className={style.headerContainer}>
-            <div className={style.logoContainer}>
-              <LogoDashboard />
-            </div>
-            <div className={style.userNavContainer}>
-              <UserNav />
-            </div>
-            <div className={style.nagigationWrapper}>
-              <div className={style.tabletZone}>
-                <UserInfo userName={userName} onLogout={logout} />
+          <div className={style.headerContainerWrapper}>
+            <div className={style.headerContainer}>
+              <div className={style.logoContainer}>
+                <LogoDashboard />
               </div>
-              <div className={style.burgerContainer}>
-                <BurgerMenu />
+              <div className={style.userNavContainer}>
+                <UserNav />
               </div>
-            </div>
-            {/* <UserNav />
+              <div className={style.nagigationWrapper}>
+                <div className={style.tabletZone}>
+                  <UserInfo userName={userName} onLogout={logout} />
+                </div>
+                <div className={style.burgerContainer}>
+                  <BurgerMenu />
+                </div>
+              </div>
+              {/* <UserNav />
           <UserInfo userName={userName} onLogout={logout}></UserInfo> */}
+            </div>
           </div>
           <div className={style.greyZone}>
             <UserInfo userName={userName} onLogout={logout} />
