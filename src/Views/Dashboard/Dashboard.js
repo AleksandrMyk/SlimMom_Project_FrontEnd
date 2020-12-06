@@ -39,9 +39,7 @@ const Dashboard = () => {
         headers,
       })
       .then((response) => {
-        console.log(response);
         setuserName(response.data.user.name);
-        console.log(userName);
       })
       .catch((error) => {
         if (error) {

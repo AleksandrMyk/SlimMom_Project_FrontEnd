@@ -39,11 +39,7 @@ const LoginPage = () => {
       })
       .catch((error) => {
         setMessage({
-<<<<<<< HEAD
-          data: "Неправильные двнные ",
-=======
           data: "Неправильные данные ",
->>>>>>> 7f252da012fa2b4e8be5bb5c206e94901d75986f
           type: "danger",
         });
         console.error("There was an error!", error);

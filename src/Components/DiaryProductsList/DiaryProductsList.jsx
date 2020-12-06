@@ -1,40 +1,60 @@
-import React, {useState, useEffect} from 'react'
-import {DiaryProductsListItem} from '../DiaryProductsListItem'
-import styles from './DiaryProductsList.module.css'
+import React, { useState, useEffect } from "react";
+import { DiaryProductsListItem } from "../DiaryProductsListItem";
+import styles from "./DiaryProductsList.module.css";
+import axios from "axios";
+const token = localStorage.getItem("token");
 
-const DiaryProductsList = () => {
-    const [products, setProducts] = useState([
-        {id: 1, name: 'Баклажан', weight: '100', calories: '320'},
-        {id: 2, name: 'Мясо птицы', weight: '100', calories: '320'},
-        {id: 3, name: 'Хлеб', weight: '100', calories: '320'},
-        {id: 4, name: 'Орех', weight: '100', calories: '320'},
-        {id: 5, name: 'Мясо свинное', weight: '100', calories: '320'},
-        {id: 6, name: 'Баклажан', weight: '100', calories: '320'},
-        {id: 7, name: 'Мясо птицы', weight: '100', calories: '320'},
-        {id: 8, name: 'Хлеб', weight: '100', calories: '320'},
-        {id: 9, name: 'Орех', weight: '100', calories: '320'}
-    ]);
-    const [isLoading, setLoading] = useState(false);
+const DiaryProductsList = ({ day }) => {
+  const [products, setProducts] = useState();
+  // const [currentDay, setCurrentDay] = useState(day);
+  console.log(day);
+  const getCurrentdayProductList = (isActive) => {
+    // setCurrentDay(day);
+    // console.log(currentDay);
+    // const dayToReceive = day.toISOString().split("T")[0];
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: token,
+    };
+    axios
+      .get(`https://slimmom.herokuapp.com/days/${day}`, {
+        headers,
+      })
+      .then((response) => {
+        console.log(response);
+        if (isActive) {
+          setProducts(response.data);
+        }
+      })
+      .catch((error) => {
+        if (error) {
+          setProducts([]);
+          console.log("its some errors ", error);
+        }
+      });
+  };
 
-    const handleRemoveProduct = (id) => {
-        const res = products.filter(product => product.id !== id);
-        setProducts(res);
-    }
+  useEffect(() => {
+    let isActive = true;
+    getCurrentdayProductList(isActive);
+    return () => {
+      isActive = false;
+      getCurrentdayProductList(isActive);
+    };
+  }, [products]);
 
-    useEffect(() => {
-
-    }, []);
-
-    return (
-        <div className={styles.wrapper}>
-            <div className={styles.container}>
-                {isLoading && ''}
-                {products.length !== 0 && products.map(product => (
-                    <DiaryProductsListItem key={product.id} {...product} onRemove={handleRemoveProduct} />
-                ))}
-            </div>
-        </div>
-    )
-}
+  //    console.log(products);
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        {/* {isLoading && ""} */}
+        {products &&
+          products.map((product) => (
+            <DiaryProductsListItem key={product._id} {...product} />
+          ))}
+      </div>
+    </div>
+  );
+};
 
 export default DiaryProductsList;
