@@ -85,7 +85,8 @@
   .headerContainer {
     justify-content: flex-start;
     padding-top: 50px;
-    margin-left: 100px;
+    /* margin-left: 100px; */
+    margin: 0 auto;
   }
   .nagigationWrapper {
     display: none;
