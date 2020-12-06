@@ -53,6 +53,7 @@
 }
 
 .btnStart {
+  outline: none;
   cursor: pointer;
   width: 176px;
   height: 44px;
