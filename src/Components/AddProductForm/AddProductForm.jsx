@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
-import CalendarOnClick from '../Calendar/CalendarOnClick.jsx';
+import CalendarOnClick from "../Calendar/CalendarOnClick.jsx";
 import { useDispatch } from "react-redux";
 import AsyncSelect from "react-select/async";
 import axios from "axios";
 import styles from "./AddProductForm.module.css";
-//
 
 import { useMediaQuery } from "./hooks";
 import productOperations from "../../Redux/product/productOperations";
-
+//
 const SEARCH_URL = "https://slimmom.herokuapp.com/";
 const END_OPTIONS = "&page=1&limit=10";
 const QUERY = `products?name=`;
@@ -36,7 +35,7 @@ export default function AddProductForm() {
       const date = "2020-12-12";
 
       const results_products = dispatch(
-        productOperations.addProduct(productId, weight, date)
+        productOperations.addProduct(productId, weight, Date)
       );
       console.log("results_products", results_products);
 
@@ -127,12 +126,14 @@ export default function AddProductForm() {
   const currentHideNav = useMediaQuery("(min-width: 767px)");
   return (
     <>
-    <CalendarOnClick getDateValue={setDate}></CalendarOnClick>
+      <CalendarOnClick getDateValue={setDate}></CalendarOnClick>
       <form className={`${styles.ProductEditor} `} onSubmit={handleSubmit}>
-        <div className={`${styles.ProductEditorLabel} `}>
+        <div
+          className={`${styles.ProductEditorLabel} ${styles.ProductEditorInput} ${styles.ProductEditorInputName}`}
+        >
           <AsyncSelect
             placeholder="Введите название продукта*"
-            className={`${styles.ProductEditorInput} ${styles.ProductEditorInputName}`}
+            style={`${styles.Select} `}
             cacheOptions
             defaultOptions
             value={selectedTitle}
@@ -151,6 +152,7 @@ export default function AddProductForm() {
             placeholder="Граммы*"
             value={weight}
             onChange={handleChange}
+            min={0}
           />
         </label>
         <button type="submit" className={styles.ProductEditorButton}>
