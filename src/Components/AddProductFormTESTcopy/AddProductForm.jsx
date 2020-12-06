@@ -195,38 +195,32 @@ export default function AddProductForm() {
         <div className={`${styles.ProductEditorLabel} `}>
           <AsyncSelect
             placeholder="Введите название продукта"
-            // className={`${styles.ProductEditorInput} ${styles.ProductEditorInputName}`}
-            // cacheOptions
-            // defaultOptions
+            cacheOptions
+            defaultOptions
             styles={customStyles}
             width="300px"
             value={selectedTitle}
             loadOptions={handleSearchTitles}
-            onChange={(property, value) => {
+            onChange={(property) => {
               console.log("PROPERTY AT ADDPRODUCT: ", property);
-              setSelectedTitle(property);
+              setSelectedTitle(property.label);
               setIdProduct(property.value);
             }}
           />
         </div>
         <label className={`${styles.ProductEditorLabel} ${styles.Otstup}`}>
           <AsyncSelect
-            // {...gramProd.input}
-            // options={options}
-            // name="gramProd"
             styles={customStyles}
             width={currentWidth}
+            isMulti
             type="number"
             placeholder="Граммы"
-            onChange={handleChange}
-          />
-          {/* <input
-            className={`${styles.ProductEditorInput}  ${styles.ProductEditorInputKkal}`}
-            type="number"
-            placeholder="Граммы*"
             value={weight}
             onChange={handleChange}
-          /> */}
+            multiValue
+            // noOptionsMessage
+            min={0}
+          />
         </label>
         <button type="submit" className={styles.ProductEditorButton}>
           {currentHideNav ? "+" : "Добавить"}

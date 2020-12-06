@@ -6,11 +6,10 @@
 .ProductEditor {
   display: flex;
   flex-direction: column;
-  margin: 50px auto 0;
-  margin-bottom: 10px;
+  margin: 50px auto 60px;
   padding-top: 10px;
   width: auto;
-  height: 82px;
+  min-height: 82px;
 }
 
 .ProductEditorLabel {
@@ -31,7 +30,7 @@
 
 .ProductEditorButton {
   display: flex;
-  margin: 0 auto;
+  margin: 60px auto;
   align-items: center;
   justify-content: center;
   width: 176px;
@@ -64,7 +63,7 @@
 @media (min-width: 767px) {
   .ProductEditor {
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 50px;
     width: 605px;
@@ -82,8 +81,7 @@
   .ProductEditorButton {
     /* Ellipse 6 */
     display: inline-block;
-    margin-left: 30px;
-    margin-top: 30px;
+    margin: 30px 30px 0;
     padding: 0;
     width: 50px;
     height: 50px;
