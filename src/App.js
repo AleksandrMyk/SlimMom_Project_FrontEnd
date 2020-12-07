@@ -1,9 +1,8 @@
-import React, { lazy, Suspense, useContext } from "react";
+import React, { lazy, Suspense } from "react";
 import Spiner from "./Components/Spiner";
 import ProtectedComponent from "./Components/CustomRoutes/ProtectedRoute";
-import { Switch, BrowserRouter } from "react-router-dom";
-import {__RouterContext} from "react-router";
-import { useTransition, animated } from "react-spring";
+import { Switch } from "react-router-dom";
+
 import "./app.css";
 
 const Login = lazy(() =>
@@ -27,26 +26,10 @@ const AddProductForm = lazy(() =>
   )
 );
 
-const Home = () => {
-  const { location } = useContext(__RouterContext);
-  const transitions = useTransition(location, location => location.pathname, {
-    from: {
-      position: 'absolute',
-      width: '100%',
-      opacity: 0,
-      transform: 'translate(100%,0)'
-    },
-    enter: { opacity: 1, transform: 'translate(0%,0)' },
-    leave: { opacity: 0, transform: 'translate(-50%,0)' }
-  });
-
-  return (
-    <>
-    <Suspense fallback={<Spiner />}>
-    {transitions.map(({ item, props, key }) => (
-        <animated.div key={key} style={props}>
-          <Switch location={item}>      
-          <ProtectedComponent active={false} path="/login" component={Login} />
+const App = () => (
+  <Suspense fallback={<Spiner />}>
+    <Switch>
+      <ProtectedComponent active={false} path="/login" component={Login} />
       <ProtectedComponent
         active={false}
         path="/register"
@@ -69,19 +52,7 @@ const Home = () => {
         component={AddProductForm}
       />
     </Switch>
-    </animated.div>
-   ))}
-    </Suspense>
-    </>
-  );
-    };
-  
-function App() {
-      return (
-        <BrowserRouter>
-          <Home />
-        </BrowserRouter>
-      );
-    }
+  </Suspense>
+);
 
 export default App;

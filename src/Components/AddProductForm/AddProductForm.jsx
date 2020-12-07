@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, Suspense } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import CalendarOnClick from "../Calendar/CalendarOnClick.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import AsyncSelect from "react-select/async";
@@ -51,16 +51,11 @@ const customStyles = {
     },
   }),
 
-<<<<<<< HEAD
-import DiaryProductsList from "../DiaryProductsList/index";
-import Spiner from "../Spiner";
-=======
   placeholder: (_, { selectProps: { placeholder } }) => ({
     placeholder: placeholder,
     width: "100%",
     height: "50%",
     position: "absolute",
->>>>>>> 16eba6424cb3f10a7fc0daec00a6d55d77ba9fa0
 
     top: 35,
   }),
@@ -151,7 +146,6 @@ export default function AddProductForm() {
   const currentHideNav = useMediaQuery("(min-width: 767px)");
   return (
     <>
-    <Suspense fallback={<Spiner />}>
       <CalendarOnClick getDateValue={setDate}></CalendarOnClick>
       <form className={`${styles.ProductEditor} `} onSubmit={handleSubmit}>
         <div className={`${styles.ProductEditorLabel}`}>
@@ -187,15 +181,10 @@ export default function AddProductForm() {
           {currentHideNav ? "+" : "Добавить"}
         </button>
       </form>
-<<<<<<< HEAD
-      <DiaryProductsList products={setProduct} />
-      </Suspense>
-=======
       <DiaryProductsList
         className={`${styles.ProductEditor} `}
         products={products}
       />
->>>>>>> 16eba6424cb3f10a7fc0daec00a6d55d77ba9fa0
     </>
   );
 }
