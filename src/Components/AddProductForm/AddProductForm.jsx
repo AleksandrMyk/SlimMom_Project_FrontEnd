@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, Suspense } from "react";
 import CalendarOnClick from "../Calendar/CalendarOnClick.jsx";
 import { useDispatch } from "react-redux";
 import AsyncSelect from "react-select/async";
@@ -9,6 +9,7 @@ import { useMediaQuery } from "./hooks";
 import productOperations from "../../Redux/product/productOperations";
 
 import DiaryProductsList from "../DiaryProductsList/index";
+import Spiner from "../Spiner";
 
 
 //
@@ -131,6 +132,7 @@ console.log()
   const currentHideNav = useMediaQuery("(min-width: 767px)");
   return (
     <>
+    <Suspense fallback={<Spiner />}>
       <CalendarOnClick getDateValue={setDate}></CalendarOnClick>
       <form className={`${styles.ProductEditor} `} onSubmit={handleSubmit}>
         <div
@@ -165,6 +167,7 @@ console.log()
         </button>
       </form>
       <DiaryProductsList products={setProduct} />
+      </Suspense>
     </>
   );
 }
