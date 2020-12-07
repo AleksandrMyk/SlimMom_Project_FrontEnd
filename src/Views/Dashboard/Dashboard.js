@@ -7,7 +7,8 @@ import UserInfo from "../../Components/UserInfo";
 import axios from "axios";
 import style from "./dashboard.module.css";
 import SideBar from "../../Components/RightSideBar";
-import AddProductForm from "../../Components/AddProductForm";
+import AddProductForm from "../../Components/AddProductFormTESTcopy";
+// import AddProductForm from "../../Components/AddProductForm";
 import Spiner from "../../Components/Spiner";
 
 const Calculator = lazy(() =>

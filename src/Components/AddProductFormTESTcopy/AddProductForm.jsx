@@ -32,9 +32,11 @@ const customStyles = {
 
   valueContainer: () => ({
     display: "flex",
+    alignItems: "center",
+    paddingTop: 4,
+    paddingBottom: 4,
     flexWrap: "wrap",
     height: 60,
-    paddingBottom: 10,
   }),
 
   input: () => ({
@@ -54,9 +56,8 @@ const customStyles = {
     placeholder: placeholder,
     width: "100%",
     height: "50%",
-    position: "absolute",
-
-    top: 35,
+    display: "flex",
+    alignItems: "center",
   }),
 
   control: (_, { selectProps: { width } }) => ({
