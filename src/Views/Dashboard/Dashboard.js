@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState, lazy } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import LogoDashboard from "../../Components/LogoDashboard";
 import BurgerMenu from "../../Components/BurgerMenu";
@@ -8,7 +8,6 @@ import axios from "axios";
 import style from "./dashboard.module.css";
 import SideBar from "../../Components/RightSideBar";
 import AddProductForm from "../../Components/AddProductForm";
-import Spiner from '../../Components/Spiner';
 
 const Calculator = lazy(() =>
   import("../../Components/Calculator" /* webpackChunkName: "Daily-calories" */)
@@ -58,7 +57,6 @@ const Dashboard = () => {
 
   return (
     <>
-    <Suspense fallback={<Spiner />} >
       <div className={style.directionWrapper}>
         <div className={style.componentContainer}>
           <div className={style.headerContainer}>
@@ -90,7 +88,6 @@ const Dashboard = () => {
 
         <SideBar userName={userName} logout={logout}></SideBar>
       </div>
-      </Suspense>
     </>
   );
 };
