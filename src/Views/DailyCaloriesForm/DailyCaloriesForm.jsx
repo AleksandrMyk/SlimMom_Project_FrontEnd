@@ -43,7 +43,6 @@ const DailyCalopiesForm = () => {
         console.log(res);
         setCalories(dayNormCalories.toString());
         setProducts([...notAllowedCategories]);
-
         toggle();
       })
       .catch((error) => {

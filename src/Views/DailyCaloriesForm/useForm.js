@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const useForm = (callback, validate) => {
-  const [bludType, setBludType] = useState(null);
+  // const [bludType, setBludType] = useState(null);
   const [values, setValues] = useState({
     height: "",
     age: "",
@@ -45,7 +45,7 @@ const useForm = (callback, validate) => {
     handleChange,
     handleSubmit,
     handleBludChange,
-    bludType,
+    // bludType,
     values,
     errors,
   };
