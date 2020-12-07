@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const useForm = (callback, validate) => {
-  const [bludType, setBludType] = useState(null);
+  // const [bludType, setBludType] = useState(null);
   const [values, setValues] = useState({
     height: "",
     age: "",
@@ -11,21 +11,19 @@ const useForm = (callback, validate) => {
   });
 
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (Object.keys(errors).length === 0 && isSubmitting) {
+      callback();
+    }
+  }, [errors]);
 
   const handleSubmit = (event) => {
     if (event) event.preventDefault();
-    setErrors({
-      ...validate(values),
-    });
-
-    setValues({
-      height: "",
-      age: "",
-      currentWeight: "",
-      targetWeight: "",
-      bloodType: "",
-    });
-    setBludType(null);
+    setErrors(validate(values));
+    setIsSubmitting(true);
+    console.log(values);
   };
 
   const handleChange = (e) => {
@@ -37,15 +35,17 @@ const useForm = (callback, validate) => {
   };
 
   const handleBludChange = (e) => {
-    setBludType(e.target.value);
-    values.bloodType = Number(e.target.value);
+    setValues({
+      ...values,
+      bloodType: Number(e.target.value),
+    });
   };
 
   return {
     handleChange,
     handleSubmit,
     handleBludChange,
-    bludType,
+    // bludType,
     values,
     errors,
   };
