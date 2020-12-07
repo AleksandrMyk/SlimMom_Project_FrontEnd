@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./DailyCaloriesIntake.module.css";
+const shortid = require("shortid");
 
 const ModalRecomendedWindow = ({ hide, ccal, products }) => {
   return (
@@ -16,7 +17,7 @@ const ModalRecomendedWindow = ({ hide, ccal, products }) => {
       </p>
       <ol className={styles.list}>
         {products.map((product) => (
-          <li key={product.index} className={styles.productList}>
+          <li key={shortid.generate()} className={styles.productList}>
             {product}
           </li>
         ))}
