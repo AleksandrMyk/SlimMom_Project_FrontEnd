@@ -15,6 +15,7 @@
 .ProductEditorLabel {
   display: inline-block;
   margin-right: 20px;
+  padding-bottom: 4px;
   font-style: normal;
   font-family: Verdana, Tahoma, sans-serif;
   font-weight: bold;
@@ -27,7 +28,7 @@
 /*  */
 .ProductEditorInputWrapper {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   padding-top: 4px;
   height: 60px;
   padding-bottom: 4px;
@@ -38,7 +39,7 @@
   display: flex;
   flex-wrap: wrap;
   height: 50%;
-  padding-bottom: 5px;
+  /* padding-bottom: 5px; */
   width: 300px;
   min-height: 26px;
   color: #212121;

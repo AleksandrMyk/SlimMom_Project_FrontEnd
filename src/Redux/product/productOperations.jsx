@@ -38,8 +38,15 @@ const fetchProductsQuery = (query) => (dispatch) => {
     })
     .catch((error) => dispatch(productActions.getProductError(error)));
 };
+const removeProduct = (day) => (dispatch) => {
+  dispatch(productActions.removeProductRequest());
+  axios.delete(`/days/${day}`)
+    .then(() => dispatch(productActions.removeProductSuccess(day)))
+    .catch((error) => dispatch(productActions.removeProductError(error)));
+};
 
 export default {
   addProduct,
   fetchProductsQuery,
+  removeProduct
 };

@@ -12,6 +12,12 @@ const getProductRequest = createAction("GET_PRODUCT_REQUEST");
 const getProductSuccess = createAction("GET_PRODUCT_SUCCESS");
 const getProductError = createAction("GET_PRODUCT_ERROR");
 
+
+const removeProductRequest = createAction("REMOVE_PRODUCT_REQUEST");
+const removeProductSuccess = createAction("REMOVE_PRODUCT_SUCCESS");
+const removeProductError = createAction("REMOVE_PRODUCT_ERROR");
+
+
 export default {
   addProductRequest,
   addProductSuccess,
@@ -19,4 +25,7 @@ export default {
   getProductRequest,
   getProductSuccess,
   getProductError,
+  removeProductRequest,
+  removeProductSuccess,
+  removeProductError,
 };
