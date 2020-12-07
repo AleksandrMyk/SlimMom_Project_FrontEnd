@@ -1,0 +1,82 @@
+
+.listItem{
+    display: flex;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    list-style: none;
+    margin: 0 auto;
+}
+.listItem__title{
+    text-align: left;
+    font-size: 12px;
+    margin-right: 5px;
+    width: 58%;
+    padding: 10px 0px 10px 0px;
+    border-bottom: 1px solid#E0E0E0;;
+}
+
+.listItem__weight{
+    text-align: end;
+    padding: 10px 0px 10px 0px;
+    border-bottom: 1px solid#E0E0E0;;
+    font-size: 12px;
+    margin-right: 5px;
+    width: 15%;
+}
+.listItem__calories{
+    text-align: end;
+    padding: 10px 0px 10px 0px;
+    border-bottom: 1px solid#E0E0E0;
+    font-size: 12px;
+    margin-right: 5px;
+    width: 23%;
+}
+.listItem__buttonRemove{
+    padding-top: 10px;
+    border: none;
+    background-color: rgb(255, 255, 255);
+}
+@media (min-width: 767px) {
+    .wrapper__listItem {
+        font-size: 18px;
+        min-width: 400px;
+        margin: 3px;
+        margin-left: 10px;
+        box-shadow: 0px, 0px, 0px, 3px, rgb(119, 134, 141);;
+    }
+    .listItem{
+        display: flex;
+        
+    }
+    .listItem__title{
+        margin-right: 25px;
+        width: 58%;
+        
+    }
+    .listItem__weight{
+        margin-right: 25px;
+        width: 15%;
+    }
+    .listItem__calories{
+        margin-right: 25px;
+        width: 23%;
+    }
+    .listItem__title,.listItem__weight,.listItem__calories {
+        font-size: 16px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .wrapper__listItem {
+        font-size: 18px;
+        min-width: 400px;
+        margin: 3px;
+        margin-left: 10px;
+        box-shadow: 0px, 0px, 0px, 3px, rgb(119, 134, 141);;
+    }
+    .listItem{
+        display: flex;
+        
+    }
+    .listItem__title,.listItem__weight,.listItem__calories {
+        font-size: 16px;
+    }
+  }

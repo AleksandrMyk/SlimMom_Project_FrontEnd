@@ -1,25 +1,10 @@
 .container {
   width: 290px;
-  margin: auto;
-  padding-top: 26px;
-  padding-bottom: 40px;
-}
-
-.bgContainer {
-  margin: 0;
-  padding: 0;
-}
-.error {
-  padding-top: 3px;
-  color: red;
-  font-size: 12px;
-  font-weight: bolder;
-  text-align: left;
+  margin-left: 15px;
+  margin-top: 26px;
 }
 
 .form__title {
-  margin: 0;
-  padding: 0;
   margin-bottom: 30px;
   font-family: Verdana, sans-serif;
   font-size: 18px;
@@ -43,7 +28,6 @@
   line-height: 17px;
   letter-spacing: 0.04em;
   color: #9b9faa;
-  background-color: transparent;
 }
 
 .input::placeholder {
@@ -150,10 +134,9 @@
 }
 
 .form_button {
-  cursor: pointer;
-  outline: none;
   display: block;
   margin: 0 auto;
+  margin-bottom: 80px;
   align-items: center;
   padding: 13px 48px;
   width: 176px;
@@ -162,6 +145,7 @@
   border: 1px solid #fc842d;
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   border-radius: 30px;
+
   font-family: Verdana;
   font-style: normal;
   font-weight: bold;
@@ -175,8 +159,8 @@
 @media (min-width: 767px) {
   .container {
     width: 605px;
-    margin-left: 130px;
-    padding-top: 100px;
+    margin-left: 87px;
+    margin-top: 100px;
   }
 
   .form__title {
@@ -187,7 +171,7 @@
 
   .form__inputs {
     width: 532px;
-    height: 300px;
+    height: 240px;
     margin-right: 0px;
     margin-bottom: 35px;
     display: flex;
@@ -202,17 +186,15 @@
 
   .form_button {
     margin: 0;
+    margin-bottom: 424px;
   }
 }
 
 @media (min-width: 1024px) {
-  .bgContainer {
-    width: 100%;
-  }
-
   .container {
     width: 605px;
-    margin-left: 100px;
+    margin-left: 115px;
+    margin-top: 144px;
   }
 
   .form__title {
@@ -227,5 +209,6 @@
 
   .form_button {
     margin-left: 346px;
+    margin-bottom: 111px;
   }
 }
