@@ -1,16 +1,76 @@
 import React, { useState, useEffect, useCallback } from "react";
 import CalendarOnClick from "../Calendar/CalendarOnClick.jsx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AsyncSelect from "react-select/async";
 import axios from "axios";
 import styles from "./AddProductForm.module.css";
 
 import { useMediaQuery } from "./hooks";
 import productOperations from "../../Redux/product/productOperations";
+import DiaryProductsList from "../DiaryProductsList/DiaryProductsList";
+//
+//
+const customStyles = {
+  container: (_, { selectProps: { width } }) => ({
+    width: width,
+    position: "relative",
+    borderBottom: "1px solid #e0e0e0",
+  }),
 
-import DiaryProductsList from "../DiaryProductsList/index";
+  menu: (provided, state) => ({
+    ...provided,
+    width: state.selectProps.width,
+    position: "absolute",
+    padding: 20,
+  }),
 
+  indicatorsContainer: () => ({
+    display: "none",
+  }),
+  dropdownIndicator: () => ({
+    display: "none",
+  }),
 
+  valueContainer: () => ({
+    display: "flex",
+    flexWrap: "wrap",
+    height: 60,
+    paddingBottom: 10,
+  }),
+
+  input: () => ({
+    position: "absolute",
+    height: "50%",
+    top: 25,
+    div: {
+      height: "100%",
+      input: {
+        height: "100%",
+        fontWeight: 700,
+      },
+    },
+  }),
+
+  placeholder: (_, { selectProps: { placeholder } }) => ({
+    placeholder: placeholder,
+    width: "100%",
+    height: "50%",
+    position: "absolute",
+
+    top: 35,
+  }),
+
+  control: (_, { selectProps: { width } }) => ({
+    width: width,
+  }),
+
+  singleValue: (provided, state) => {
+    const opacity = state.isDisabled ? 0.5 : 1;
+    const transition = "opacity 300ms";
+
+    return { ...provided, opacity, transition };
+  },
+};
 //
 const SEARCH_URL = "https://slimmom.herokuapp.com/";
 const END_OPTIONS = "&page=1&limit=10";
@@ -24,7 +84,8 @@ export default function AddProductForm() {
   const [weight, setGramProd] = useState(0);
   const [isHandleSubmit, setIsHandleSubmit] = useState(false);
   const [Date, setDate] = useState("");
- const [products, setProduct] = useState([])
+  const [products, setProducts] = useState([]);
+
   // const handleSubmit = () => setIsHandleSubmit(true);
 
   const handleSubmit = useCallback(
@@ -33,63 +94,18 @@ export default function AddProductForm() {
       if (!productId || weight === 0) {
         return;
       }
-      console.log("Id", productId);
-      console.log("gram", weight);
-
-      const date = "2020-12-12";
-
       const results_products = dispatch(
         productOperations.addProduct(productId, weight, Date)
       );
-      console.log("results_products", results_products);
-
       setIdProduct("");
       setGramProd(0);
     },
     [dispatch, productId, weight]
   );
 
-  // useEffect(
-  //   (e) => {
-  //     e.preventDefault();
-  //     if (!isHandleSubmit) {
-  //       return;
-  //     }
-  //     debugger;
-  //     //e.preventDefault();
-  //     debugger;
-  //     console.log("Id", productId);
-  //     console.log("gram", weight);
-  //     console.log("Submit", isHandleSubmit);
-  //     debugger;
-  //     const date = "2020-12-12";
-  //     const results_products = dispatch(
-  //       productOperations.addProduct(productId, weight, date)
-  //     );
-  //     debugger;
-  //     console.log("results_products", results_products);
-  //     debugger;
-  //     setIdProduct("");
-  //     setGramProd(0);
-  //     setIsHandleSubmit(false);
-  //   },
-  //   [isHandleSubmit]
-  // );
-
-  // const handleSubmit = useCallback(
-  //   (e) => {
-  //     e.preventDefault();
-  //     console.log("productId", productId);
-  //     console.log("gramProd", gramProd);
-  //     const results_products = dispatch(
-  //       productOperations.addProduct(productId, gramProd, "2020-12-13")
-  //     );
-  //     console.log("results_products", results_products);
-  //     // setIsSubmitting(true);
-  //     // window.alert(JSON.stringify(e, 0, 2));
-  //   },
-  //   [dispatch]
-  // );
+  // useEffect(() => {
+  //   dispatch(productOperations.fetchProductsList(Date));
+  // }, [dispatch, Date]);
 
   const handleChange = useCallback(
     (e) => setGramProd(Number(e.currentTarget.value)),
@@ -111,7 +127,6 @@ export default function AddProductForm() {
     if (newRequest) {
       // new promise: pending
       return newRequest.then((response) => {
-  
         console.log("response.data.results", response.data.docs);
         // promise resolved : now I have the data, do a filter
         const compare = response.data.docs.filter((i) =>
@@ -126,21 +141,21 @@ export default function AddProductForm() {
       });
     }
   };
-console.log()
+
   //
   const currentHideNav = useMediaQuery("(min-width: 767px)");
   return (
     <>
       <CalendarOnClick getDateValue={setDate}></CalendarOnClick>
       <form className={`${styles.ProductEditor} `} onSubmit={handleSubmit}>
-        <div
-          className={`${styles.ProductEditorLabel} ${styles.ProductEditorInput} ${styles.ProductEditorInputName}`}
-        >
+        <div className={`${styles.ProductEditorLabel}`}>
           <AsyncSelect
             placeholder="Введите название продукта*"
             style={`${styles.Select} `}
             cacheOptions
             defaultOptions
+            styles={customStyles}
+            width="300px"
             value={selectedTitle}
             loadOptions={handleSearchTitles}
             onChange={(property, value) => {
@@ -151,20 +166,25 @@ console.log()
           />
         </div>
         <label className={`${styles.ProductEditorLabel} ${styles.Otstup}`}>
-          <input
-            className={`${styles.ProductEditorInput}  ${styles.ProductEditorInputKkal}`}
-            type="number"
-            placeholder="Граммы*"
-            value={weight}
-            onChange={handleChange}
-            min={0}
-          />
+          <div className={styles.ProductEditorInputWrapper}>
+            <input
+              className={`${styles.ProductEditorInput}  ${styles.ProductEditorInputKkal}`}
+              type="number"
+              placeholder="Граммы*"
+              value={weight}
+              onChange={handleChange}
+              min={0}
+            />
+          </div>
         </label>
         <button type="submit" className={styles.ProductEditorButton}>
           {currentHideNav ? "+" : "Добавить"}
         </button>
       </form>
-      <DiaryProductsList products={setProduct} />
+      <DiaryProductsList
+        className={`${styles.ProductEditor} `}
+        products={products}
+      />
     </>
   );
 }
