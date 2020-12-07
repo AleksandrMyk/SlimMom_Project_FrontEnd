@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AsyncSelect from "react-select/async";
 import axios from "axios";
 import styles from "./AddProductForm.module.css";
+import Spiner from '../Spiner';
 
 import { useMediaQuery } from "./hooks";
 import productOperations from "../../Redux/product/productOperations";
@@ -51,16 +52,11 @@ const customStyles = {
     },
   }),
 
-<<<<<<< HEAD
-import DiaryProductsList from "../DiaryProductsList/index";
-import Spiner from "../Spiner";
-=======
   placeholder: (_, { selectProps: { placeholder } }) => ({
     placeholder: placeholder,
     width: "100%",
     height: "50%",
     position: "absolute",
->>>>>>> 16eba6424cb3f10a7fc0daec00a6d55d77ba9fa0
 
     top: 35,
   }),
@@ -187,15 +183,11 @@ export default function AddProductForm() {
           {currentHideNav ? "+" : "Добавить"}
         </button>
       </form>
-<<<<<<< HEAD
-      <DiaryProductsList products={setProduct} />
-      </Suspense>
-=======
       <DiaryProductsList
         className={`${styles.ProductEditor} `}
         products={products}
       />
->>>>>>> 16eba6424cb3f10a7fc0daec00a6d55d77ba9fa0
+      </Suspense>
     </>
   );
 }
