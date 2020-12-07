@@ -1,5 +1,6 @@
 .calendar {
   display: flex;
+  /* flex-direction: row; */
   align-items: center;
   width: 287px;
   margin: 0 auto;
@@ -22,11 +23,11 @@
   height: 20px;
 }
 
-/* .calendar_on { */
-/* position: absolute;
+/* .calendar_on {
+  /* position: absolute;
   z-index: 60; */
 /* margin-left: 15px; */
-/* } */
+/* }  */
 
 @media (min-width: 767px) {
   .calendar {
@@ -38,7 +39,7 @@
     line-height: 41px;
   }
 
-  /* .calendar_on { */
-  /* margin-left: 92px; */
-  /* } */
+  /* .calendar_on {
+    margin-left: 92px;
+  } */
 }

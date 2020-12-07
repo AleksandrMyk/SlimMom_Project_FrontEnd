@@ -1,3 +1,4 @@
+import Axios from "axios";
 import axios from "axios";
 
 import productActions from "./productActions";
@@ -16,12 +17,11 @@ const addProduct = (productId, weight, date) => (dispatch) => {
 
   dispatch(productActions.addProductRequest()); //запрос на сервер
   //addProductRequest() это createAction возвращ обьект с {type: "ADD_PRODUCT"}
-  console.log("input data: ", dateAddProd);
   axios
     .post("/days", dateAddProd)
     .then((response) => {
       console.log("response", response);
-      return dispatch(productActions.addProductRequest(response.data)); //в action придет обьект response.data и запишется на св-во payload
+      return dispatch(productActions.addProductSuccess(response.data)); //в action придет обьект response.data и запишется на св-во payload
     })
     .catch((error) => dispatch(productActions.addProductError(error)));
 };
@@ -38,9 +38,23 @@ const fetchProductsQuery = (query) => (dispatch) => {
     })
     .catch((error) => dispatch(productActions.getProductError(error)));
 };
+
+//GET products list
+const fetchProductsList = (date) => (dispatch) => {
+  dispatch(productActions.addProductRequest());
+  axios
+    .get(`/days/${date}`)
+    .then((response) => {
+      console.log("response list products", response.data);
+      return dispatch(productActions.getProductsListSuccess(response.data));
+    })
+    .catch((error) => dispatch(productActions.getProductsListError));
+};
+
 const removeProduct = (day) => (dispatch) => {
   dispatch(productActions.removeProductRequest());
-  axios.delete(`/days/${day}`)
+  axios
+    .delete(`/days/${day}`)
     .then(() => dispatch(productActions.removeProductSuccess(day)))
     .catch((error) => dispatch(productActions.removeProductError(error)));
 };
@@ -48,5 +62,6 @@ const removeProduct = (day) => (dispatch) => {
 export default {
   addProduct,
   fetchProductsQuery,
-  removeProduct
+  fetchProductsList,
+  removeProduct,
 };

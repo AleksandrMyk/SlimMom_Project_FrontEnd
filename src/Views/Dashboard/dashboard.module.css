@@ -10,10 +10,6 @@
   /* border-bottom: 2px solid #e0e0e0; */
 }
 
-.headerContainerWrapper {
-  border-bottom: 2px solid #e0e0e0;
-}
-
 .headerContainer {
   width: 100%;
   display: flex;
@@ -90,7 +86,6 @@
   .headerContainerWrapper {
     border: 0;
   }
-
   .headerContainer {
     justify-content: flex-start;
     padding-top: 50px;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import axios from "axios";
 import styles from "./DailyCaloriesForm.module.css";
 import NavigationBar from "../../Components/NavigationBar";
@@ -7,6 +7,7 @@ import Modal from "../../Components/Modal";
 import useModal from "../../Components/Modal/useModal";
 import useForm from "./useForm";
 import validate from "./validateForm";
+import Spiner from "../../Components/Spiner";
 
 const BludValue = {
   FIRST: 1,
@@ -42,7 +43,6 @@ const DailyCalopiesForm = () => {
         console.log(res);
         setCalories(dayNormCalories.toString());
         setProducts([...notAllowedCategories]);
-
         toggle();
       })
       .catch((error) => {
@@ -55,6 +55,7 @@ const DailyCalopiesForm = () => {
   const { isShowing, toggle } = useModal();
 
   return (
+    <Suspense fallback={<Spiner />}>
     <div className={styles.bgContainer}>
       <NavigationBar></NavigationBar>
       <div className={styles.container}>
@@ -189,6 +190,7 @@ const DailyCalopiesForm = () => {
         </form>
       </div>
     </div>
+    </Suspense>
   );
 };
 
