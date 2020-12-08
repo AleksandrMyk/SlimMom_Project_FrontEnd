@@ -73,6 +73,11 @@
   }
 }
 @media (min-width: 1024px) {
+  .componentContainer {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+
   .directionWrapper {
     flex-direction: row;
     justify-content: center;
@@ -81,7 +86,6 @@
   .headerContainer {
     justify-content: flex-start;
     padding-top: 50px;
-    margin-left: 100px;
   }
   .nagigationWrapper {
     display: none;

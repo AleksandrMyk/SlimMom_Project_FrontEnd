@@ -1,12 +1,10 @@
 import React, { useState, useCallback, useEffect } from "react";
-// import { useDispatch } from "react-redux";
 import AsyncSelect from "react-select/async";
 import axios from "axios";
 import Calendar from "../../Components/Calendar";
 import styles from "./AddProductForm.module.css";
 import DiaryProductsList from "../../Components/DiaryProductsList";
 import { useMediaQuery } from "./hooks";
-// import productOperations from "../../Redux/product/productOperations";
 
 const SEARCH_URL = "https://slimmom.herokuapp.com/";
 const END_OPTIONS = "&page=1&limit=10";
@@ -19,6 +17,68 @@ export default function AddProductForm() {
   const [date, setDate] = useState(new Date());
   const [products, setProducts] = useState([]);
   const token = localStorage.getItem("token");
+
+  const customStyles = {
+    container: (_, { selectProps: { width } }) => ({
+      width: width,
+      position: "relative",
+      borderBottom: "1px solid #e0e0e0",
+    }),
+
+    menu: (provided, state) => ({
+      ...provided,
+      width: state.selectProps.width,
+      position: "absolute",
+      padding: 20,
+    }),
+
+    indicatorsContainer: () => ({
+      display: "none",
+    }),
+    dropdownIndicator: () => ({
+      display: "none",
+    }),
+
+    valueContainer: () => ({
+      display: "flex",
+      flexWrap: "wrap",
+      height: 60,
+      paddingBottom: 10,
+    }),
+
+    input: () => ({
+      position: "absolute",
+      height: "50%",
+      top: 25,
+      div: {
+        height: "100%",
+        input: {
+          height: "100%",
+          fontWeight: 700,
+        },
+      },
+    }),
+
+    placeholder: (_, { selectProps: { placeholder } }) => ({
+      placeholder: placeholder,
+      width: "100%",
+      height: "50%",
+      position: "absolute",
+
+      top: 35,
+    }),
+
+    control: (_, { selectProps: { width } }) => ({
+      width: width,
+    }),
+
+    singleValue: (provided, state) => {
+      const opacity = state.isDisabled ? 0.5 : 1;
+      const transition = "opacity 300ms";
+
+      return { ...provided, opacity, transition };
+    },
+  };
 
   const convertedDate = (date) => {
     if (date.getDate() < 10) {
@@ -144,25 +204,31 @@ export default function AddProductForm() {
         <div className={`${styles.ProductEditorLabel} `}>
           <AsyncSelect
             placeholder="Введите название продукта*"
-            className={`${styles.ProductEditorInput} ${styles.ProductEditorInputName}`}
+            style={`${styles.Select} `}
             cacheOptions
             defaultOptions
+            styles={customStyles}
+            width="300px"
             value={selectedTitle}
             loadOptions={handleSearchTitles}
             onChange={(property, value) => {
+              console.log(property);
               setSelectedTitle(property);
               setIdProduct(property.value);
             }}
           />
         </div>
         <label className={`${styles.ProductEditorLabel} ${styles.Otstup}`}>
-          <input
-            className={`${styles.ProductEditorInput}  ${styles.ProductEditorInputKkal}`}
-            type="number"
-            placeholder="Граммы*"
-            value={weight}
-            onChange={handleChange}
-          />
+          <div className={styles.ProductEditorInputWrapper}>
+            <input
+              className={`${styles.ProductEditorInput}  ${styles.ProductEditorInputKkal}`}
+              type="number"
+              placeholder="Граммы*"
+              value={weight}
+              onChange={handleChange}
+              min={0}
+            />
+          </div>
         </label>
         <button type="submit" className={styles.ProductEditorButton}>
           {currentHideNav ? "+" : "Добавить"}
@@ -170,6 +236,7 @@ export default function AddProductForm() {
       </form>
 
       <DiaryProductsList
+        // className={`${styles.ProductEditor} `}
         removeItem={removeItem}
         products={products}
       ></DiaryProductsList>
