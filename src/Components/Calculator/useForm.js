@@ -21,7 +21,6 @@ const useForm = (callback, validate) => {
     if (event) event.preventDefault();
     setErrors(validate(values));
     setIsSubmitting(true);
-    console.log(values);
   };
 
   const handleBludChange = (e) => {

@@ -109,17 +109,12 @@ export default function AddProductForm() {
       .then((response) => {
         getCurrentdayProductList(dateToSend);
       })
-      .catch((error) => {
-        if (error) {
-          console.log("its some errors ", error);
-        }
-      });
+      .catch((error) => {});
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     addNewItem();
-    // getCurrentdayProductList();
   };
 
   const getCurrentdayProductList = (day) => {
@@ -144,7 +139,6 @@ export default function AddProductForm() {
         if (error) {
           setProducts(null);
           data.setconsumed(0);
-          console.log("its some errors ", error);
         }
       });
   };
@@ -197,11 +191,7 @@ export default function AddProductForm() {
       .then((response) => {
         getCurrentdayProductList(dateToSend);
       })
-      .catch((error) => {
-        if (error) {
-          console.log("its some errors ", error);
-        }
-      });
+      .catch((error) => {});
   };
 
   //
@@ -221,7 +211,6 @@ export default function AddProductForm() {
             value={selectedTitle}
             loadOptions={handleSearchTitles}
             onChange={(property, value) => {
-              console.log(property);
               setSelectedTitle(property);
               setIdProduct(property.value);
             }}
@@ -245,7 +234,6 @@ export default function AddProductForm() {
       </form>
       {products ? (
         <DiaryProductsList
-          // className={`${styles.ProductEditor} `}
           removeItem={removeItem}
           products={products}
         ></DiaryProductsList>

@@ -43,7 +43,6 @@ const Dashboard = () => {
       .catch((error) => {
         if (error) {
           data.setconsumed(0);
-          console.log("its some errors ", error);
         }
       });
   };
@@ -71,7 +70,6 @@ const Dashboard = () => {
         data.setprohibited(response.data.user.notAllowedCategories);
       })
       .catch((error) => {
-        console.log(error);
         if (error) {
           history.push("/login");
           localStorage.removeItem("token");
@@ -122,8 +120,8 @@ const Dashboard = () => {
           userName={userName}
           currentDate={dateHeder(data.date)}
           logout={logout}
-          consumed={data.consumed}
-          norm={data.dailyNorm}
+          consumed={!data.consumed ? 0 : data.consumed}
+          norm={!data.dailyNorm ? 0 : data.dailyNorm}
           notAllow={data.prohibited}
         ></SideBar>
       </div>

@@ -26,7 +26,6 @@ const LoginPage = () => {
         headers,
       })
       .then((response) => {
-        console.log(response);
         setMessage({
           data: "Успешный логин , перенаправление в личный кабинет",
           type: "sucess",

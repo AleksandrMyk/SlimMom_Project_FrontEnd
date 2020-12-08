@@ -38,17 +38,12 @@ const DailyCalopiesForm = () => {
       })
       .then((res) => {
         const { dayNormCalories, notAllowedCategories } = res.data;
-        console.log(res);
         setCalories(dayNormCalories.toString());
         setProducts([...notAllowedCategories]);
 
         toggle();
       })
-      .catch((error) => {
-        if (error) {
-          console.log("its some errors ", error);
-        }
-      });
+      .catch((error) => {});
   }
 
   const { isShowing, toggle } = useModal();

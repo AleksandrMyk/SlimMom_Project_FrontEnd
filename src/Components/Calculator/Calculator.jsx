@@ -59,7 +59,6 @@ const Calculator = () => {
         headers,
       })
       .then((response) => {
-        console.log(response);
         setMessage({
           data: "Вы успешно обновили данные !!!",
           type: "sucess",
@@ -72,7 +71,6 @@ const Calculator = () => {
             data: "Что-то пошло не так ",
             type: "danger",
           });
-          console.log("its some errors ", error);
           history.push("/login");
         }
       });

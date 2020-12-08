@@ -6,8 +6,6 @@ import styles from "./calendar.module.css";
 import { DateContext } from "../../dateContext";
 
 const CalendarOnClick = () => {
-  // const [date, setdate] = useState(new Date());
-
   const data = useContext(DateContext);
   const [showCalendar, setshowCalendar] = useState(false);
 
@@ -17,7 +15,6 @@ const CalendarOnClick = () => {
   };
 
   const convert = data.date.toLocaleDateString();
-  // console.log(convert);
   const showCalendarOnClick = () => {
     if (!showCalendar) {
       setshowCalendar(true);
@@ -25,7 +22,6 @@ const CalendarOnClick = () => {
       setshowCalendar(false);
     }
   };
-  // console.log(date);
   return (
     <div className={styles.calendar_on}>
       <div className={styles.calendar}>

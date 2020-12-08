@@ -6,7 +6,6 @@ import Spiner from "../Spiner";
 import styles from "./Modal.module.css";
 
 const Modal = ({ isShowing, hide, calories, list }) => {
-  // console.log(list);
   return (
     <>
       {isShowing

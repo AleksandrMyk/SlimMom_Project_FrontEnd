@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import styles from "./DiaryProductsListItem.module.css";
 import { ReactComponent as RemoveIcon } from "../../assets/remove.svg";
 
@@ -30,13 +29,5 @@ const DiaryProductsListItem = ({
     </div>
   );
 };
-
-// DiaryProductsListItem.propTypes = {
-//   id: PropTypes.number.isRequired,
-//   name: PropTypes.string.isRequired,
-//   weight: PropTypes.string.isRequired,
-//   calories: PropTypes.string.isRequired,
-//   onRemove: PropTypes.func.isRequired,
-// };
 
 export default DiaryProductsListItem;

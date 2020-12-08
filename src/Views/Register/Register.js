@@ -27,7 +27,6 @@ const Register = () => {
         headers,
       })
       .then((response) => {
-        console.log(response);
         setMessage({
           data: "Вы успешно зарегестрировались на сайте",
           type: "success",
