@@ -24,6 +24,37 @@ const Dashboard = () => {
     localStorage.removeItem("token");
   };
 
+  const getCurrentdayProductList = (day) => {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: token,
+    };
+    axios
+      .get(`https://slimmom.herokuapp.com/days/${day}`, {
+        headers,
+      })
+      .then((response) => {
+        const dayCalories = response.data.reduce(
+          (acc, el) => acc + el.totalCalories,
+          0
+        );
+        data.setconsumed(dayCalories);
+      })
+      .catch((error) => {
+        if (error) {
+          data.setconsumed(0);
+          console.log("its some errors ", error);
+        }
+      });
+  };
+
+  const convertedDate = (date) => {
+    if (date.getDate() < 10) {
+      return `${date.getFullYear()}-${date.getMonth() + 1}-0${date.getDate()}`;
+    }
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  };
+
   const getCurrentUserData = () => {
     const headers = {
       "Content-Type": "application/json",
@@ -34,6 +65,7 @@ const Dashboard = () => {
         headers,
       })
       .then((response) => {
+        getCurrentdayProductList(convertedDate(data.date));
         setuserName(response.data.user.name);
         data.setdailyNorm(response.data.user.dayNormCalories);
         data.setprohibited(response.data.user.notAllowedCategories);
