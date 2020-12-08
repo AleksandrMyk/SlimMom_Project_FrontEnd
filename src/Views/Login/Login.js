@@ -55,6 +55,7 @@ const LoginPage = () => {
               <NavLink className={style.logoContainer} exact to="/">
                 <Logo />
               </NavLink>
+
               <div className={style.navContainer}>
                 <NavLink exact to="/login" className={style.login}>
                   <span>Вход</span>
