@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
-
 import DailyCaloriesIntake from "../DailyCaloriesIntake";
 import Spiner from "../Spiner";
 import styles from "./Modal.module.css";
