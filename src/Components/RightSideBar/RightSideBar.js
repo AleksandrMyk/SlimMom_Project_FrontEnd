@@ -33,9 +33,9 @@ const RightSideBar = ({
                   {Math.round(norm - consumed)}ккал
                 </li>
                 <li className={style.categoryItems}>
-                  {Math.round(consumed)} ккал
+                  {Math.round(consumed)}ккал
                 </li>
-                <li className={style.categoryItems}>{Math.round(norm)} ккал</li>
+                <li className={style.categoryItems}>{Math.round(norm)}ккал</li>
                 <li className={style.categoryItems}>{percent}</li>
               </ul>
             </div>
