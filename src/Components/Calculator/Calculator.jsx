@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./Calculator.module.css";
 import useForm from "./useForm";
 import validate from "./validationRules";
 import { useHistory } from "react-router-dom";
+import { DateContext } from "../../dateContext";
 import axios from "axios";
 import "./alertSendData.css";
 
@@ -14,6 +15,7 @@ const BludValue = {
 };
 
 const Calculator = () => {
+  const data = useContext(DateContext);
   const history = useHistory();
   const token = localStorage.getItem("token");
   const [message, setMessage] = useState();
@@ -24,6 +26,27 @@ const Calculator = () => {
     handleSubmit,
     handleBludChange,
   } = useForm(send, validate);
+
+  const getCurrentUserData = () => {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: token,
+    };
+    axios
+      .get("https://slimmom.herokuapp.com/users/getuser", {
+        headers,
+      })
+      .then((response) => {
+        data.setdailyNorm(response.data.user.dayNormCalories);
+        data.setprohibited(response.data.user.notAllowedCategories);
+      })
+      .catch((error) => {
+        if (error) {
+          history.push("/login");
+          localStorage.removeItem("token");
+        }
+      });
+  };
 
   function send() {
     const data = JSON.stringify(values);
@@ -37,11 +60,11 @@ const Calculator = () => {
       })
       .then((response) => {
         console.log(response);
-
         setMessage({
           data: "Вы успешно обновили данные !!!",
           type: "sucess",
         });
+        getCurrentUserData();
       })
       .catch((error) => {
         if (error) {

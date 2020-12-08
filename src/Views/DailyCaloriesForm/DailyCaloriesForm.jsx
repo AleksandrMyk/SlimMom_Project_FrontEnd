@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import styles from "./DailyCaloriesForm.module.css";
 import NavigationBar from "../../Components/NavigationBar";
-
 import Modal from "../../Components/Modal";
 import useModal from "../../Components/Modal/useModal";
 import useForm from "./useForm";

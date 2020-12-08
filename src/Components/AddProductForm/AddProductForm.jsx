@@ -1,10 +1,11 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useContext } from "react";
 import AsyncSelect from "react-select/async";
 import axios from "axios";
 import Calendar from "../../Components/Calendar";
 import styles from "./AddProductForm.module.css";
 import DiaryProductsList from "../../Components/DiaryProductsList";
 import { useMediaQuery } from "./hooks";
+import { DateContext } from "../../dateContext";
 
 const SEARCH_URL = "https://slimmom.herokuapp.com/";
 const END_OPTIONS = "&page=1&limit=10";
@@ -14,9 +15,10 @@ export default function AddProductForm() {
   const [selectedTitle, setSelectedTitle] = useState("");
   const [productId, setIdProduct] = useState("");
   const [weight, setGramProd] = useState(0);
-  const [date, setDate] = useState(new Date());
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
   const token = localStorage.getItem("token");
+
+  const data = useContext(DateContext);
 
   const customStyles = {
     container: (_, { selectProps: { width } }) => ({
@@ -87,7 +89,7 @@ export default function AddProductForm() {
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   };
 
-  const dateToSend = convertedDate(date);
+  const dateToSend = convertedDate(data.date);
 
   const addNewItem = () => {
     const headers = {
@@ -130,11 +132,18 @@ export default function AddProductForm() {
         headers,
       })
       .then((response) => {
+        const dayCalories = response.data.reduce(
+          (acc, el) => acc + el.totalCalories,
+          0
+        );
+        data.setconsumed(dayCalories);
+
         setProducts(response.data);
       })
       .catch((error) => {
         if (error) {
-          setProducts([]);
+          setProducts(null);
+          data.setconsumed(0);
           console.log("its some errors ", error);
         }
       });
@@ -199,7 +208,7 @@ export default function AddProductForm() {
   const currentHideNav = useMediaQuery("(min-width: 767px)");
   return (
     <>
-      <Calendar getDateValue={setDate}></Calendar>
+      <Calendar></Calendar>
       <form className={`${styles.ProductEditor} `} onSubmit={handleSubmit}>
         <div className={`${styles.ProductEditorLabel} `}>
           <AsyncSelect
@@ -234,12 +243,15 @@ export default function AddProductForm() {
           {currentHideNav ? "+" : "Добавить"}
         </button>
       </form>
-
-      <DiaryProductsList
-        // className={`${styles.ProductEditor} `}
-        removeItem={removeItem}
-        products={products}
-      ></DiaryProductsList>
+      {products ? (
+        <DiaryProductsList
+          // className={`${styles.ProductEditor} `}
+          removeItem={removeItem}
+          products={products}
+        ></DiaryProductsList>
+      ) : (
+        "Cписок продуктов пустой"
+      )}
     </>
   );
 }
