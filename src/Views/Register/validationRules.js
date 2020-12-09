@@ -1,7 +1,5 @@
 export default function validate(values) {
   const regLatin = new RegExp("^[a-zA-Z0-9]+$");
-  //   const regPassword = new RegExp("^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{6,}$");
-  // const regName = new RegExp("^[А-Яа-яЁёs]+$");
 
   let errors = {};
 

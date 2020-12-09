@@ -9,7 +9,7 @@
     text-align: left;
     font-size: 12px;
     margin-right: 5px;
-    width: 58%;
+    width: 48%;
     padding: 10px 0px 10px 0px;
     border-bottom: 1px solid#E0E0E0;;
 }
@@ -28,10 +28,11 @@
     border-bottom: 1px solid#E0E0E0;
     font-size: 12px;
     margin-right: 5px;
-    width: 23%;
+    width: 26%;
 }
 .listItem__buttonRemove{
     padding-top: 10px;
+    padding-bottom: 20px;
     border: none;
     background-color: rgb(255, 255, 255);
 }

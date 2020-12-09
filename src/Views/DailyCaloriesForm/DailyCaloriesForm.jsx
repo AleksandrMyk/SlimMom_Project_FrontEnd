@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import styles from "./DailyCaloriesForm.module.css";
 import NavigationBar from "../../Components/NavigationBar";
-
 import Modal from "../../Components/Modal";
 import useModal from "../../Components/Modal/useModal";
 import useForm from "./useForm";
@@ -39,17 +38,12 @@ const DailyCalopiesForm = () => {
       })
       .then((res) => {
         const { dayNormCalories, notAllowedCategories } = res.data;
-        console.log(res);
         setCalories(dayNormCalories.toString());
         setProducts([...notAllowedCategories]);
 
         toggle();
       })
-      .catch((error) => {
-        if (error) {
-          console.log("its some errors ", error);
-        }
-      });
+      .catch((error) => {});
   }
 
   const { isShowing, toggle } = useModal();

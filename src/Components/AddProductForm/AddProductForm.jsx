@@ -1,124 +1,172 @@
-import React, { useState, useEffect, useCallback } from "react";
-import CalendarOnClick from "../Calendar/CalendarOnClick.jsx";
-import { useDispatch } from "react-redux";
+import React, { useState, useCallback, useEffect, useContext } from "react";
 import AsyncSelect from "react-select/async";
 import axios from "axios";
+import Calendar from "../../Components/Calendar";
 import styles from "./AddProductForm.module.css";
-
+import DiaryProductsList from "../../Components/DiaryProductsList";
 import { useMediaQuery } from "./hooks";
-import productOperations from "../../Redux/product/productOperations";
+import { DateContext } from "../../dateContext";
 
-import DiaryProductsList from "../DiaryProductsList/index";
-
-
-//
 const SEARCH_URL = "https://slimmom.herokuapp.com/";
 const END_OPTIONS = "&page=1&limit=10";
 const QUERY = `products?name=`;
 
 export default function AddProductForm() {
-  const dispatch = useDispatch();
-
   const [selectedTitle, setSelectedTitle] = useState("");
   const [productId, setIdProduct] = useState("");
   const [weight, setGramProd] = useState(0);
-  const [isHandleSubmit, setIsHandleSubmit] = useState(false);
-  const [Date, setDate] = useState("");
- const [products, setProduct] = useState([])
-  // const handleSubmit = () => setIsHandleSubmit(true);
+  const [products, setProducts] = useState(null);
+  const token = localStorage.getItem("token");
 
-  const handleSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-      if (!productId || weight === 0) {
-        return;
-      }
-      console.log("Id", productId);
-      console.log("gram", weight);
+  const data = useContext(DateContext);
 
-      const date = "2020-12-12";
+  const customStyles = {
+    container: (_, { selectProps: { width } }) => ({
+      width: width,
+      position: "relative",
+      borderBottom: "1px solid #e0e0e0",
+    }),
 
-      const results_products = dispatch(
-        productOperations.addProduct(productId, weight, Date)
-      );
-      console.log("results_products", results_products);
+    menu: (provided, state) => ({
+      ...provided,
+      width: state.selectProps.width,
+      position: "absolute",
+      padding: 20,
+    }),
 
-      setIdProduct("");
-      setGramProd(0);
+    indicatorsContainer: () => ({
+      display: "none",
+    }),
+    dropdownIndicator: () => ({
+      display: "none",
+    }),
+
+    valueContainer: () => ({
+      display: "flex",
+      flexWrap: "wrap",
+      height: 60,
+      paddingBottom: 10,
+    }),
+
+    input: () => ({
+      position: "absolute",
+      height: "50%",
+      top: 25,
+      div: {
+        height: "100%",
+        input: {
+          height: "100%",
+          fontWeight: 700,
+        },
+      },
+    }),
+
+    placeholder: (_, { selectProps: { placeholder } }) => ({
+      placeholder: placeholder,
+      width: "100%",
+      height: "50%",
+      position: "absolute",
+
+      top: 35,
+    }),
+
+    control: (_, { selectProps: { width } }) => ({
+      width: width,
+    }),
+
+    singleValue: (provided, state) => {
+      const opacity = state.isDisabled ? 0.5 : 1;
+      const transition = "opacity 300ms";
+
+      return { ...provided, opacity, transition };
     },
-    [dispatch, productId, weight]
-  );
+  };
 
-  // useEffect(
-  //   (e) => {
-  //     e.preventDefault();
-  //     if (!isHandleSubmit) {
-  //       return;
-  //     }
-  //     debugger;
-  //     //e.preventDefault();
-  //     debugger;
-  //     console.log("Id", productId);
-  //     console.log("gram", weight);
-  //     console.log("Submit", isHandleSubmit);
-  //     debugger;
-  //     const date = "2020-12-12";
-  //     const results_products = dispatch(
-  //       productOperations.addProduct(productId, weight, date)
-  //     );
-  //     debugger;
-  //     console.log("results_products", results_products);
-  //     debugger;
-  //     setIdProduct("");
-  //     setGramProd(0);
-  //     setIsHandleSubmit(false);
-  //   },
-  //   [isHandleSubmit]
-  // );
+  const convertedDate = (date) => {
+    if (date.getDate() < 10) {
+      return `${date.getFullYear()}-${date.getMonth() + 1}-0${date.getDate()}`;
+    }
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  };
 
-  // const handleSubmit = useCallback(
-  //   (e) => {
-  //     e.preventDefault();
-  //     console.log("productId", productId);
-  //     console.log("gramProd", gramProd);
-  //     const results_products = dispatch(
-  //       productOperations.addProduct(productId, gramProd, "2020-12-13")
-  //     );
-  //     console.log("results_products", results_products);
-  //     // setIsSubmitting(true);
-  //     // window.alert(JSON.stringify(e, 0, 2));
-  //   },
-  //   [dispatch]
-  // );
+  const dateToSend = convertedDate(data.date);
+
+  const addNewItem = () => {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: token,
+    };
+    const data = {
+      productId: productId,
+      weight: weight,
+      date: dateToSend,
+    };
+    let dataToSend = JSON.stringify(data);
+    axios
+      .post("https://slimmom.herokuapp.com/days", dataToSend, {
+        headers,
+      })
+      .then((response) => {
+        getCurrentdayProductList(dateToSend);
+      })
+      .catch((error) => {});
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addNewItem();
+  };
+
+  const getCurrentdayProductList = (day) => {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: token,
+    };
+    axios
+      .get(`https://slimmom.herokuapp.com/days/${day}`, {
+        headers,
+      })
+      .then((response) => {
+        const dayCalories = response.data.reduce(
+          (acc, el) => acc + el.totalCalories,
+          0
+        );
+        data.setconsumed(dayCalories);
+
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        if (error) {
+          setProducts(null);
+          data.setconsumed(0);
+        }
+      });
+  };
+
+  useEffect(() => {
+    getCurrentdayProductList(dateToSend);
+  }, [dateToSend]);
 
   const handleChange = useCallback(
     (e) => setGramProd(Number(e.currentTarget.value)),
     []
   );
 
-  //ф-ция которая вываливает данные в options
   const handleSearchTitles = (movieTitle) => {
-    console.log("searching for", movieTitle);
     let searchTerm = movieTitle;
 
     if (!movieTitle || movieTitle === " ") {
-      searchTerm = "омлет";
+      searchTerm = "";
     }
 
     const urlRequest = `${SEARCH_URL}${QUERY}${searchTerm}${END_OPTIONS}`;
     const newRequest = axios.get(urlRequest);
 
     if (newRequest) {
-      // new promise: pending
       return newRequest.then((response) => {
-  
-        console.log("response.data.results", response.data.docs);
-        // promise resolved : now I have the data, do a filter
         const compare = response.data.docs.filter((i) =>
           i.title.ru.toLowerCase().includes(movieTitle.toLowerCase())
         );
-        console.log("compare", compare);
-        // reurning the label for react-select baed on the title
         return compare.map((prod) => ({
           label: prod.title.ru,
           value: prod._id,
@@ -126,45 +174,72 @@ export default function AddProductForm() {
       });
     }
   };
-console.log()
+
+  const removeItem = (id, token) => {
+    const data = {
+      dayId: id,
+    };
+    const requestOptions = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(data),
+    };
+    fetch("https://slimmom.herokuapp.com/days", requestOptions)
+      .then((response) => {
+        getCurrentdayProductList(dateToSend);
+      })
+      .catch((error) => {});
+  };
+
   //
   const currentHideNav = useMediaQuery("(min-width: 767px)");
   return (
     <>
-      <CalendarOnClick getDateValue={setDate}></CalendarOnClick>
+      <Calendar></Calendar>
       <form className={`${styles.ProductEditor} `} onSubmit={handleSubmit}>
-        <div
-          className={`${styles.ProductEditorLabel} ${styles.ProductEditorInput} ${styles.ProductEditorInputName}`}
-        >
+        <div className={`${styles.ProductEditorLabel} `}>
           <AsyncSelect
             placeholder="Введите название продукта*"
             style={`${styles.Select} `}
             cacheOptions
             defaultOptions
+            styles={customStyles}
+            width="300px"
             value={selectedTitle}
             loadOptions={handleSearchTitles}
             onChange={(property, value) => {
-              console.log(property);
               setSelectedTitle(property);
               setIdProduct(property.value);
             }}
           />
         </div>
         <label className={`${styles.ProductEditorLabel} ${styles.Otstup}`}>
-          <input
-            className={`${styles.ProductEditorInput}  ${styles.ProductEditorInputKkal}`}
-            type="number"
-            placeholder="Граммы*"
-            value={weight}
-            onChange={handleChange}
-            min={0}
-          />
+          <div className={styles.ProductEditorInputWrapper}>
+            <input
+              className={`${styles.ProductEditorInput}  ${styles.ProductEditorInputKkal}`}
+              type="number"
+              placeholder="Граммы*"
+              value={weight}
+              onChange={handleChange}
+              min={0}
+            />
+          </div>
         </label>
         <button type="submit" className={styles.ProductEditorButton}>
           {currentHideNav ? "+" : "Добавить"}
         </button>
       </form>
-      <DiaryProductsList products={setProduct} />
+      {products ? (
+        <DiaryProductsList
+          removeItem={removeItem}
+          products={products}
+        ></DiaryProductsList>
+      ) : (
+        "Cписок продуктов пустой"
+      )}
     </>
   );
 }

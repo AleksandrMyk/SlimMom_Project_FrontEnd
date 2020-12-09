@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./Calculator.module.css";
 import useForm from "./useForm";
 import validate from "./validationRules";
 import { useHistory } from "react-router-dom";
+import { DateContext } from "../../dateContext";
 import axios from "axios";
 import "./alertSendData.css";
 
@@ -14,6 +15,7 @@ const BludValue = {
 };
 
 const Calculator = () => {
+  const data = useContext(DateContext);
   const history = useHistory();
   const token = localStorage.getItem("token");
   const [message, setMessage] = useState();
@@ -24,6 +26,27 @@ const Calculator = () => {
     handleSubmit,
     handleBludChange,
   } = useForm(send, validate);
+
+  const getCurrentUserData = () => {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: token,
+    };
+    axios
+      .get("https://slimmom.herokuapp.com/users/getuser", {
+        headers,
+      })
+      .then((response) => {
+        data.setdailyNorm(response.data.user.dayNormCalories);
+        data.setprohibited(response.data.user.notAllowedCategories);
+      })
+      .catch((error) => {
+        if (error) {
+          history.push("/login");
+          localStorage.removeItem("token");
+        }
+      });
+  };
 
   function send() {
     const data = JSON.stringify(values);
@@ -36,12 +59,11 @@ const Calculator = () => {
         headers,
       })
       .then((response) => {
-        console.log(response);
-
         setMessage({
           data: "Вы успешно обновили данные !!!",
           type: "sucess",
         });
+        getCurrentUserData();
       })
       .catch((error) => {
         if (error) {
@@ -49,7 +71,6 @@ const Calculator = () => {
             data: "Что-то пошло не так ",
             type: "danger",
           });
-          console.log("its some errors ", error);
           history.push("/login");
         }
       });
@@ -65,8 +86,8 @@ const Calculator = () => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="90"
-              height="90"
+              width="40"
+              height="40"
               viewBox="0 0 50 50"
             >
               <g transform="translate(-595.805 -678.805)">

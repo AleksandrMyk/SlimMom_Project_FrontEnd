@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, useContext, lazy } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import LogoDashboard from "../../Components/LogoDashboard";
 import BurgerMenu from "../../Components/BurgerMenu";
@@ -8,25 +8,50 @@ import axios from "axios";
 import style from "./dashboard.module.css";
 import SideBar from "../../Components/RightSideBar";
 import AddProductForm from "../../Components/AddProductForm";
-
+import { DateContext } from "../../dateContext";
 const Calculator = lazy(() =>
   import("../../Components/Calculator" /* webpackChunkName: "Daily-calories" */)
 );
-
-// const Calendar = lazy(() =>
-//   import(
-//     "../../Components/Calendar/CalendarOnClick" /* webpackChunkName: "product-form" */
-//   )
-// );
 
 const Dashboard = () => {
   const [userName, setuserName] = useState("");
   const history = useHistory();
   const token = localStorage.getItem("token");
+  const data = useContext(DateContext);
 
   const logout = () => {
     history.push("/login");
-    localStorage.clear();
+    localStorage.removeItem("token");
+  };
+
+  const getCurrentdayProductList = (day) => {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: token,
+    };
+    axios
+      .get(`https://slimmom.herokuapp.com/days/${day}`, {
+        headers,
+      })
+      .then((response) => {
+        const dayCalories = response.data.reduce(
+          (acc, el) => acc + el.totalCalories,
+          0
+        );
+        data.setconsumed(dayCalories);
+      })
+      .catch((error) => {
+        if (error) {
+          data.setconsumed(0);
+        }
+      });
+  };
+
+  const convertedDate = (date) => {
+    if (date.getDate() < 10) {
+      return `${date.getFullYear()}-${date.getMonth() + 1}-0${date.getDate()}`;
+    }
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   };
 
   const getCurrentUserData = () => {
@@ -39,16 +64,21 @@ const Dashboard = () => {
         headers,
       })
       .then((response) => {
-        console.log(response);
+        getCurrentdayProductList(convertedDate(data.date));
         setuserName(response.data.user.name);
-        console.log(userName);
+        data.setdailyNorm(response.data.user.dayNormCalories);
+        data.setprohibited(response.data.user.notAllowedCategories);
       })
       .catch((error) => {
         if (error) {
-          console.log("its some errors ", error);
           history.push("/login");
+          localStorage.removeItem("token");
         }
       });
+  };
+
+  const dateHeder = (date) => {
+    return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
   };
 
   useEffect(() => {
@@ -86,7 +116,14 @@ const Dashboard = () => {
           </Switch>
         </div>
 
-        <SideBar userName={userName} logout={logout}></SideBar>
+        <SideBar
+          userName={userName}
+          currentDate={dateHeder(data.date)}
+          logout={logout}
+          consumed={!data.consumed ? 0 : data.consumed}
+          norm={!data.dailyNorm ? 0 : data.dailyNorm}
+          notAllow={data.prohibited}
+        ></SideBar>
       </div>
     </>
   );
