@@ -10,8 +10,21 @@ const RightSideBar = ({
   norm,
   notAllow,
 }) => {
-  const percent = `${Math.round(100 - (consumed / norm) * 100)}`;
-  const notAllowed = notAllow.toString();
+  const percent = (consumed, norm) => {
+    if (consumed === 0 && norm === 0) {
+      return "0";
+    }
+
+    return `${Math.round(consumed / (norm / 100))}`;
+  };
+
+  const notAllowed = (array) => {
+    if (array.length === 0) {
+      return "Здесь будет отображаться Ваш рацион";
+    }
+    return `${array.toString()}`;
+  };
+
   return (
     <>
       <section className={style.section}>
@@ -36,16 +49,16 @@ const RightSideBar = ({
                   {Math.round(consumed)}ккал
                 </li>
                 <li className={style.categoryItems}>{Math.round(norm)}ккал</li>
-                <li className={style.categoryItems}>{percent}</li>
+                <li className={style.categoryItems}>
+                  {percent(consumed, norm)}
+                </li>
               </ul>
             </div>
           </div>
           <div className={style.wrapper2}>
             <h2 className={style.ProductTitle}>Нерекомендуемые продукты</h2>
             <div className={style.productsBox}>
-              <p className={style.products}>
-                {notAllow ? notAllowed : "Здесь будет отображаться Ваш рацион"}
-              </p>
+              <p className={style.products}>{notAllowed(notAllow)}</p>
             </div>
           </div>
         </div>

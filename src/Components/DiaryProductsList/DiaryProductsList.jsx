@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { DiaryProductsListItem } from "../DiaryProductsListItem";
 import styles from "./DiaryProductsList.module.css";
-import axios from "axios";
-// const token = localStorage.getItem("token");
 
 const DiaryProductsList = ({ products, removeItem }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        {/* {isLoading && ""} */}
         {products &&
           products.map((product) => (
             <DiaryProductsListItem
