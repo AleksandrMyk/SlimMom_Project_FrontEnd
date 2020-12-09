@@ -7,6 +7,7 @@ import Logo from "../../Components/Logo";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import "./alertLoginStyle.css";
+import {Spring} from 'react-spring/renderprops'
 
 const LoginPage = () => {
   const history = useHistory();
@@ -26,7 +27,6 @@ const LoginPage = () => {
         headers,
       })
       .then((response) => {
-        console.log(response);
         setMessage({
           data: "Успешный логин , перенаправление в личный кабинет",
           type: "sucess",
@@ -48,13 +48,21 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className={style.pageWrapper}>
+    <Spring
+    from={{ opacity: 0, marginTop: -500 }}
+    to={{ opacity: 1, marginTop: 0 }}
+    config={{ delay: 1000, duration: 1000 }}
+    >
+       {props => (
+         <div style={props}>
+           <div className={style.pageWrapper}>
         <div className={style.loginWrapper}>
           <nav>
             <div className={style.container}>
               <NavLink className={style.logoContainer} exact to="/">
                 <Logo />
               </NavLink>
+
               <div className={style.navContainer}>
                 <NavLink exact to="/login" className={style.login}>
                   <span>Вход</span>
@@ -139,6 +147,9 @@ const LoginPage = () => {
           </div>
         </div>
       </div>
+         </div>
+       )}
+    </Spring>
     </>
   );
 };

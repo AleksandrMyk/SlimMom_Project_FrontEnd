@@ -1,5 +1,6 @@
 import React from "react";
 import { Spring } from "react-spring/renderprops";
+
 import styles from "./logo.module.css";
 import imageLogo from "./images/logo-mobile.png";
 
@@ -8,7 +9,7 @@ function Logo() {
     <Spring
       from={{ opacity: 0 }}
       to={{ opacity: 1 }}
-      config={{ delay: 1000, duration: 1000 }}
+      config={{ delay: 2000, duration: 1500 }}
     >
       {(props) => (
         <div style={props}>

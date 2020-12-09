@@ -23,7 +23,6 @@ const Modal = ({ isShowing, hide, calories, list }) => {
         ? ReactDOM.createPortal(
             <React.Fragment>
               <div className={styles.modal_overlay} onClick={hide} />
-              {/* {escKeyPress("Escape", hide)} */}
               <div
                 className={styles.modal_wrapper}
                 aria-modal
