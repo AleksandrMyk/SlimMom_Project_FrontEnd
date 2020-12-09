@@ -49,8 +49,8 @@ const LoginPage = () => {
   return (
     <>
       <Spring
-        from={{ opacity: 0, marginRight: -500 }}
-        to={{ opacity: 1, marginRight: 0 }}
+        from={{ opacity: 0, marginLeft: -500 }}
+        to={{ opacity: 1, marginLeft: 0 }}
         config={{ delay: 100, duration: 500 }}
       >
         {/* 
