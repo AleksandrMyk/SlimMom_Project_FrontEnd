@@ -67,7 +67,9 @@ const DailyCalopiesForm = () => {
               autoComplete="off"
             />
 
-            {errors.height && <p className={styles.error}>{errors.height}</p>}
+            {errors.height && (
+              <p className={styles.error_input}>{errors.height}</p>
+            )}
 
             <input
               className={styles.input || ""}
@@ -79,7 +81,7 @@ const DailyCalopiesForm = () => {
               autoComplete="off"
             />
 
-            {errors.age && <p className={styles.error}>{errors.age}</p>}
+            {errors.age && <p className={styles.error_input}>{errors.age}</p>}
 
             <input
               className={styles.input}
@@ -92,7 +94,7 @@ const DailyCalopiesForm = () => {
             />
 
             {errors.currentWeight && (
-              <p className={styles.error}>{errors.currentWeight}</p>
+              <p className={styles.error_input}>{errors.currentWeight}</p>
             )}
 
             <input
@@ -106,7 +108,7 @@ const DailyCalopiesForm = () => {
             />
 
             {errors.targetWeight && (
-              <p className={styles.error}>{errors.targetWeight}</p>
+              <p className={styles.error_input}>{errors.targetWeight}</p>
             )}
 
             <div className={styles.radio_buttons}>

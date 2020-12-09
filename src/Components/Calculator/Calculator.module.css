@@ -97,6 +97,7 @@
 
 .radio_input {
   position: absolute;
+  display: none;
 }
 
 .radio_input + label {
