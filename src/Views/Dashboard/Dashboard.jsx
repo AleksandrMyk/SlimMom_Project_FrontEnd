@@ -88,58 +88,48 @@ const Dashboard = () => {
 
   return (
     <>
-      <Spring
-        from={{ opacity: 0, marginTop: -500 }}
-        to={{ opacity: 1, marginTop: 0 }}
-        config={{ delay: 1000, duration: 1000 }}
-      >
-        {(props) => (
-          <div style={props}>
-            <div className={style.directionWrapper}>
-              <div className={style.componentContainer}>
-                <div className={style.headerContainer}>
-                  <div className={style.logoContainer}>
-                    <LogoDashboard />
-                  </div>
-                  <div className={style.userNavContainer}>
-                    <UserNav />
-                  </div>
-                  <div className={style.nagigationWrapper}>
-                    <div className={style.tabletZone}>
-                      <UserInfo userName={userName} onLogout={logout} />
-                    </div>
-                    <div className={style.burgerContainer}>
-                      <BurgerMenu />
-                    </div>
-                  </div>
-                  {/* <UserNav />
-          <UserInfo userName={userName} onLogout={logout}></UserInfo> */}
-                </div>
-                <div className={style.greyZone}>
+      <div className={style.directionWrapper}>
+        <div className={style.componentContainer}>
+          <div className={style.headerContainerWrapper}>
+            <div className={style.headerContainer}>
+              <div className={style.logoContainer}>
+                <LogoDashboard />
+              </div>
+              <div className={style.userNavContainer}>
+                <UserNav />
+              </div>
+              <div className={style.nagigationWrapper}>
+                <div className={style.tabletZone}>
                   <UserInfo userName={userName} onLogout={logout} />
                 </div>
-                <Switch>
-                  <Route exact path="/dashboard" component={Calculator} />
-                  <Route
-                    exact
-                    path="/dashboard/diary"
-                    component={AddProductForm}
-                  />
-                </Switch>
+                <div className={style.burgerContainer}>
+                  <BurgerMenu />
+                </div>
               </div>
-
-              <SideBar
-                userName={userName}
-                currentDate={dateHeder(data.date)}
-                logout={logout}
-                consumed={!data.consumed ? 0 : data.consumed}
-                norm={!data.dailyNorm ? 0 : data.dailyNorm}
-                notAllow={data.prohibited}
-              ></SideBar>
+              {/* <UserNav />
+          <UserInfo userName={userName} onLogout={logout}></UserInfo> */}
             </div>
           </div>
-        )}
-      </Spring>
+          <div className={style.greyZone}>
+            <UserInfo userName={userName} onLogout={logout} />
+          </div>
+          <div className={style.SwitchWrapper}>
+            <Switch>
+              <Route exact path="/dashboard" component={Calculator} />
+              <Route exact path="/dashboard/diary" component={AddProductForm} />
+            </Switch>
+          </div>
+        </div>
+
+        <SideBar
+          userName={userName}
+          currentDate={dateHeder(data.date)}
+          logout={logout}
+          consumed={!data.consumed ? 0 : data.consumed}
+          norm={!data.dailyNorm ? 0 : data.dailyNorm}
+          notAllow={data.prohibited}
+        ></SideBar>
+      </div>
     </>
   );
 };
