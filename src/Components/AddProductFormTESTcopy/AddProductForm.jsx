@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import CalendarOnClick from "../Calendar/CalendarOnClick.jsx";
+import CalendarOnClick from "../Calendar";
 import { useDispatch } from "react-redux";
 import AsyncSelect from "react-select/async";
 import axios from "axios";
@@ -110,48 +110,6 @@ export default function AddProductForm() {
     },
     [dispatch, productId, weight]
   );
-
-  // useEffect(
-  //   (e) => {
-  //     e.preventDefault();
-  //     if (!isHandleSubmit) {
-  //       return;
-  //     }
-  //     debugger;
-  //     //e.preventDefault();
-  //     debugger;
-  //     console.log("Id", productId);
-  //     console.log("gram", weight);
-  //     console.log("Submit", isHandleSubmit);
-  //     debugger;
-  //     const date = "2020-12-12";
-  //     const results_products = dispatch(
-  //       productOperations.addProduct(productId, weight, date)
-  //     );
-  //     debugger;
-  //     console.log("results_products", results_products);
-  //     debugger;
-  //     setIdProduct("");
-  //     setGramProd(0);
-  //     setIsHandleSubmit(false);
-  //   },
-  //   [isHandleSubmit]
-  // );
-
-  // const handleSubmit = useCallback(
-  //   (e) => {
-  //     e.preventDefault();
-  //     console.log("productId", productId);
-  //     console.log("gramProd", gramProd);
-  //     const results_products = dispatch(
-  //       productOperations.addProduct(productId, gramProd, "2020-12-13")
-  //     );
-  //     console.log("results_products", results_products);
-  //     // setIsSubmitting(true);
-  //     // window.alert(JSON.stringify(e, 0, 2));
-  //   },
-  //   [dispatch]
-  // );
 
   const handleChange = useCallback(
     (e) => setGramProd(Number(e.currentTarget.value)),
