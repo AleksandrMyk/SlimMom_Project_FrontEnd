@@ -29,7 +29,7 @@ const Register = () => {
       .then((response) => {
         setMessage({
           data: "Вы успешно зарегестрировались на сайте",
-          type: "success",
+          type: "sucess",
         });
 
         setTimeout(() => {
@@ -71,8 +71,8 @@ const Register = () => {
               <div className={`popup ${message.type}`}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="90"
-                  height="90"
+                  width="60"
+                  height="60"
                   viewBox="0 0 50 50"
                 >
                   <g transform="translate(-595.805 -678.805)">
