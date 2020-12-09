@@ -48,10 +48,15 @@ const Register = () => {
 
   return (
     <>
-      <Spring
+      {/* <Spring
         from={{ opacity: 0, marginTop: -500 }}
         to={{ opacity: 1, marginTop: 0 }}
         config={{ delay: 1000, duration: 1000 }}
+      > */}
+      <Spring
+        from={{ opacity: 0, marginRight: -500 }}
+        to={{ opacity: 1, marginRight: 0 }}
+        config={{ delay: 100, duration: 500 }}
       >
         {(props) => (
           <div style={props}>
