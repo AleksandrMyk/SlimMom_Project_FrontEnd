@@ -3,9 +3,6 @@
   padding: 0;
 }
 
-.ProductEditorOuterWrapper {
-}
-
 .ProductEditor {
   display: flex;
   flex-direction: column;
@@ -40,11 +37,12 @@
 
 .ProductEditorInput {
   display: flex;
+  margin-top: 16px;
   flex-wrap: wrap;
   height: 50%;
   width: 300px;
   min-height: 26px;
-  color: #212121;
+  color: #9b9faa;
   font: inherit;
   font-size: 14px;
   border: none;
@@ -101,6 +99,15 @@
   display: block;
   font-size: 8px;
   color: #bd0404;
+}
+
+.no_products_text {
+  margin: 0 auto;
+  text-align: center;
+  font-family: Verdana;
+  font-size: 14px;
+  color: #9b9faa;
+  font-weight: 400;
 }
 
 @media (min-width: 767px) {

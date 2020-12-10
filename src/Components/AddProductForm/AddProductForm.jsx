@@ -68,6 +68,7 @@ export default function AddProductForm() {
       width: "100%",
       height: "50%",
       display: "flex",
+      marginTop: "16px",
       alignItems: "center",
     }),
 
@@ -78,8 +79,10 @@ export default function AddProductForm() {
     singleValue: (provided, state) => {
       const opacity = state.isDisabled ? 0.5 : 1;
       const transition = "opacity 300ms";
+      const color = "#9b9faa";
+      const marginTop = "8px";
 
-      return { ...provided, opacity, transition };
+      return { ...provided, opacity, transition, color, marginTop };
     },
   };
 
@@ -146,6 +149,7 @@ export default function AddProductForm() {
 
   useEffect(() => {
     getCurrentdayProductList(dateToSend);
+    // eslint-disable-next-line
   }, [dateToSend]);
 
   const handleChange = useCallback(
@@ -195,12 +199,11 @@ export default function AddProductForm() {
       .catch((error) => {});
   };
 
-  //
-  const showDairyIfnoMobile = `{products ? (
-  <DiaryProductsList removeItem={removeItem} products={products} />
-) : (
-  "Cписок продуктов пустой"
-)};`;
+  //   const showDairyIfnoMobile = `{products ? (
+  //   <DiaryProductsList removeItem={removeItem} products={products} />
+  // ) : (
+  //   "Cписок продуктов пустой"
+  // )};`;
 
   const tabletView = useMediaQuery("(min-width: 767px)");
   return (
@@ -230,7 +233,7 @@ export default function AddProductForm() {
                 className={`${styles.ProductEditorInput}  ${styles.ProductEditorInputKkal}`}
                 type="number"
                 placeholder="Граммы"
-                value={weight}
+                value={weight || ""}
                 onChange={handleChange}
                 min={0}
               />
@@ -254,7 +257,7 @@ export default function AddProductForm() {
       {products ? (
         <DiaryProductsList removeItem={removeItem} products={products} />
       ) : (
-        "Cписок продуктов пустой"
+        <p className={styles.no_products_text}>Cписок продуктов пуст</p>
       )}
     </>
   );

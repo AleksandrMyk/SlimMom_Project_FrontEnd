@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 const useForm = (callback, validate) => {
-  const [bludType, setBludType] = useState(null);
   const [values, setValues] = useState({
     height: "",
     age: "",
@@ -17,6 +16,7 @@ const useForm = (callback, validate) => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
       callback();
     }
+    // eslint-disable-next-line
   }, [errors]);
 
   const handleSubmit = (event) => {
@@ -44,7 +44,6 @@ const useForm = (callback, validate) => {
     handleChange,
     handleSubmit,
     handleBludChange,
-    bludType,
     values,
     errors,
   };

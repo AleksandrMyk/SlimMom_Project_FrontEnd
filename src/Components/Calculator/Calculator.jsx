@@ -125,7 +125,9 @@ const Calculator = () => {
               value={values.height || ""}
               required
             />
-            {errors.height && <p className={styles.error}>{errors.height}</p>}
+            {errors.height && (
+              <p className={styles.error_input}>{errors.height}</p>
+            )}
             <input
               className={styles.input}
               type="text"
@@ -135,7 +137,7 @@ const Calculator = () => {
               value={values.age || ""}
               required
             />
-            {errors.age && <p className={styles.error}>{errors.age}</p>}
+            {errors.age && <p className={styles.error_input}>{errors.age}</p>}
             <input
               className={styles.input}
               type="text"
@@ -146,7 +148,7 @@ const Calculator = () => {
               required
             />
             {errors.currentWeight && (
-              <p className={styles.error}>{errors.currentWeight}</p>
+              <p className={styles.error_input}>{errors.currentWeight}</p>
             )}
             <input
               className={styles.input}
@@ -158,7 +160,7 @@ const Calculator = () => {
               required
             />
             {errors.targetWeight && (
-              <p className={styles.error}>{errors.targetWeight}</p>
+              <p className={styles.error_input}>{errors.targetWeight}</p>
             )}
             <div className={styles.radio_buttons}>
               <span className={styles.blud}>Группа крови *</span>
@@ -217,7 +219,7 @@ const Calculator = () => {
                 </li>
               </ul>
               {errors.bloodType && (
-                <p className={styles.error}>{errors.bloodType}</p>
+                <p className={styles.error_blood}>{errors.bloodType}</p>
               )}
             </div>
           </div>

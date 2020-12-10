@@ -7,7 +7,7 @@
 .bgContainer {
   margin: 0;
   padding: 0;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .form__title {
@@ -141,6 +141,7 @@
   font-weight: 700;
   color: #fc842d;
 }
+
 .form__inputs {
   display: flex;
   flex-direction: row;
@@ -150,6 +151,7 @@
 .form_button {
   display: block;
   margin: 0 auto;
+  margin-bottom: 80px;
 
   align-items: center;
   padding: 13px 48px;
@@ -170,13 +172,14 @@
   color: #ffffff;
 }
 
-.error {
+.error_input {
   margin: 0;
   margin-top: -14px;
+  width: 280px;
+  height: 14px;
   color: red;
   font-size: 12px;
   font-weight: bolder;
-  /* text-align: center; */
 }
 
 .error_blood {
@@ -185,16 +188,16 @@
   color: red;
   font-size: 12px;
   font-weight: bolder;
-  /* text-align: center; */
 }
 
 @media (min-width: 767px) {
   .bgContainer {
+    height: 944px;
     background-image: url(./img/home_tablet.png);
     background-repeat: no-repeat;
     background-position: bottom right;
-    background-size: cover;
-    height: 100vh;
+    /* background-size: cover; */
+    /* height: 100vh; */
   }
 
   .container {
@@ -203,6 +206,7 @@
     width: 605px;
     padding-bottom: 0px;
     margin-left: 87px;
+    margin-bottom: 424px;
   }
 
   .form__title {
@@ -234,6 +238,7 @@
 @media (min-width: 1024px) {
   .bgContainer {
     width: 100%;
+    height: 764px;
     background-image: url(./img/home_descktop.png);
     background-size: contain;
   }
@@ -241,7 +246,9 @@
   .container {
     padding: 0;
     width: 605px;
+    margin-top: 40px;
     margin-left: 115px;
+    margin-bottom: 111px;
   }
 
   .form__title {
@@ -252,5 +259,6 @@
 
   .form_button {
     margin-left: 346px;
+    margin-bottom: 60px;
   }
 }
