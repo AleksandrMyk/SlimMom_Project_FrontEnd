@@ -37,3 +37,9 @@
     margin-left: 92px;
   }
 }
+
+@media (min-width: 1200px) {
+  .calendar_on {
+    margin-left: 40px;
+  }
+}

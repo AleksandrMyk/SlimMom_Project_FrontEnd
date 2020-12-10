@@ -16,7 +16,7 @@ const RightSideBar = ({
       return "0";
     }
 
-    return `${Math.round(100 - (consumed / norm) * 100)}`;
+    return `${Math.round(consumed / (norm / 100))}`;
   };
 
   const notAllowed = (array) => {

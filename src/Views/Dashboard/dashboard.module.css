@@ -7,6 +7,11 @@
   margin: 0;
   display: flex;
   flex-direction: column;
+  width: 100%;
+}
+
+.headerContainerWrapper {
+  width: 100%;
   border-bottom: 2px solid #e0e0e0;
 }
 
@@ -38,13 +43,7 @@
 .userNavContainer {
   display: none;
 }
-/* .container {
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 0px 15px;
-} */
+
 .nagigationWrapper {
   display: flex;
   flex-direction: row;
@@ -58,7 +57,15 @@
   flex-direction: row;
   text-decoration: none;
 }
+.SwitchWrapper {
+  padding: 3%;
+}
+
 @media (min-width: 767px) {
+  .componentContainer {
+    margin: 0 auto;
+  }
+
   .greyZone {
     display: none;
   }
@@ -71,8 +78,16 @@
   .tabletZone {
     display: flex;
   }
+
+  .SwitchWrapper {
+    width: 600px;
+    margin: 0 auto;
+  }
 }
 @media (min-width: 1024px) {
+  .headerContainerWrapper {
+    border-bottom: 0;
+  }
   .componentContainer {
     padding-left: 100px;
     padding-right: 100px;
