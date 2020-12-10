@@ -59,28 +59,32 @@
 .products {
   color: #9b9faa;
 }
-.listBox,
-.wrapper2 {
-  width: 270px;
-}
 
 .listbox,
 .wrapper2 {
   width: 290px;
+  margin: 0 auto;
+}
+
+.wrapper2 {
+  margin-bottom: 40px;
 }
 
 @media (min-width: 767px) {
   .section {
     background-color: #f0f1f3;
     background-image: url("./images/tab.png");
+    width: 660px;
+    display: flex;
+    margin-bottom: 20px;
   }
+
   .wrapper1 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: 0 auto;
-    width: 605px;
-    padding-top: 40px;
+    width: 330px;
     padding-bottom: 24px;
   }
   .ListTitle,
@@ -104,12 +108,13 @@
     background-image: url("./images/desk.png");
     background-size: cover;
     background-repeat: no-repeat;
+    display: block;
   }
   .wrapper1 {
     width: 360px;
     display: flex;
     margin: 0 auto;
-    padding-bottom: 189px;
+    padding-bottom: 0px;
     flex-direction: column;
     padding-top: 75px;
     align-items: center;
@@ -126,8 +131,13 @@
   .ProductTitle {
     padding-bottom: 22px;
   }
+
+  .ProductTitle {
+    margin-bottom: 0px;
+  }
+
   .listBox {
-    padding-bottom: 60px;
+    padding-bottom: 0px;
   }
 
   .productsBox {
