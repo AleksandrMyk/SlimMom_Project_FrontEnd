@@ -14,7 +14,7 @@ const QUERY = `products?name=`;
 export default function AddProductForm() {
   const [selectedTitle, setSelectedTitle] = useState("");
   const [productId, setIdProduct] = useState("");
-  const [weight, setGramProd] = useState(0);
+  const [weight, setGramProd] = useState("");
   const [products, setProducts] = useState(null);
   const token = localStorage.getItem("token");
 
@@ -22,7 +22,6 @@ export default function AddProductForm() {
 
   const customStyles = {
     container: (_, { selectProps: { width } }) => ({
-      width: width,
       position: "relative",
       borderBottom: "1px solid #e0e0e0",
     }),
@@ -41,11 +40,14 @@ export default function AddProductForm() {
       display: "none",
     }),
 
-    valueContainer: () => ({
+    valueContainer: (_, { selectProps: { width } }) => ({
+      width: width,
       display: "flex",
+      alignItems: "center",
+      paddingTop: 4,
+      paddingBottom: 4,
       flexWrap: "wrap",
       height: 60,
-      paddingBottom: 10,
     }),
 
     input: () => ({
@@ -65,9 +67,8 @@ export default function AddProductForm() {
       placeholder: placeholder,
       width: "100%",
       height: "50%",
-      position: "absolute",
-
-      top: 35,
+      display: "flex",
+      alignItems: "center",
     }),
 
     control: (_, { selectProps: { width } }) => ({
@@ -195,48 +196,63 @@ export default function AddProductForm() {
   };
 
   //
-  const currentHideNav = useMediaQuery("(min-width: 767px)");
+  const showDairyIfnoMobile = `{products ? (
+  <DiaryProductsList removeItem={removeItem} products={products} />
+) : (
+  "Cписок продуктов пустой"
+)};`;
+
+  const tabletView = useMediaQuery("(min-width: 767px)");
   return (
     <>
-      <Calendar></Calendar>
-      <form className={`${styles.ProductEditor} `} onSubmit={handleSubmit}>
-        <div className={`${styles.ProductEditorLabel} `}>
-          <AsyncSelect
-            placeholder="Введите название продукта*"
-            style={`${styles.Select} `}
-            cacheOptions
-            defaultOptions
-            styles={customStyles}
-            width="300px"
-            value={selectedTitle}
-            loadOptions={handleSearchTitles}
-            onChange={(property, value) => {
-              setSelectedTitle(property);
-              setIdProduct(property.value);
-            }}
-          />
-        </div>
-        <label className={`${styles.ProductEditorLabel} ${styles.Otstup}`}>
-          <div className={styles.ProductEditorInputWrapper}>
-            <input
-              className={`${styles.ProductEditorInput}  ${styles.ProductEditorInputKkal}`}
-              type="number"
-              placeholder="Граммы*"
-              value={weight}
-              onChange={handleChange}
-              min={0}
+      {/* {tabletView && <Calendar></Calendar>} */}
+      <Calendar />
+      <div className={styles.ProductEditorOuterWrapper}>
+        <form className={`${styles.ProductEditor} `} onSubmit={handleSubmit}>
+          <div className={`${styles.ProductEditorLabel} `}>
+            <AsyncSelect
+              placeholder="Введите название продукта"
+              cacheOptions
+              defaultOptions
+              styles={customStyles}
+              width="250px"
+              value={selectedTitle}
+              loadOptions={handleSearchTitles}
+              onChange={(property, value) => {
+                setSelectedTitle(property);
+                setIdProduct(property.value);
+              }}
             />
           </div>
-        </label>
-        <button type="submit" className={styles.ProductEditorButton}>
-          {currentHideNav ? "+" : "Добавить"}
-        </button>
-      </form>
+          <label className={`${styles.ProductEditorLabel} ${styles.Otstup}`}>
+            <div className={styles.ProductEditorInputWrapper}>
+              <input
+                className={`${styles.ProductEditorInput}  ${styles.ProductEditorInputKkal}`}
+                type="number"
+                placeholder="Граммы"
+                value={weight}
+                onChange={handleChange}
+                min={0}
+              />
+            </div>
+          </label>
+          <button type="submit" className={styles.ProductEditorButton}>
+            {tabletView ? "+" : "Добавить"}
+          </button>
+        </form>
+      </div>
+      {/* {tabletView && (
+        <div>
+          {products ? (
+            <DiaryProductsList removeItem={removeItem} products={products} />
+          ) : (
+            "Cписок продуктов пустой"
+          )}
+        </div>
+      )} */}
+
       {products ? (
-        <DiaryProductsList
-          removeItem={removeItem}
-          products={products}
-        ></DiaryProductsList>
+        <DiaryProductsList removeItem={removeItem} products={products} />
       ) : (
         "Cписок продуктов пустой"
       )}
