@@ -9,7 +9,7 @@ function Logo() {
     <Spring
       from={{ opacity: 0 }}
       to={{ opacity: 1 }}
-      config={{ delay: 2000, duration: 1500 }}
+      config={{ delay: 300, duration: 1500 }}
     >
       {(props) => (
         <div style={props}>
