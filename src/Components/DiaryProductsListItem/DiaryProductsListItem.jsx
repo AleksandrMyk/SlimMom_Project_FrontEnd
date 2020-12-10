@@ -34,7 +34,7 @@ const DiaryProductsListItem = ({
               <RemoveIcon />
             </button>
           </div>
-    //     </div>
+       </div>
       )}
     </Spring>
   );
