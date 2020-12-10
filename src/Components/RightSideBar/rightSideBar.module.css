@@ -64,6 +64,11 @@
   width: 270px;
 }
 
+.listbox,
+.wrapper2 {
+  width: 290px;
+}
+
 @media (min-width: 767px) {
   .section {
     background-color: #f0f1f3;

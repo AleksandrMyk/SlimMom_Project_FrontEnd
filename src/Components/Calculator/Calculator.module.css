@@ -9,12 +9,23 @@
   margin: 0;
   padding: 0;
 }
-.error {
-  padding-top: 3px;
+
+.error_input {
+  margin: 0;
+  margin-top: -14px;
+  width: 280px;
+  height: 14px;
   color: red;
   font-size: 12px;
   font-weight: bolder;
-  text-align: left;
+}
+
+.error_blood {
+  margin: 0;
+  margin-top: -35px;
+  color: red;
+  font-size: 12px;
+  font-weight: bolder;
 }
 
 .form__title {
