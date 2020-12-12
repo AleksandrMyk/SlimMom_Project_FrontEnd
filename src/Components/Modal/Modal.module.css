@@ -10,8 +10,9 @@
 
 .modal_wrapper {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -44%);
   z-index: 1050;
   margin: 0 auto;
   overflow-x: hidden;
@@ -40,19 +41,6 @@
   cursor: pointer;
 }
 
-button {
-  font-size: 0.9rem;
-  font-weight: 700;
-  border: none;
-  border-radius: 3px;
-  padding: 0.3rem 1rem;
-  margin-left: 0.5rem;
-}
-
-.button_default {
-  background: #247ba0;
-  color: #fff;
-}
 @media (min-width: 767px) {
   .modal_overlay {
     background-color: #000;
@@ -63,8 +51,6 @@ button {
     justify-content: flex-end;
   }
   .modal_wrapper {
-    top: 50%;
-    left: 50%;
     transform: translate(-50%, -50%);
   }
   .modal {

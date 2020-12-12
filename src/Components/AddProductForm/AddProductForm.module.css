@@ -6,7 +6,7 @@
 .ProductEditor {
   display: flex;
   flex-direction: column;
-  margin: 30px auto 60px;
+  margin: 30px 0 60px;
   padding-top: 10px;
   width: auto;
   min-height: 82px;
@@ -14,7 +14,8 @@
 
 .ProductEditorLabel {
   display: inline-block;
-  /* margin-right: 20px; */
+  margin-right: 20px;
+  padding-bottom: 4px;
   font-style: normal;
   font-family: Verdana, Tahoma, sans-serif;
   font-weight: bold;
@@ -27,7 +28,7 @@
 /*  */
 .ProductEditorInputWrapper {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   padding-top: 4px;
   height: 60px;
   padding-bottom: 4px;
@@ -36,21 +37,17 @@
 
 .ProductEditorInput {
   display: flex;
+  margin-top: 16px;
   flex-wrap: wrap;
   height: 50%;
-  padding-bottom: 5px;
   width: 300px;
   min-height: 26px;
-  color: #212121;
+  color: #9b9faa;
   font: inherit;
   font-size: 14px;
   border: none;
   cursor: text;
   outline: 0;
-  /* height: 60px; */
-  /* padding-top: 4px;
-  padding-bottom: 4px; */
-  /* border-bottom: 1px solid #e0e0e0; */
 }
 
 .ProductEditorInput::placeholder {
@@ -104,7 +101,20 @@
   color: #bd0404;
 }
 
+.no_products_text {
+  margin: 0 auto;
+  text-align: center;
+  font-family: Verdana;
+  font-size: 14px;
+  color: #9b9faa;
+  font-weight: 400;
+}
+
 @media (min-width: 767px) {
+  .ProductEditorOuterWrapper {
+    padding-right: 40px;
+  }
+
   .ProductEditor {
     flex-direction: row;
     /* justify-content: space-between; */

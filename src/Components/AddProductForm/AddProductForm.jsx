@@ -1,10 +1,11 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useContext } from "react";
 import AsyncSelect from "react-select/async";
 import axios from "axios";
 import Calendar from "../../Components/Calendar";
 import styles from "./AddProductForm.module.css";
 import DiaryProductsList from "../../Components/DiaryProductsList";
 import { useMediaQuery } from "./hooks";
+import { DateContext } from "../../dateContext";
 
 const SEARCH_URL = "https://slimmom.herokuapp.com/";
 const END_OPTIONS = "&page=1&limit=10";
@@ -13,14 +14,14 @@ const QUERY = `products?name=`;
 export default function AddProductForm() {
   const [selectedTitle, setSelectedTitle] = useState("");
   const [productId, setIdProduct] = useState("");
-  const [weight, setGramProd] = useState(0);
-  const [date, setDate] = useState(new Date());
-  const [products, setProducts] = useState([]);
+  const [weight, setGramProd] = useState("");
+  const [products, setProducts] = useState(null);
   const token = localStorage.getItem("token");
+
+  const data = useContext(DateContext);
 
   const customStyles = {
     container: (_, { selectProps: { width } }) => ({
-      width: width,
       position: "relative",
       borderBottom: "1px solid #e0e0e0",
     }),
@@ -39,11 +40,14 @@ export default function AddProductForm() {
       display: "none",
     }),
 
-    valueContainer: () => ({
+    valueContainer: (_, { selectProps: { width } }) => ({
+      width: width,
       display: "flex",
+      alignItems: "center",
+      paddingTop: 4,
+      paddingBottom: 4,
       flexWrap: "wrap",
       height: 60,
-      paddingBottom: 10,
     }),
 
     input: () => ({
@@ -63,9 +67,9 @@ export default function AddProductForm() {
       placeholder: placeholder,
       width: "100%",
       height: "50%",
-      position: "absolute",
-
-      top: 35,
+      display: "flex",
+      marginTop: "16px",
+      alignItems: "center",
     }),
 
     control: (_, { selectProps: { width } }) => ({
@@ -75,8 +79,10 @@ export default function AddProductForm() {
     singleValue: (provided, state) => {
       const opacity = state.isDisabled ? 0.5 : 1;
       const transition = "opacity 300ms";
+      const color = "#9b9faa";
+      const marginTop = "8px";
 
-      return { ...provided, opacity, transition };
+      return { ...provided, opacity, transition, color, marginTop };
     },
   };
 
@@ -87,7 +93,7 @@ export default function AddProductForm() {
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   };
 
-  const dateToSend = convertedDate(date);
+  const dateToSend = convertedDate(data.date);
 
   const addNewItem = () => {
     const headers = {
@@ -107,17 +113,12 @@ export default function AddProductForm() {
       .then((response) => {
         getCurrentdayProductList(dateToSend);
       })
-      .catch((error) => {
-        if (error) {
-          console.log("its some errors ", error);
-        }
-      });
+      .catch((error) => {});
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     addNewItem();
-    // getCurrentdayProductList();
   };
 
   const getCurrentdayProductList = (day) => {
@@ -130,18 +131,25 @@ export default function AddProductForm() {
         headers,
       })
       .then((response) => {
+        const dayCalories = response.data.reduce(
+          (acc, el) => acc + el.totalCalories,
+          0
+        );
+        data.setconsumed(dayCalories);
+
         setProducts(response.data);
       })
       .catch((error) => {
         if (error) {
-          setProducts([]);
-          console.log("its some errors ", error);
+          setProducts(null);
+          data.setconsumed(0);
         }
       });
   };
 
   useEffect(() => {
     getCurrentdayProductList(dateToSend);
+    // eslint-disable-next-line
   }, [dateToSend]);
 
   const handleChange = useCallback(
@@ -188,58 +196,69 @@ export default function AddProductForm() {
       .then((response) => {
         getCurrentdayProductList(dateToSend);
       })
-      .catch((error) => {
-        if (error) {
-          console.log("its some errors ", error);
-        }
-      });
+      .catch((error) => {});
   };
 
-  //
-  const currentHideNav = useMediaQuery("(min-width: 767px)");
+  //   const showDairyIfnoMobile = `{products ? (
+  //   <DiaryProductsList removeItem={removeItem} products={products} />
+  // ) : (
+  //   "Cписок продуктов пустой"
+  // )};`;
+
+  const tabletView = useMediaQuery("(min-width: 767px)");
   return (
     <>
-      <Calendar getDateValue={setDate}></Calendar>
-      <form className={`${styles.ProductEditor} `} onSubmit={handleSubmit}>
-        <div className={`${styles.ProductEditorLabel} `}>
-          <AsyncSelect
-            placeholder="Введите название продукта*"
-            style={`${styles.Select} `}
-            cacheOptions
-            defaultOptions
-            styles={customStyles}
-            width="300px"
-            value={selectedTitle}
-            loadOptions={handleSearchTitles}
-            onChange={(property, value) => {
-              console.log(property);
-              setSelectedTitle(property);
-              setIdProduct(property.value);
-            }}
-          />
-        </div>
-        <label className={`${styles.ProductEditorLabel} ${styles.Otstup}`}>
-          <div className={styles.ProductEditorInputWrapper}>
-            <input
-              className={`${styles.ProductEditorInput}  ${styles.ProductEditorInputKkal}`}
-              type="number"
-              placeholder="Граммы*"
-              value={weight}
-              onChange={handleChange}
-              min={0}
+      {/* {tabletView && <Calendar></Calendar>} */}
+      <Calendar />
+      <div className={styles.ProductEditorOuterWrapper}>
+        <form className={`${styles.ProductEditor} `} onSubmit={handleSubmit}>
+          <div className={`${styles.ProductEditorLabel} `}>
+            <AsyncSelect
+              placeholder="Введите название продукта"
+              cacheOptions
+              defaultOptions
+              styles={customStyles}
+              width="250px"
+              value={selectedTitle}
+              loadOptions={handleSearchTitles}
+              onChange={(property, value) => {
+                setSelectedTitle(property);
+                setIdProduct(property.value);
+              }}
             />
           </div>
-        </label>
-        <button type="submit" className={styles.ProductEditorButton}>
-          {currentHideNav ? "+" : "Добавить"}
-        </button>
-      </form>
+          <label className={`${styles.ProductEditorLabel} ${styles.Otstup}`}>
+            <div className={styles.ProductEditorInputWrapper}>
+              <input
+                className={`${styles.ProductEditorInput}  ${styles.ProductEditorInputKkal}`}
+                type="number"
+                placeholder="Граммы"
+                value={weight || ""}
+                onChange={handleChange}
+                min={0}
+              />
+            </div>
+          </label>
+          <button type="submit" className={styles.ProductEditorButton}>
+            {tabletView ? "+" : "Добавить"}
+          </button>
+        </form>
+      </div>
+      {/* {tabletView && (
+        <div>
+          {products ? (
+            <DiaryProductsList removeItem={removeItem} products={products} />
+          ) : (
+            "Cписок продуктов пустой"
+          )}
+        </div>
+      )} */}
 
-      <DiaryProductsList
-        // className={`${styles.ProductEditor} `}
-        removeItem={removeItem}
-        products={products}
-      ></DiaryProductsList>
+      {products ? (
+        <DiaryProductsList removeItem={removeItem} products={products} />
+      ) : (
+        <p className={styles.no_products_text}>Cписок продуктов пуст</p>
+      )}
     </>
   );
 }

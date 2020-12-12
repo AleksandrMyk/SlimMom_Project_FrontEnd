@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import styles from "./DailyCaloriesForm.module.css";
 import NavigationBar from "../../Components/NavigationBar";
-
 import Modal from "../../Components/Modal";
 import useModal from "../../Components/Modal/useModal";
 import useForm from "./useForm";
@@ -39,16 +38,13 @@ const DailyCalopiesForm = () => {
       })
       .then((res) => {
         const { dayNormCalories, notAllowedCategories } = res.data;
-        console.log(res);
         setCalories(dayNormCalories.toString());
         setProducts([...notAllowedCategories]);
 
         toggle();
       })
       .catch((error) => {
-        if (error) {
-          console.log("its some errors ", error);
-        }
+        console.log(error)
       });
   }
 
@@ -73,7 +69,9 @@ const DailyCalopiesForm = () => {
               autoComplete="off"
             />
 
-            {errors.height && <p className={styles.error}>{errors.height}</p>}
+            {errors.height && (
+              <p className={styles.error_input}>{errors.height}</p>
+            )}
 
             <input
               className={styles.input || ""}
@@ -85,7 +83,7 @@ const DailyCalopiesForm = () => {
               autoComplete="off"
             />
 
-            {errors.age && <p className={styles.error}>{errors.age}</p>}
+            {errors.age && <p className={styles.error_input}>{errors.age}</p>}
 
             <input
               className={styles.input}
@@ -98,7 +96,7 @@ const DailyCalopiesForm = () => {
             />
 
             {errors.currentWeight && (
-              <p className={styles.error}>{errors.currentWeight}</p>
+              <p className={styles.error_input}>{errors.currentWeight}</p>
             )}
 
             <input
@@ -112,7 +110,7 @@ const DailyCalopiesForm = () => {
             />
 
             {errors.targetWeight && (
-              <p className={styles.error}>{errors.targetWeight}</p>
+              <p className={styles.error_input}>{errors.targetWeight}</p>
             )}
 
             <div className={styles.radio_buttons}>
